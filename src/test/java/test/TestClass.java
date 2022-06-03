@@ -32,7 +32,7 @@ public class TestClass extends TestBase {
 	}
 
 //	@Test(enabled=false)
-//	@Test(priority = 0)
+	@Test(priority = 0)
 	public void testManifest() {
 
 		ManifestListPage objMNFList = new ManifestListPage(driver);
@@ -46,7 +46,7 @@ public class TestClass extends TestBase {
 		objMNFList.clickNew();
 		objMNFInfo.createManifest();
 		objHBL.createBL();
-//		objHBItems.createHBItems();
+		objHBItems.createHBItems();
 		objMNFInfo.submitManifest();
 		logOut();
 
@@ -68,7 +68,7 @@ public class TestClass extends TestBase {
 	}
 
 	@Test(priority = 1)
-	public void testBayan() {
+	public void testBayan() throws InterruptedException {
 		PendingDeliveryOrderListPage objPendingDOList = new PendingDeliveryOrderListPage(driver);
 		objBayan = new CustomsBayanPage(driver);
 		DeclarationListPage objDecList = new DeclarationListPage(driver);
@@ -76,29 +76,29 @@ public class TestClass extends TestBase {
 
 		login("broker.kwi", "fx5test");
 //		Declare DO & Create Import Bayan
-//		objPendingDOList.clickPendingDOSubMenu();
-//		objPendingDOList.searchWithDO(objMNFInfo.doNumber); // objMNFInfo.doNumber DO/54924/KWI22
-//		objPendingDOList.clickDeclare();
-//
-//		objBayan.createBayan();
+		objPendingDOList.clickPendingDOSubMenu();
+		objPendingDOList.searchWithDO(objMNFInfo.doNumber); // objMNFInfo.doNumber DO/54924/KWI22
+		objPendingDOList.clickDeclare();
+
+		objBayan.createBayan();
 
 //		Edit Created Bayan from Declaration list screen4';u		
-		objDecList.clickDeclarationSubMenu();
-		objDecList.searchByTempDec("TIM/29661/KWI22");// tempDeclarationNo
-		objDecList.clickTempNo();
+//		objDecList.clickDeclarationSubMenu();
+//		objDecList.searchByTempDec("TIM/29661/KWI22");// tempDeclarationNo
+//		objDecList.clickTempNo();
+//		objImp.clickEdit();
+//		objImp.selectExitPort();
+		
+		objImp.addInvoice();
+		objImp.addItems();
+		
+		objImp.requiredDocuments();
+		objImp.addDeclarationVehiclesList();
 
-		objImp.clickEdit();
-		objImp.selectExitPort();
-//		objImp.addInvoice();
-//		objImp.addItems();
-//		
-//		objImp.requiredDocuments();
-//		objImp.addDeclarationVehiclesList();
-//
-//		objImp.calculateDuty();
-//		objImp.addPaymentInformation();
-//		objImp.submitDeclaration();
-//		logOut();
+		objImp.calculateDuty();
+		objImp.addPaymentInformation();
+		objImp.submitDeclaration();
+		logOut();
 	}
 
 //	@AfterTest

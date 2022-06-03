@@ -162,7 +162,7 @@ public class TestBase {
 	 * @return
 	 */
 	public WebElement waitForElementToBeVisible(By locator) {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));// sel 4.x
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));// sel 4.x
 		return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
 	}
 
@@ -218,12 +218,12 @@ public class TestBase {
 	}
 
 	public void doSelectWithoutSelect(By locator, String value) {
-		driver.findElement(By.id("drpGatePassCategory")).click();
+//		driver.findElement(By.id("drpGatePassCategory")).click();
 		List<WebElement> list = findElements(locator);
 
 		for (WebElement e : list) {
 			String text = e.getText();
-			System.out.println(text);
+			System.out.print(text);
 			if (text.equals(value)) {
 				e.click();
 				break;

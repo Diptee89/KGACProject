@@ -42,7 +42,7 @@ public class HouseBillPage extends TestBase{
 		findElement(originPortBy).sendKeys("%%" + Keys.TAB);
 		findElement(createBy).click();
 		
-		doClick(By.cssSelector("#cancel[value='Back']"));
+//		doClick(By.cssSelector("#cancel[value='Back']"));
 	}
 
 	private void clickNew() {

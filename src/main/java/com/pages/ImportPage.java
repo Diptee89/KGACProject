@@ -107,18 +107,30 @@ public class ImportPage extends TestBase {
 		driver.switchTo().window(MainWindow);
 
 	}
+	/*
+	 * cannot convert it to a Select object type as that doesn't accept datalist
+	 * tags 
+	 * cannot click the datalist directly as it throws an ElementNotIteractable
+	 * cannot use actions to moveto and click - you get "Failed to execute 'elementsFromPoint' on 'Document'" 
+	 * cannot use action tokeys down + keys enter - just doesn't do it 
+	 * cannot use a JS executor to click- does nothing 
+	 * 
+	 * So - what's left, is to recreate what the spec says the
+	 * dropdown does.
+	 * 
+	 * Type your partial text in the input. Get your option object (confirming the
+	 * popup exists) get the value attribute clear and send keys to the input
+	 */
 
 	public void addDeclarationVehiclesList() {
 		findElement(declarationVehiclesListlnkBy).click();
 		switchToWindow();
 		findElement(NewBtnBy).click();
 
+		doSendKeys(drpGatePassCategoryBy, "General loads");
+		doSendKeys(drpCargoTypeBy, "General Cargo");
+		doSendKeys(drpTruckNCarrierSizeBy, "Half Lorry");
 
-		doSelectByVisibleText(drpGatePassCategoryBy, "General loads");//332293540		
-//		doSelectByValue(drpGatePassCategoryBy, "332293540");
-		doSelectByVisibleText(drpCargoTypeBy, "General Cargo");
-		doSelectByVisibleText(drpTruckNCarrierSizeBy, "Half Lorry");
-		
 //		doActionsClick(drpGatePassCategoryBy);
 //		doActionsClick(drpGatePassCategoryOptionBy);
 
@@ -135,23 +147,14 @@ public class ImportPage extends TestBase {
 		driver.switchTo().window(MainWindow);
 
 	}
-	
-	public void selectExitPort() {
-//		doClick(By.xpath("//td[@id='ExitportName']/select"));
-//		doClick(By.xpath("//td[@id='ExitportName']/select/option[3]"));
 
-		Actions act=new Actions(driver);
-		WebElement exitPort = driver.findElement(By.id("dldExitportName"));
+	public void selectExitPort() throws InterruptedException {
+		/*
+		 * KUWAIT INTNL.AIRPORT SHUAIBA SHUWAIKH ABDELI DOHA SALMI (KUWAIT)
+		 * NUWAISEEB(KUWAIT)
+		 */
+		doSendKeys(By.xpath("//select[@id='dldExitportName']"), "DOHA");
 
-//		exitPort.click();
-		
-		act.click(exitPort)
-		.perform();
-		act.keyDown("SHUAIBA").perform();
-		
-//		Select select = new Select(exitPort);
-//		select.selectByVisibleText("SHUAIBA");
-//		doSelectByVisibleText(By.xpath("//td[@id='ExitportName']/select"), "SHUAIBA");
 	}
 
 //	Invoice Details -->Invoice Information
@@ -182,11 +185,11 @@ public class ImportPage extends TestBase {
 		doSendKeys(By.id("noofpackages"), "100");
 //		Browse and Select Package Type
 		doClick(By.id("btnPackageType"));
-		switchToWindow();		
-		findElement(By.name("Name")).sendKeys("Piece"+Keys.ENTER);
+		switchToWindow();
+		findElement(By.name("Name")).sendKeys("Piece" + Keys.ENTER);
 		doClick(By.xpath("//td[@id='List_PackageTypeLsPg_0_Description']/a"));
 		driver.switchTo().window(MainWindow);
-		
+
 		doSendKeys(By.id("quantity"), "100");
 		doSendKeys(By.id("weight"), "100");
 		doSendKeys(By.id("Gross1"), "100");
