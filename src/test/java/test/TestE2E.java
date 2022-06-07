@@ -1,5 +1,6 @@
 package test;
 
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -32,8 +33,7 @@ public class TestE2E extends TestBase {
 	}
 
 //	@Test(enabled=false)
-//	@Test(priority = 0)
-	@Test
+	@Test(priority = 0)
 	public void testManifest() {
 
 		ManifestListPage objMNFList = new ManifestListPage(driver);
@@ -68,7 +68,7 @@ public class TestE2E extends TestBase {
 		logOut();
 	}
 
-//	@Test(priority = 1)
+	@Test(priority = 1)
 	public void testBayan() throws InterruptedException {
 		PendingDeliveryOrderListPage objPendingDOList = new PendingDeliveryOrderListPage(driver);
 		objBayan = new CustomsBayanPage(driver);
@@ -102,7 +102,7 @@ public class TestE2E extends TestBase {
 		logOut();
 	}
 
-//	@AfterTest
+	@AfterTest
 	public void close() {
 		driver.close();
 	}
