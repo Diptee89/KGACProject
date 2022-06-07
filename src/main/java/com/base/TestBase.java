@@ -17,7 +17,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -30,10 +29,12 @@ import com.pages.LoginPage;
 public class TestBase {
 	public String MainWindow;
 	public WebDriver driver;
+	
 	public WebDriver openIE() {
 		System.setProperty("webdriver.ie.driver", "c:\\Drivers\\IEDriverServer.exe");
 //		WebDriverManager.iedriver().setup();
 		driver = new InternetExplorerDriver();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 		driver.manage().deleteAllCookies();
 		return driver;
 	}
@@ -103,7 +104,9 @@ public class TestBase {
 			}
 		}
 	}
-
+	public void switchBackToWindow() {
+		driver.switchTo().window(MainWindow);
+	}
 	public WebDriver launchBrowser(String browserName) {
 
 		System.out.println("browser name is: " + browserName);
@@ -162,7 +165,7 @@ public class TestBase {
 	 * @return
 	 */
 	public WebElement waitForElementToBeVisible(By locator) {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));// sel 4.x
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));// sel 4.x
 		return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
 	}
 

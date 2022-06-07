@@ -9,7 +9,7 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import com.pages.HouseBillPage;
+import com.pages.ImportHouseBillPage;
 import com.pages.LogOutPage;
 import com.pages.LoginPage;
 import com.pages.ManifestInformationPage;
@@ -26,13 +26,13 @@ public WebDriver driver;
 		login("nas.csa", "fx5test");
 		ManifestListPage objMNFList = new ManifestListPage(driver);
 		ManifestInformationPage objMNFInfo = new ManifestInformationPage(driver);
-		HouseBillPage objHBL = new HouseBillPage(driver);
+		ImportHouseBillPage objHBL = new ImportHouseBillPage(driver);
 
 //		Create and Submit Manifest
 		objMNFList.clickCargoMenu();
 		objMNFList.clickNew();
 		objMNFInfo.createManifest();
-		objHBL.createBL();
+		objHBL.createBLForCargo();
 		objMNFInfo.submitManifest();
 		logOut();
 

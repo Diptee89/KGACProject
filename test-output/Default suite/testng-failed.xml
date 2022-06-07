@@ -3,12 +3,18 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="test.TestClass">
+      <class name="test.TestCargo">
         <methods>
-          <include name="testBayan"/>
+          <include name="testCreatePassengerHBL"/>
+          <include name="testIssueDO"/>
+          <include name="testCreateManifest"/>
+          <include name="testApproveManifest"/>
+          <include name="testCreateBWHHBL"/>
+          <include name="testSubmitManifest"/>
+          <include name="testCreateCargoHBL"/>
           <include name="setUp"/>
         </methods>
-      </class> <!-- test.TestClass -->
+      </class> <!-- test.TestCargo -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

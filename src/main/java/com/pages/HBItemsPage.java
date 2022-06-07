@@ -2,7 +2,6 @@ package com.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.Select;
 
 import com.base.TestBase;
 
@@ -30,19 +29,24 @@ public class HBItemsPage extends TestBase {
 		doSendKeys(By.id("cmbFCL"), "LCL");
 		doSendKeys(By.name("ContainerOwner"), "Alex Anaya");
 
-		doSendKeys(By.id("txtQty"), "100");
-		doSendKeys(By.id("txtQtyUOMDesc"), "pieces");
-		
-		doSendKeys(By.id("txtGWt"), "100");
-		doSendKeys(By.id("txtGrossUOMDesc"), "Kilograms");
-		
+		doSendKeys(By.id("txtQty"), "100");	
+		doSendKeys(By.id("txtVol"), "100");
+		doSendKeys(By.id("txtNWt"), "100");
+		doSendKeys(By.id("txtGWt"), "100");		
 		doSendKeys(By.id("txtTWt"), "100");
-		doSendKeys(By.id("txtTareWtUOMDesc"), "Kilograms");
 		
+		
+		doSendKeys(By.xpath("//td[@id='cell_QtyUnitOfMeasurement']//input[@name='txtQtyUOMDesc']"), "pieces"); 
+		doSendKeys(By.id("txtVolUOMDesc"), "Litre");
+		doSendKeys(By.id("txtNWeightUOMDesc"), "Kilograms");
+		doSendKeys(By.id("txtGrossUOMDesc"), "Kilograms");		
+		doSendKeys(By.id("txtTareWtUOMDesc"), "Kilograms");
+
 		doSendKeys(By.name("txtMarkId"), "M001");
 		doSendKeys(By.name("txtMarkType"), "Standared");
 		doSendKeys(By.id("txtsealNo"), "S00101");
-		doSendKeys(By.name("txtRemarks"), "Created By Automation Selenium");
+		doSendKeys(By.name("txtRemarks"), "Created By Automation Selenium");	
+		
 		doClick(By.id("btnCreate"));
 
 		doClick(By.cssSelector("#cancel[value='Back']"));

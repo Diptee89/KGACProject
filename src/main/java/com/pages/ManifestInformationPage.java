@@ -47,6 +47,7 @@ public class ManifestInformationPage extends TestBase {
 
 //	Issue DO
 	private By chkAllBy = By.id("chkallEQ");
+	private By chk1stRowBy = By.id("chk_EO_0");
 	private By issueDOsBy = By.id("btnIssueDO");
 	private By doNoBy = By.xpath("//td[@id='List_ViewBillsFromManifestLs_0_cell_DONO']/a");
 
@@ -55,7 +56,9 @@ public class ManifestInformationPage extends TestBase {
 		selectExpectedArrivalDate();
 		selectArrivaldate();
 		setVesselName();
+		doSendKeys(By.id("CaptainName"), "Captain Alex");
 		setFlightNo();
+		doSendKeys(By.id("ShipName"), "Black Pearl");
 		setRemarks();
 		clickCreatebtn();
 		confirmation();
@@ -78,6 +81,7 @@ public class ManifestInformationPage extends TestBase {
 
 	public void issueDOs() {
 		findElement(chkAllBy).click();
+//		doClick(chk1stRowBy);
 		findElement(issueDOsBy).click();
 		WebElement e = findElement(doNoBy);
 		doNumber = e.getText();
@@ -144,7 +148,7 @@ public class ManifestInformationPage extends TestBase {
 
 		WebElement txtFlightNo = findElement(flightNoBy);
 		Random rand = new Random();
-		int value = rand.nextInt(10000);
+		int value = rand.nextInt(100000);
 		String number = Integer.toString(value);
 
 		txtFlightNo.sendKeys(number + Keys.ENTER);

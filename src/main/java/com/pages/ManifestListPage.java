@@ -64,6 +64,9 @@ public class ManifestListPage extends TestBase{
 	public void clickTempNo() {
 		findElement(tempLinkBy).click();
 	}
+	public void clickManifestNo() {
+		doClick(By.xpath("//td[@id='List_journey_0_JourneyNumber']/a"));
+	}
 	public void clickNew() {
 //		Click on new button 
 		findElement(newButtonBy).click();
