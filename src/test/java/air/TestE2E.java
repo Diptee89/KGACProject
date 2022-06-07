@@ -1,4 +1,4 @@
-package test;
+package air;
 
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
