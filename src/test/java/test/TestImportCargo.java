@@ -10,7 +10,7 @@ import com.pages.ImportHouseBillPage;
 import com.pages.ManifestInformationPage;
 import com.pages.ManifestListPage;
 
-public class TestCargo extends TestBase {
+public class TestImportCargo extends TestBase {
 	private ManifestInformationPage objMNFInfo;
 	ManifestListPage objMNFList;
 	ImportHouseBillPage objHBL;
