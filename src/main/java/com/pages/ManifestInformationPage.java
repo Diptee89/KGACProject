@@ -13,14 +13,16 @@ import com.base.TestBase;
 
 //@SuppressWarnings("unused")
 public class ManifestInformationPage extends TestBase {
-	
+
 	public String tempManifestNo;
 	public String manifestNo;
 	public String doNumber;
-	
+	public String seaManifestNo;
+
 	public ManifestInformationPage(WebDriver driver) {
 		this.driver = driver;
 	}
+
 //	private By newButtonBy = By.xpath("//input[@id='new1' and @title='Create New Manifest']");
 	private By originPortBy = By.cssSelector("#OriginPort");
 	private By expectedArrivalDateDatePickerBy = By.cssSelector("#ExpectedArrivalDateDatePicker");
@@ -64,12 +66,63 @@ public class ManifestInformationPage extends TestBase {
 		confirmation();
 	}
 
+	public void createSeaManifest() {
+		doSendKeys(originPortBy, "INMAA");
+		doSendKeys(vesselNameBy, "AL JAZEERA SHIPPING CO WLL");
+		doSendKeys(By.id("CaptainName"), "Captain Alex");
+		setVoyage();
+		doSendKeys(By.id("ShipName"), "Black Pearl");
+		setRemarks();
+		clickCreatebtn();
+		confirmation();
+	}
+
 	public void submitManifest() {
 		setManualRemarks();
 		clickSubmitbtn();
 		disclaimerConfirmation();
 		confirmation();
 //		clickBackbtn();
+	}
+
+//	The additional info. Pop up in the Manifest, does not contain the required information to Proceed further.
+	public void setAdditionalInfo() {
+		doClick(By.id("lnkAddInfo"));
+		switchToWindow();
+		doSendKeys(By.id("txtNationality"), "IN");
+		doSendKeys(By.id("txtCallSign"), "MG 001");
+		doSendKeys(By.id("txtGRT"), "100");
+		doSendKeys(By.id("txtLOA"), "10");
+		doSendKeys(By.id("txtNRT"), "100");
+		doSendKeys(By.id("txtDraught"), "100");
+		doSendKeys(By.id("txtContractorCargo"), "Contractor Cargo");
+		doSendKeys(By.id("txtContractorContainer"), "LKO28368");
+		doSendKeys(By.id("txtPurposeOfCall"), "Passenger");
+		doClick(By.id("btnSaveNew"));
+		doClick(By.id("btnCancel"));
+		switchBackToWindow();
+	}
+
+	public void submitSeaManifest() {
+		scrollPageDown();
+		doClick(By.id("SubmitJourney"));
+		disclaimerConfirmation();
+
+		seaManifestNo = findElement(By.id("vwr_JourneyNumber")).getText();
+		System.out.println("Sea Manifest Number Generated: " + seaManifestNo);
+		findElement(okButtonBy).click();
+		acceptAlert();
+
+	}
+
+	public void arriveSeaManiest() {
+//		doClick(By.id("edit"));
+		selectArrivaldate();
+//	Cannot make the Manifest to Arrived as Vessel Inspection for Manifest is not yet Created.
+		doClick(By.id("ArrivedJourney"));
+		acceptAlert();
+		disclaimerConfirmation();
+		
 	}
 
 	public void approveManifest() {
@@ -152,6 +205,16 @@ public class ManifestInformationPage extends TestBase {
 		String number = Integer.toString(value);
 
 		txtFlightNo.sendKeys(number + Keys.ENTER);
+	}
+
+	private void setVoyage() {
+
+		WebElement txtVoyageNo = findElement(By.id("Voyage"));
+		Random rand = new Random();
+		int value = rand.nextInt(100000);
+		String number = Integer.toString(value);
+
+		txtVoyageNo.sendKeys(number + Keys.ENTER);
 	}
 
 	private void setRemarks() {

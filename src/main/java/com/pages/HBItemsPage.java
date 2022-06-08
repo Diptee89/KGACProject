@@ -25,6 +25,7 @@ public class HBItemsPage extends TestBase {
 
 		doSendKeys(By.id("txtGoodsTypeId"), "12-A");
 		doSendKeys(By.id("txtDescription"), "Raw material");
+		doSendKeys(By.id("txtContainerTypeDesc"), "MCO");
 		doSendKeys(By.id("txtContainerSizeDesc"), "20 ft");
 		doSendKeys(By.id("cmbFCL"), "LCL");
 		doSendKeys(By.name("ContainerOwner"), "Alex Anaya");

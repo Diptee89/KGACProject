@@ -1,4 +1,4 @@
-package air;
+package sea;
 
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
@@ -13,17 +13,19 @@ import com.pages.ImportPage;
 import com.pages.ManifestInformationPage;
 import com.pages.ManifestListPage;
 import com.pages.PendingDeliveryOrderListPage;
+import com.pages.VesselInspectionPage;
 
 public class TestE2E extends TestBase {
 	private ManifestInformationPage objMNFInfo;
 	private CustomsBayanPage objBayan;
+	private ManifestListPage objMNFList;
 
 	private String url = "http://10.138.108.44/MCKWFX5TEST/Main.aspx";
 	private String strPass = "fx5test";
-	private String strCarrierAgent = "nas.csa";
-	private String strCManifest = "cmanifest.kwi";
-	private String strBayan = "broker.kwi";
-	
+	private String strCarrierAgent = "csa.swk";
+	private String strCManifest = "cmanifest.swk";
+	private String strBayan = "broker.swk";
+
 //	private String strPass="bam";
 //	private String url="http://10.138.108.44/mckwfx5bam/Main.aspx";
 
@@ -39,7 +41,7 @@ public class TestE2E extends TestBase {
 	@Test(priority = 0)
 	public void testManifest() {
 
-		ManifestListPage objMNFList = new ManifestListPage(driver);
+		objMNFList = new ManifestListPage(driver);
 		objMNFInfo = new ManifestInformationPage(driver);
 		ImportHouseBillPage objHBL = new ImportHouseBillPage(driver);
 		HBItemsPage objHBItems = new HBItemsPage(driver);
@@ -48,30 +50,38 @@ public class TestE2E extends TestBase {
 		login(strCarrierAgent, strPass);
 		objMNFList.clickCargoMenu();
 		objMNFList.clickNew();
-		objMNFInfo.createManifest();
-		objHBL.createBLForCargo();
+		objMNFInfo.createSeaManifest();
+		objMNFInfo.setAdditionalInfo();
+		objHBL.createSeaBLForCargo();
 		objHBItems.createHBItems();
-		objMNFInfo.submitManifest();
-		logOut();
-
-//		Approve Manifest
-		login(strCManifest, strPass);
-		objMNFList.clickCargoMenu();
-		objMNFList.searchWithTempNo(objMNFInfo.tempManifestNo);
-		objMNFList.clickTempNo();
-		objMNFInfo.approveManifest();
-		logOut();
-
-//		Issue DO
-		login(strCarrierAgent, strPass);
-		objMNFList.clickCargoMenu();
-		objMNFList.seachWithManifestNo(objMNFInfo.manifestNo);
-		objMNFList.clickTempNo();
+		objMNFInfo.submitSeaManifest();
 		objMNFInfo.issueDOs();
-		logOut();
+
 	}
 
 	@Test(priority = 1)
+	public void submitVesselInspection() {
+//		login(strCarrierAgent, strPass);
+		VesselInspectionPage objVesselInspection = new VesselInspectionPage(driver);
+		objVesselInspection.clickVesselInspection_SubMenu();
+		objVesselInspection.createVessel_Inspection(objMNFInfo.seaManifestNo);
+//		objVesselInspection.createVessel_Inspection("MRN/631/SWK22");
+	}
+
+	@Test(priority = 2)
+	public void arriveManifest() {
+//		objMNFList = new ManifestListPage(driver);
+//		objMNFInfo = new ManifestInformationPage(driver);
+		
+//		login(strCarrierAgent, strPass);
+		
+		objMNFList.clickCargoMenu();
+		objMNFList.seachWithManifestNo(objMNFInfo.seaManifestNo);
+		objMNFList.clickEdit();
+		objMNFInfo.arriveSeaManiest();
+	}
+
+//	@Test(priority = 2)
 	public void testBayan() throws InterruptedException {
 		PendingDeliveryOrderListPage objPendingDOList = new PendingDeliveryOrderListPage(driver);
 		objBayan = new CustomsBayanPage(driver);
@@ -105,7 +115,7 @@ public class TestE2E extends TestBase {
 		logOut();
 	}
 
-	@AfterTest
+//	@AfterTest
 	public void close() {
 		driver.close();
 	}
