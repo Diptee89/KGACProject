@@ -1,4 +1,4 @@
-package sea;
+package land;
 
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -19,17 +19,16 @@ public class TestE2E extends TestBase {
 	private ManifestInformationPage objMNFInfo;
 	private CustomsBayanPage objBayan;
 	private ManifestListPage objMNFList;
-	private HomePage objHome;
 
 	private String strCarrierAgent = "csa.swk";
 	private String strCManifest = "cmanifest.swk";
 	private String strBayan = "broker.swk";
 
-//	private String url = "http://10.138.108.44/MCKWFX5TEST/Main.aspx";
-//	private String strPass = "fx5test";
-	
-	private String strPass="bam";
-	private String url="http://10.138.108.44/mckwfx5bam/Main.aspx";
+	private String url = "http://10.138.108.44/MCKWFX5TEST/Main.aspx";
+	private String strPass = "fx5test";
+
+//	private String strPass = "bam";
+//	private String url = "http://10.138.108.44/mckwfx5bam/Main.aspx";
 
 	@BeforeTest
 	public void setUp() {
@@ -42,8 +41,8 @@ public class TestE2E extends TestBase {
 //	@Test(enabled=false)
 	@Test(priority = 0)
 	public void testManifest() {
-		objHome = new HomePage(driver);
-		
+
+		HomePage objHome = new HomePage(driver);
 		objMNFList = new ManifestListPage(driver);
 		objMNFInfo = new ManifestInformationPage(driver);
 		ImportHouseBillPage objHBL = new ImportHouseBillPage(driver);
@@ -51,7 +50,7 @@ public class TestE2E extends TestBase {
 
 //		Create and Submit Manifest
 		login(strCarrierAgent, strPass);
-		objHome.selectPort("SHUWAIKH");
+		objHome.selectPort("ABDELI");
 		
 		objMNFList.clickCargoMenu();
 		objMNFList.clickNew();
@@ -77,9 +76,9 @@ public class TestE2E extends TestBase {
 	public void arriveManifest() {
 //		objMNFList = new ManifestListPage(driver);
 //		objMNFInfo = new ManifestInformationPage(driver);
-		
+
 //		login(strCarrierAgent, strPass);
-		
+
 		objMNFList.clickCargoMenu();
 		objMNFList.seachWithManifestNo(objMNFInfo.seaManifestNo);
 		objMNFList.clickEdit();
@@ -88,9 +87,6 @@ public class TestE2E extends TestBase {
 
 //	@Test(priority = 2)
 	public void testBayan() throws InterruptedException {
-		objHome.selectPort("SHUWAIKH");
-		
-	
 		PendingDeliveryOrderListPage objPendingDOList = new PendingDeliveryOrderListPage(driver);
 		objBayan = new CustomsBayanPage(driver);
 		DeclarationListPage objDecList = new DeclarationListPage(driver);

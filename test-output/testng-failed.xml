@@ -6,6 +6,7 @@
       <class name="sea.TestE2E">
         <methods>
           <include name="arriveManifest"/>
+          <include name="testManifest"/>
           <include name="setUp"/>
           <include name="submitVesselInspection"/>
         </methods>

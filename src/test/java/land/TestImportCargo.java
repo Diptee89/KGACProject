@@ -1,4 +1,4 @@
-package sea;
+package land;
 
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
@@ -43,10 +43,10 @@ public class TestImportCargo extends TestBase {
 		objMNFList = new ManifestListPage(driver);
 		objMNFInfo = new ManifestInformationPage(driver);
 
-
-		login(strCarrierAgent, strPass);
-		objHome.selectPort("SHUWAIKH");
 //		Create Manifest
+		login(strCarrierAgent, strPass);
+		objHome.selectPort("ABDELI");
+		
 		objMNFList.clickCargoMenu();
 		objMNFList.clickNew();
 		objMNFInfo.createSeaManifest();
