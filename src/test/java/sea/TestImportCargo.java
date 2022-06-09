@@ -54,7 +54,7 @@ public class TestImportCargo extends TestBase {
 	}
 
 	@Test(priority = 1)
-	public void testCreateCargoHBL() {
+	public void testCreateHBLCargo() {
 		objHBL = new ImportHouseBillPage(driver);
 		objHBItems = new HBItemsPage(driver);
 	
@@ -64,7 +64,7 @@ public class TestImportCargo extends TestBase {
 	}
 
 	@Test(priority = 2)
-	public void testCreatePassengerHBL() {
+	public void testCreateHBLPassenger() {
 		objHBL = new ImportHouseBillPage(driver);
 		objHBItems = new HBItemsPage(driver);
 
@@ -73,14 +73,9 @@ public class TestImportCargo extends TestBase {
 
 	}
 
-//	@Test(priority = 3)
-	public void testCreateCourierHBL() {
-		objHBL = new ImportHouseBillPage(driver);
-		objHBL.createSeaBLForCourier();
-	}
 
 	@Test(priority = 4)
-	public void testCreateBWHHBL() {
+	public void testCreateHBLBWH() {
 		objHBL = new ImportHouseBillPage(driver);
 		objHBItems = new HBItemsPage(driver);
 

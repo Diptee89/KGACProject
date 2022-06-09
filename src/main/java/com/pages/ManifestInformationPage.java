@@ -18,6 +18,7 @@ public class ManifestInformationPage extends TestBase {
 	public String manifestNo;
 	public String doNumber;
 	public String seaManifestNo;
+	public String landManifestNo;
 
 	public ManifestInformationPage(WebDriver driver) {
 		this.driver = driver;
@@ -53,6 +54,7 @@ public class ManifestInformationPage extends TestBase {
 	private By issueDOsBy = By.id("btnIssueDO");
 	private By doNoBy = By.xpath("//td[@id='List_ViewBillsFromManifestLs_0_cell_DONO']/a");
 
+//	Carrier Type:Air 
 	public void createManifest() {
 		setOriginPort();
 		selectExpectedArrivalDate();
@@ -66,8 +68,36 @@ public class ManifestInformationPage extends TestBase {
 		confirmation();
 	}
 
+	public void submitManifest() {
+		setManualRemarks();
+		clickSubmitbtn();
+		disclaimerConfirmation();
+		confirmation();
+//		clickBackbtn();
+	}
+
+	public void approveManifest() {
+		clickApprovebtn();
+		disclaimerConfirmation();
+		approveConf();
+//		clickBackbtn();
+	}
+
+	public void issueDOs() {
+		findElement(chkAllBy).click();
+//		doClick(chk1stRowBy);
+		findElement(issueDOsBy).click();
+		WebElement e = findElement(doNoBy);
+		doNumber = e.getText();
+		System.out.println("DO Number: " + doNumber);
+//		findElement(doNoBy).click();
+	}
+
+//	 Carrier Type:Sea
 	public void createSeaManifest() {
+//		Manifest Information
 		doSendKeys(originPortBy, "INMAA");
+//		Vessel Details
 		doSendKeys(vesselNameBy, "AL JAZEERA SHIPPING CO WLL");
 		doSendKeys(By.id("CaptainName"), "Captain Alex");
 		setVoyage();
@@ -75,14 +105,6 @@ public class ManifestInformationPage extends TestBase {
 		setRemarks();
 		clickCreatebtn();
 		confirmation();
-	}
-
-	public void submitManifest() {
-		setManualRemarks();
-		clickSubmitbtn();
-		disclaimerConfirmation();
-		confirmation();
-//		clickBackbtn();
 	}
 
 //	The additional info. Pop up in the Manifest, does not contain the required information to Proceed further.
@@ -122,24 +144,71 @@ public class ManifestInformationPage extends TestBase {
 		doClick(By.id("ArrivedJourney"));
 		acceptAlert();
 		disclaimerConfirmation();
+
+	}
+
+//	Carrier Type:Land
+	public void createLandManifest() {
+//		Manifest Information
+		doSendKeys(originPortBy, "IQABD"); // Port Of Origin
+		doSendKeys(By.id("ForeignManifest"), "MRN/001/ABD22"); // Foreign Manifest
+		doSendKeys(By.id("country"), "IQ"); // Foreign Manifest Nationality
+		doSendKeys(By.id("EntryPortName"), "KWABD");
+//		Carrier Details
+		doSendKeys(vesselNameBy, "TNT"); // Carrier
+		doSendKeys(By.id("CaptainName"), "Captain Alex");
+		setVoyage();
+		doSendKeys(By.id("ShipName"), "Black Pearl");
+		setRemarks();
+		doSendKeys(By.id("transporttype"), "Empty Import");
+		doSendKeys(By.id("CarrierOwner"), "Mitchel MD");
+
+		clickCreatebtn();
+		confirmation();
+	}
+
+	public void setTrucksList() {
+		doClick(By.id("LookUpTrucks"));
+		switchToWindow();
+		doClick(By.id("new1"));
+
+		doSendKeys(By.id("PN_Num1"), "101");
+		doSendKeys(By.id("PN_LONGN"), "987654");
+		doSendKeys(By.name("TruckNumber"), "XD626EG47J1A08097");// Chassis No
+		doSendKeys(By.id("convoyno"), "TS01ER1643");
+		doSendKeys(By.id("VehicleType"), "SEDAN");
+		doSendKeys(By.id("VehicleModel"), "2018");
+		doSendKeys(By.id("truckcountname"), "IQ");
+		doSendKeys(By.id("mobilenumber"), "98765432");
+		doSendKeys(By.id("DriverName"), "Irfan Moli");
+		doSendKeys(By.id("country"), "SA");
+		doSendKeys(By.id("Passport"), "P9878789");
+		doSendKeys(By.id("CivilId"), "321030900015");
+		doSendKeys(By.id("txtOwner"), "Sareef Moli");
+		doSendKeys(By.id("txtColor"), "White");
+		doSendKeys(By.id("txtSealCount"), "2");
+		doSendKeys(By.id("txtSealNo1"), "S8475637845");
+		doSendKeys(By.id("txtSealNo2"), "S000000234");
+
+		doClick(By.id("SaveNewTrucks"));// Click on Create button
+		doClick(By.id("close")); // Close Truck List screen window.
+		switchBackToWindow();
+	}
+
+	public void submit_ArrivedLandManifest() {
 		
-	}
-
-	public void approveManifest() {
-		clickApprovebtn();
+		doClick(By.id("ArrivedSubmitJourney"));
 		disclaimerConfirmation();
-		approveConf();
-//		clickBackbtn();
-	}
 
-	public void issueDOs() {
-		findElement(chkAllBy).click();
-//		doClick(chk1stRowBy);
-		findElement(issueDOsBy).click();
-		WebElement e = findElement(doNoBy);
-		doNumber = e.getText();
-		System.out.println("DO Number: " + doNumber);
-//		findElement(doNoBy).click();
+		landManifestNo = findElement(By.id("vwr_JourneyNumber")).getText();// MRN/84/ABD22
+		System.out.println("Land Manifest Number Generated: " + landManifestNo);
+		doClick(By.id("okbutton"));
+
+	}
+	public void validateTrucks() {
+		doClick(By.id("ValidateDecVeh"));
+		System.out.println(findElement(By.className("errorpage_header")).getText());
+		doClick(By.className("errorpage_links"));
 	}
 
 	/*
@@ -169,7 +238,7 @@ public class ManifestInformationPage extends TestBase {
 
 	private void disclaimerConfirmation() {
 		switchToWindow();
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(chkJourneySubmitBy));
 
 		findElement(chkJourneySubmitBy).click();

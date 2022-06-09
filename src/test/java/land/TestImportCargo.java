@@ -30,7 +30,7 @@ public class TestImportCargo extends TestBase {
 
 	@BeforeTest
 	public void setUp() {
-		openIE();		
+		openIE();
 		driver.get(url);
 		System.out.println(driver.getTitle());
 		switchToWindow();
@@ -39,84 +39,54 @@ public class TestImportCargo extends TestBase {
 //	@Test(enabled=false)
 	@Test(priority = 0)
 	public void testCreateManifest() {
-		HomePage objHome = new HomePage(driver);		
+		HomePage objHome = new HomePage(driver);
 		objMNFList = new ManifestListPage(driver);
 		objMNFInfo = new ManifestInformationPage(driver);
 
 //		Create Manifest
 		login(strCarrierAgent, strPass);
 		objHome.selectPort("ABDELI");
-		
+
 		objMNFList.clickCargoMenu();
 		objMNFList.clickNew();
-		objMNFInfo.createSeaManifest();
-		objMNFInfo.setAdditionalInfo();
+		objMNFInfo.createLandManifest();
 	}
 
 	@Test(priority = 1)
-	public void testCreateCargoHBL() {
+	public void testCreateHBLCargo() {
 		objHBL = new ImportHouseBillPage(driver);
 		objHBItems = new HBItemsPage(driver);
-	
-		objHBL.createSeaBLForCargo();
-		objHBItems.createHBItems();
-		
+
+		objHBL.createLandBLForCargo();
+		objHBItems.createLandHBItems();
+
 	}
 
 	@Test(priority = 2)
-	public void testCreatePassengerHBL() {
-		objHBL = new ImportHouseBillPage(driver);
-		objHBItems = new HBItemsPage(driver);
-
-		objHBL.createSeaBLForPassenger();
-		objHBItems.createHBItems();
+	public void testCreateHBLPassenger() {
+		objHBL.createLandBLForPassenger();
+		objHBItems.createLandHBItems();
 
 	}
 
-//	@Test(priority = 3)
-	public void testCreateCourierHBL() {
-		objHBL = new ImportHouseBillPage(driver);
-		objHBL.createSeaBLForCourier();
+	@Test(priority = 3)
+	public void testCreateHBLBWH() {
+		objHBL.createLandBLForBWH();
+		objHBItems.createLandHBItems();
+
 	}
 
 	@Test(priority = 4)
-	public void testCreateBWHHBL() {
-		objHBL = new ImportHouseBillPage(driver);
-		objHBItems = new HBItemsPage(driver);
-
-		objHBL.createSeaBLForBWH();
-		objHBItems.createHBItems();
-
-	}
-
-	@Test(priority = 5)
-	public void testSubmitManifest() {
-		objMNFInfo.submitSeaManifest();
+	public void testSubmitAndArriveManifest() {
+		objMNFInfo.setTrucksList(); // Cannot Submit & Arrive. Truck Details are missing
+		objMNFInfo.submit_ArrivedLandManifest(); // Submit and Arrived
 //		Issue DO
 		objMNFInfo.issueDOs();
 
+		objMNFInfo.validateTrucks();
 	}
 
-	@Test(priority = 6)
-	public void submitVesselInspection() {
-		VesselInspectionPage objVesselInspection = new VesselInspectionPage(driver);
-		
-		objVesselInspection.clickVesselInspection_SubMenu();//Click Sub menu
-		objVesselInspection.createVessel_Inspection(objMNFInfo.seaManifestNo);//Create and Submit
-	}
-
-	@Test(priority = 7)
-	public void arriveManifest() {
-		objMNFList.clickCargoMenu();
-		objMNFList.seachWithManifestNo(objMNFInfo.seaManifestNo);
-		
-		objMNFList.clickEdit();
-		
-		objMNFInfo.arriveSeaManiest();//Arrive Journey
-		logOut();
-	}
-
-	@AfterTest
+//	@AfterTest
 	public void close() {
 		driver.close();
 	}

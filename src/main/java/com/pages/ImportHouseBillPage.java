@@ -29,6 +29,18 @@ public class ImportHouseBillPage extends TestBase {
 	private By originPortBy = By.id("OriginPort");
 	private By createBy = By.cssSelector("#submit10[title='Create'][class='mcbutton']");
 
+	private void clickNew() {
+		findElement(newBy).click();
+	}
+
+	private void setHouseBill() {
+		Random rand = new Random();
+		int value = rand.nextInt(10000);
+		String number = Integer.toString(value);
+		findElement(houseBillNoBy).sendKeys("AWBL/" + number + "/KWI22");
+	}
+
+//	Carrier Type: Air >> Bill For   Cargo / Passenger/Courier /  BWH 
 	public void createBLForCargo() {
 		clickNew();
 		setHouseBill();
@@ -55,76 +67,11 @@ public class ImportHouseBillPage extends TestBase {
 //		doClick(By.cssSelector("#cancel[value='Back']"));
 	}
 
-	public void createSeaBLForCargo() {
-		clickNew();
-
-		Random rand = new Random();
-		int value = rand.nextInt(10000);
-		String number = Integer.toString(value);
-		findElement(houseBillNoBy).sendKeys("HBL/" + number + "/SWK22");
-
-		findElement(housebilldateDatePickerBy).click();
-		findElement(calenderCurrentDateBy).click();
-		doSendKeys(By.id("UserDONo"), "DO/001/SWK22");
-//		Goods Details
-		findElement(unregisteredConsigneeBy).sendKeys("Alex MD Husain");
-		doSendKeys(By.id("txtNotifiedConsignee"), "Notified Consignee");
-		doSendKeys(By.id("txtExporter"), "Exporter Ali");
-		findElement(descriptionBy).sendKeys("Oil");
-		findElement(tgWeightBy).sendKeys("100" + Keys.TAB);
-		doSendKeys(By.id("txtTareWt"), "100");
-		doSendKeys(By.id("weight"), "100");
-		doSendKeys(By.id("volume"), "100");
-		doSendKeys(By.id("txtTareWtUOMDesc"), "Kilogram");
-		doSendKeys(By.id("txtVolUOMDesc"), "Litre");
-
-		findElement(tquantityManifestedBy).sendKeys("100" + Keys.TAB);
-		findElement(originPortBy).sendKeys("%%" + Keys.TAB);
-		doSendKeys(By.id("remarks"), "Created Bill For Cargo");
-		doSendKeys(By.id("Marks"), "Marks");
-		findElement(createBy).click();
-
-//		doClick(By.cssSelector("#cancel[value='Back']"));
-	}
-
 	public void createBLForPassenger() {
 		clickNew();
 		setHouseBill();
 		findElement(housebilldateDatePickerBy).click();
 		findElement(calenderCurrentDateBy).click();
-		doClick(By.id("IsNotCargo")); // Bill For: Cargo / Passenger /Courier /BWH
-//		Goods Details
-		findElement(unregisteredConsigneeBy).sendKeys("Alex MD Husain");
-		doSendKeys(By.id("txtNotifiedConsignee"), "Notified Consignee");
-		doSendKeys(By.id("txtExporter"), "Exporter Ali");
-		findElement(descriptionBy).sendKeys("Oil");
-		findElement(tgWeightBy).sendKeys("100" + Keys.TAB);
-		doSendKeys(By.id("txtTareWt"), "100");
-		doSendKeys(By.id("weight"), "100");
-		doSendKeys(By.id("volume"), "100");
-		doSendKeys(By.id("txtTareWtUOMDesc"), "Kilogram");
-		doSendKeys(By.id("txtVolUOMDesc"), "Litre");
-
-		findElement(tquantityManifestedBy).sendKeys("100" + Keys.TAB);
-		findElement(originPortBy).sendKeys("%%" + Keys.TAB);
-		doSendKeys(By.id("remarks"), "Created Bill For Cargo");
-		doSendKeys(By.id("Marks"), "Marks");
-		findElement(createBy).click();
-
-	}
-
-	public void createSeaBLForPassenger() {
-		clickNew();
-
-		Random rand = new Random();
-		int value = rand.nextInt(10000);
-		String number = Integer.toString(value);
-		findElement(houseBillNoBy).sendKeys("HBL/" + number + "/SWK22");
-
-		findElement(housebilldateDatePickerBy).click();
-		findElement(calenderCurrentDateBy).click();
-		doSendKeys(By.id("UserDONo"), "DO/001/SWK22");
-
 		doClick(By.id("IsNotCargo")); // Bill For: Cargo / Passenger /Courier /BWH
 //		Goods Details
 		findElement(unregisteredConsigneeBy).sendKeys("Alex MD Husain");
@@ -174,26 +121,15 @@ public class ImportHouseBillPage extends TestBase {
 		doSendKeys(By.id("Marks"), "Marks");
 		findElement(createBy).click();
 
-
 		doClick(By.cssSelector("#cancel[value='Back']"));
 	}
-	public void createSeaBLForCourier() {
-//		Manifest can't be submitted, Courier Housebills[HBL/5769/KWI] doesn't have Split Bills
-//		Can't create Consolidated house Bill as Courier Bill. 
 
+	public void createBLForBWH() {
 		clickNew();
-
-		Random rand = new Random();
-		int value = rand.nextInt(10000);
-		String number = Integer.toString(value);
-		findElement(houseBillNoBy).sendKeys("HBL/" + number + "/SWK22");
-
+		setHouseBill();
 		findElement(housebilldateDatePickerBy).click();
 		findElement(calenderCurrentDateBy).click();
-		doSendKeys(By.id("UserDONo"), "DO/001/SWK22");
-
-		doClick(By.id("rdbCourier"));
-		doClick(By.id("IsConsole"));
+		doClick(By.id("rdbbwh"));
 //		Goods Details
 		findElement(unregisteredConsigneeBy).sendKeys("Alex MD Husain");
 		doSendKeys(By.id("txtNotifiedConsignee"), "Notified Consignee");
@@ -212,15 +148,54 @@ public class ImportHouseBillPage extends TestBase {
 		doSendKeys(By.id("Marks"), "Marks");
 		findElement(createBy).click();
 
-		doClick(By.cssSelector("#cancel[value='Back']"));
 	}
 
-	public void createBLForBWH() {
+//	Carrier Type: Sea >> Bill For   Cargo / Passenger /  BWH 
+	public void createSeaBLForCargo() {
 		clickNew();
-		setHouseBill();
+
+		Random rand = new Random();
+		int value = rand.nextInt(10000);
+		String number = Integer.toString(value);
+		findElement(houseBillNoBy).sendKeys("HBL/" + number + "/SWK22");
+
 		findElement(housebilldateDatePickerBy).click();
 		findElement(calenderCurrentDateBy).click();
-		doClick(By.id("rdbbwh"));
+		doSendKeys(By.id("UserDONo"), "DO/001/SWK22");
+//		Goods Details
+		findElement(unregisteredConsigneeBy).sendKeys("Alex MD Husain");
+		doSendKeys(By.id("txtNotifiedConsignee"), "Notified Consignee");
+		doSendKeys(By.id("txtExporter"), "Exporter Ali");
+		findElement(descriptionBy).sendKeys("Oil");
+		findElement(tgWeightBy).sendKeys("100" + Keys.TAB);
+		doSendKeys(By.id("txtTareWt"), "100");
+		doSendKeys(By.id("weight"), "100");
+		doSendKeys(By.id("volume"), "100");
+		doSendKeys(By.id("txtTareWtUOMDesc"), "Kilogram");
+		doSendKeys(By.id("txtVolUOMDesc"), "Litre");
+
+		findElement(tquantityManifestedBy).sendKeys("100" + Keys.TAB);
+		findElement(originPortBy).sendKeys("%%" + Keys.TAB);
+		doSendKeys(By.id("remarks"), "Created Bill For Cargo");
+		doSendKeys(By.id("Marks"), "Marks");
+		findElement(createBy).click();
+
+//		doClick(By.cssSelector("#cancel[value='Back']"));
+	}
+
+	public void createSeaBLForPassenger() {
+		clickNew();
+
+		Random rand = new Random();
+		int value = rand.nextInt(10000);
+		String number = Integer.toString(value);
+		findElement(houseBillNoBy).sendKeys("HBL/" + number + "/SWK22");
+
+		findElement(housebilldateDatePickerBy).click();
+		findElement(calenderCurrentDateBy).click();
+		doSendKeys(By.id("UserDONo"), "DO/001/SWK22");
+
+		doClick(By.id("IsNotCargo")); // Bill For: Cargo / Passenger /Courier /BWH
 //		Goods Details
 		findElement(unregisteredConsigneeBy).sendKeys("Alex MD Husain");
 		doSendKeys(By.id("txtNotifiedConsignee"), "Notified Consignee");
@@ -274,14 +249,94 @@ public class ImportHouseBillPage extends TestBase {
 
 	}
 
-	private void clickNew() {
-		findElement(newBy).click();
+//	Carrier Type: Land >> Bill For   Cargo / Passenger /  BWH 
+	public void createLandBLForCargo() {
+		clickNew();
+
+		doClick(By.id("IsCargo"));
+//		Goods Details
+		findElement(unregisteredConsigneeBy).sendKeys("Alex MD Husain");
+		doSendKeys(By.id("txtNotifiedConsignee"), "Notified Consignee");
+		doSendKeys(By.id("txtExporter"), "Exporter Ali");
+		findElement(descriptionBy).sendKeys("Wind Mills");
+		findElement(tgWeightBy).sendKeys("100" + Keys.TAB);
+		doSendKeys(By.id("txtTareWt"), "100");
+		doSendKeys(By.id("weight"), "100");
+		doSendKeys(By.id("volume"), "100");
+		doSendKeys(By.id("txtTareWtUOMDesc"), "Kilogram");
+		doSendKeys(By.id("txtVolUOMDesc"), "Litre");
+		findElement(tquantityManifestedBy).sendKeys("100" + Keys.TAB);
+		findElement(originPortBy).sendKeys("%%" + Keys.TAB);
+//		setFinalDeatination();
+		doSendKeys(By.id("consignmentvalue"), "100");
+		doSendKeys(By.id("currency"), "kwd");
+		doSendKeys(By.id("remarks"), "Created Bill For Cargo");
+		doSendKeys(By.id("Marks"), "Marks");
+
+		doClick(createBy);
+//		doClick(By.cssSelector("#cancel[value='Back']"));
+	}
+	public void createLandBLForPassenger() {
+		clickNew();
+
+		doClick(By.id("IsNotCargo"));
+//		Goods Details
+		findElement(unregisteredConsigneeBy).sendKeys("Alex MD Husain");
+		doSendKeys(By.id("txtNotifiedConsignee"), "Notified Consignee");
+		doSendKeys(By.id("txtExporter"), "Exporter Ali");
+		findElement(descriptionBy).sendKeys("Wind Mills");
+		findElement(tgWeightBy).sendKeys("100" + Keys.TAB);
+		doSendKeys(By.id("txtTareWt"), "100");
+		doSendKeys(By.id("weight"), "100");
+		doSendKeys(By.id("volume"), "100");
+		doSendKeys(By.id("txtTareWtUOMDesc"), "Kilogram");
+		doSendKeys(By.id("txtVolUOMDesc"), "Litre");
+		findElement(tquantityManifestedBy).sendKeys("100" + Keys.TAB);
+		findElement(originPortBy).sendKeys("%%" + Keys.TAB);
+//		setFinalDeatination();
+		doSendKeys(By.id("consignmentvalue"), "100");
+		doSendKeys(By.id("currency"), "kwd");
+		doSendKeys(By.id("remarks"), "Created Bill For Cargo");
+		doSendKeys(By.id("Marks"), "Marks");
+
+		doClick(createBy);
+//		doClick(By.cssSelector("#cancel[value='Back']"));
+	}
+	public void createLandBLForBWH() {
+		clickNew();
+
+		doClick(By.id("rdbbwh"));
+//		Goods Details
+		findElement(unregisteredConsigneeBy).sendKeys("Alex MD Husain");
+		doSendKeys(By.id("txtNotifiedConsignee"), "Notified Consignee");
+		doSendKeys(By.id("txtExporter"), "Exporter Ali");
+		findElement(descriptionBy).sendKeys("Wind Mills");
+		findElement(tgWeightBy).sendKeys("100" + Keys.TAB);
+		doSendKeys(By.id("txtTareWt"), "100");
+		doSendKeys(By.id("weight"), "100");
+		doSendKeys(By.id("volume"), "100");
+		doSendKeys(By.id("txtTareWtUOMDesc"), "Kilogram");
+		doSendKeys(By.id("txtVolUOMDesc"), "Litre");
+		findElement(tquantityManifestedBy).sendKeys("100" + Keys.TAB);
+		findElement(originPortBy).sendKeys("%%" + Keys.TAB);
+//		setFinalDeatination();
+		doSendKeys(By.id("consignmentvalue"), "100");
+		doSendKeys(By.id("currency"), "kwd");
+		doSendKeys(By.id("remarks"), "Created Bill For Cargo");
+		doSendKeys(By.id("Marks"), "Marks");
+
+		doClick(createBy);
+//		doClick(By.cssSelector("#cancel[value='Back']"));
 	}
 
-	private void setHouseBill() {
-		Random rand = new Random();
-		int value = rand.nextInt(10000);
-		String number = Integer.toString(value);
-		findElement(houseBillNoBy).sendKeys("AWBL/" + number + "/KWI22");
+	
+	private void setFinalDeatination() { //Mandatory only for Transit Transport
+		doClick(By.id("browsebutton1"));
+
+		switchToWindow();
+		doSendKeys(By.name("LocationCode"), "IQABL" + Keys.ENTER);
+		doClick(By.linkText("ARBIL"));
+		switchBackToWindow();
 	}
+
 }

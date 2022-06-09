@@ -54,9 +54,8 @@ public class TestE2E extends TestBase {
 		
 		objMNFList.clickCargoMenu();
 		objMNFList.clickNew();
-		objMNFInfo.createSeaManifest();
-		objMNFInfo.setAdditionalInfo();
-		objHBL.createSeaBLForCargo();
+		objMNFInfo.createLandManifest();
+		objHBL.createLandBLForCargo();
 		objHBItems.createHBItems();
 		objMNFInfo.submitSeaManifest();
 		objMNFInfo.issueDOs();
