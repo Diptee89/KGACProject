@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Suite">
-  <test thread-count="5" name="Test">
+  <test name="Test">
     <classes>
-      <class name="test.TestClass"/>
+      <class name="sea.TestImportCargo"/>
+      <class name="land.TestImportCargo"/>
+      <class name="air.TestImportCargo"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

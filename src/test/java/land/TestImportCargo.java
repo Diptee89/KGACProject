@@ -84,9 +84,10 @@ public class TestImportCargo extends TestBase {
 		objMNFInfo.issueDOs();
 
 		objMNFInfo.validateTrucks();
+		logOut();
 	}
 
-//	@AfterTest
+	@AfterTest
 	public void close() {
 		driver.close();
 	}

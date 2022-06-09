@@ -16,11 +16,11 @@ public class TestImportCargo extends TestBase {
 	private ImportHouseBillPage objHBL;
 	private HBItemsPage objHBItems;
 
-	private String strPass = "fx5test";
-	private String url = "http://10.138.108.44/MCKWFX5TEST/Main.aspx";
+//	private String strPass = "fx5test";
+//	private String url = "http://10.138.108.44/MCKWFX5TEST/Main.aspx";
 
-//	private String strPass="bam";
-//	private String url="http://10.138.108.44/mckwfx5bam/Main.aspx";
+	private String strPass="bam";
+	private String url="http://10.138.108.44/mckwfx5bam/Main.aspx";
 
 	@BeforeTest
 	public void setUp() {
