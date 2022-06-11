@@ -107,7 +107,7 @@ public class ManifestInformationPage extends BaseClass {
 	public void setAdditionalInfo() {
 		doClick(By.id("lnkAddInfo"));
 		switchToWindow();
-		waitForElementToBeVisible(By.id("txtNationality"), 10);
+		waitForElementToBeVisible(By.id("txtNationality"), 10);//Overcome Stale Element Reference Exception >Refreshing the web page>Using Try Catch Block>>Using ExpectedConditions.refreshed>>Using POM
 		doSendKeys(By.id("txtNationality"), "IN");
 		doSendKeys(By.id("txtCallSign"), "MG 001");
 		doSendKeys(By.id("txtGRT"), "100");
