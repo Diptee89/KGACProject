@@ -4,6 +4,7 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
+import com.base.BaseClass;
 import com.base.TestBase;
 import com.pages.CustomsBayanPage;
 import com.pages.HBItemsPage;
@@ -13,27 +14,24 @@ import com.pages.ManifestInformationPage;
 import com.pages.ManifestListPage;
 import com.pages.VesselInspectionPage;
 
-public class TestImportCargo extends TestBase {
+public class TestImportCargo extends BaseClass
+{
 	private ManifestInformationPage objMNFInfo;
 	private ManifestListPage objMNFList;
 	private ImportHouseBillPage objHBL;
 	private HBItemsPage objHBItems;
 
-	private String url = "http://10.138.108.44/MCKWFX5TEST/Main.aspx";
-	private String strPass = "fx5test";
-	private String strCarrierAgent = "csa.swk";
-	private String strCManifest = "cmanifest.swk";
-	private String strBayan = "broker.swk";
+//	private String url = "http://10.138.108.44/MCKWFX5TEST/Main.aspx";
+//	private String strPass = "fx5test";
+	private String strCarrierAgent = "CSA.LAND";
 
 //	private String strPass="bam";
 //	private String url="http://10.138.108.44/mckwfx5bam/Main.aspx";
 
 	@BeforeTest
 	public void setUp() {
-		openIE();
-		driver.get(url);
-		System.out.println(driver.getTitle());
-		switchToWindow();
+		launchBrowser("ie");
+		navigateUrl();
 	}
 
 //	@Test(enabled=false)
@@ -44,8 +42,8 @@ public class TestImportCargo extends TestBase {
 		objMNFInfo = new ManifestInformationPage(driver);
 
 //		Create Manifest
-		login(strCarrierAgent, strPass);
-		objHome.selectPort("ABDELI");
+		login(strCarrierAgent);
+//		objHome.selectPort("ABDELI");
 
 		objMNFList.clickCargoMenu();
 		objMNFList.clickNew();
@@ -62,14 +60,14 @@ public class TestImportCargo extends TestBase {
 
 	}
 
-	@Test(priority = 2)
+//	@Test(priority = 2)
 	public void testCreateHBLPassenger() {
 		objHBL.createLandBLForPassenger();
 		objHBItems.createLandHBItems();
 
 	}
 
-	@Test(priority = 3)
+//	@Test(priority = 3)
 	public void testCreateHBLBWH() {
 		objHBL.createLandBLForBWH();
 		objHBItems.createLandHBItems();

@@ -72,7 +72,7 @@ public WebDriver driver;
 	public void login(String id, String pass) {
 		this.switchToWindow();
 		LoginPage objLogin = new LoginPage(driver);
-		objLogin.loginValidUser(id, pass);
+		objLogin.loginUser(id, pass);
 
 	}
 

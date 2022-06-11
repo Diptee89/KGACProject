@@ -4,7 +4,7 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import com.base.TestBase;
+import com.base.BaseClass;
 import com.pages.CustomsBayanPage;
 import com.pages.DeclarationListPage;
 import com.pages.HBItemsPage;
@@ -14,25 +14,19 @@ import com.pages.ManifestInformationPage;
 import com.pages.ManifestListPage;
 import com.pages.PendingDeliveryOrderListPage;
 
-public class TestE2E extends TestBase {
+public class TestE2E extends BaseClass
+{
 	private ManifestInformationPage objMNFInfo;
 	private CustomsBayanPage objBayan;
 
-	private String url = "http://10.138.108.44/MCKWFX5TEST/Main.aspx";
-	private String strPass = "fx5test";
 	private String strCarrierAgent = "nas.csa";
 	private String strCManifest = "cmanifest.kwi";
 	private String strBayan = "broker.kwi";
-	
-//	private String strPass="bam";
-//	private String url="http://10.138.108.44/mckwfx5bam/Main.aspx";
 
 	@BeforeTest
 	public void setUp() {
-		openIE();
-		driver.get(url);
-		System.out.println(driver.getTitle());
-		switchToWindow();
+		launchBrowser("ie");
+		navigateUrl();
 	}
 
 //	@Test(enabled=false)
@@ -45,7 +39,7 @@ public class TestE2E extends TestBase {
 		HBItemsPage objHBItems = new HBItemsPage(driver);
 
 //		Create and Submit Manifest
-		login(strCarrierAgent, strPass);
+		login(strCarrierAgent);
 		objMNFList.clickCargoMenu();
 		objMNFList.clickNew();
 		objMNFInfo.createManifest();
@@ -55,7 +49,7 @@ public class TestE2E extends TestBase {
 		logOut();
 
 //		Approve Manifest
-		login(strCManifest, strPass);
+		login(strCManifest);
 		objMNFList.clickCargoMenu();
 		objMNFList.searchWithTempNo(objMNFInfo.tempManifestNo);
 		objMNFList.clickTempNo();
@@ -63,7 +57,7 @@ public class TestE2E extends TestBase {
 		logOut();
 
 //		Issue DO
-		login(strCarrierAgent, strPass);
+		login(strCarrierAgent);
 		objMNFList.clickCargoMenu();
 		objMNFList.seachWithManifestNo(objMNFInfo.manifestNo);
 		objMNFList.clickTempNo();
@@ -78,7 +72,7 @@ public class TestE2E extends TestBase {
 		DeclarationListPage objDecList = new DeclarationListPage(driver);
 		ImportPage objImp = new ImportPage(driver);
 
-		login(strBayan, strPass);
+		login(strBayan);
 //		Declare DO & Create Import Bayan
 		objPendingDOList.clickPendingDOSubMenu();
 		objPendingDOList.searchWithDO(objMNFInfo.doNumber);

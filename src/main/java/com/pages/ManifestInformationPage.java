@@ -1,18 +1,15 @@
 package com.pages;
 
 import java.time.Duration;
-import java.util.Random;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import com.base.TestBase;
+import com.base.BaseClass;
 
 //@SuppressWarnings("unused")
-public class ManifestInformationPage extends TestBase {
+public class ManifestInformationPage extends BaseClass {
 
 	public String tempManifestNo;
 	public String manifestNo;
@@ -84,13 +81,12 @@ public class ManifestInformationPage extends TestBase {
 	}
 
 	public void issueDOs() {
-		findElement(chkAllBy).click();
+		doClick(chkAllBy);
 //		doClick(chk1stRowBy);
-		findElement(issueDOsBy).click();
-		WebElement e = findElement(doNoBy);
-		doNumber = e.getText();
+		doClick(issueDOsBy);
+		doNumber = doElementGetText(doNoBy);
 		System.out.println("DO Number: " + doNumber);
-//		findElement(doNoBy).click();
+//		doClick(doNoBy);
 	}
 
 //	 Carrier Type:Sea
@@ -130,10 +126,10 @@ public class ManifestInformationPage extends TestBase {
 		doClick(By.id("SubmitJourney"));
 		disclaimerConfirmation();
 
-		seaManifestNo = findElement(By.id("vwr_JourneyNumber")).getText();
+		seaManifestNo = doElementGetText(By.id("vwr_JourneyNumber"));
 		System.out.println("Sea Manifest Number Generated: " + seaManifestNo);
-		findElement(okButtonBy).click();
-		acceptAlert();
+		doClick(okButtonBy);
+		acceptAlert(5);
 
 	}
 
@@ -142,7 +138,7 @@ public class ManifestInformationPage extends TestBase {
 		selectArrivaldate();
 //	Cannot make the Manifest to Arrived as Vessel Inspection for Manifest is not yet Created.
 		doClick(By.id("ArrivedJourney"));
-		acceptAlert();
+		acceptAlert(5);
 		disclaimerConfirmation();
 
 	}
@@ -156,7 +152,7 @@ public class ManifestInformationPage extends TestBase {
 		doSendKeys(By.id("EntryPortName"), "KWABD");
 //		Carrier Details
 		doSendKeys(vesselNameBy, "TNT"); // Carrier
-		doSendKeys(By.id("CaptainName"), "Captain Alex");
+		doSendKeys(By.id("CaptainName"), "Driver Alex");
 		setVoyage();
 		doSendKeys(By.id("ShipName"), "Black Pearl");
 		setRemarks();
@@ -196,18 +192,19 @@ public class ManifestInformationPage extends TestBase {
 	}
 
 	public void submit_ArrivedLandManifest() {
-		
+
 		doClick(By.id("ArrivedSubmitJourney"));
 		disclaimerConfirmation();
 
-		landManifestNo = findElement(By.id("vwr_JourneyNumber")).getText();// MRN/84/ABD22
+		landManifestNo = doElementGetText(By.id("vwr_JourneyNumber"));// MRN/84/ABD22
 		System.out.println("Land Manifest Number Generated: " + landManifestNo);
 		doClick(By.id("okbutton"));
 
 	}
+
 	public void validateTrucks() {
 		doClick(By.id("ValidateDecVeh"));
-		System.out.println(findElement(By.className("errorpage_header")).getText());
+		System.out.println(doElementGetText(By.className("errorpage_header")));
 		doClick(By.className("errorpage_links"));
 	}
 
@@ -216,24 +213,22 @@ public class ManifestInformationPage extends TestBase {
 	 * 
 	 */
 	private void confirmation() {
-		WebElement eTempManifestNo = findElement(tempJourneyNumberBy);
-		tempManifestNo = eTempManifestNo.getText();
+		tempManifestNo = doElementGetText(tempJourneyNumberBy);
 
 		System.out.println("Temporary Manifest Number Generated: " + tempManifestNo);
 
-		findElement(okButtonBy).click();
+		doClick(okButtonBy);
 	}
 
 	/*
 	 * Confirmation: MRN/7347/KWI22 Has been Approved Successfully.
 	 */
 	private void approveConf() {
-		WebElement eManifestNo = findElement(manifestNoBy);
-		manifestNo = eManifestNo.getText();
+		manifestNo = doElementGetText(manifestNoBy);
 
 		System.out.println("Manifest Number Generated: " + manifestNo);
 
-		findElement(okButtonBy).click();
+		doClick(okButtonBy);
 	}
 
 	private void disclaimerConfirmation() {
@@ -241,81 +236,61 @@ public class ManifestInformationPage extends TestBase {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(chkJourneySubmitBy));
 
-		findElement(chkJourneySubmitBy).click();
+		doClick(chkJourneySubmitBy);
 
-		findElement(btnOkBy).click();
-		driver.switchTo().window(MainWindow);
+		doClick(btnOkBy);
+		switchBackToWindow();
 	}
 
 	private void setOriginPort() {
-		findElement(originPortBy).sendKeys("TTA" + Keys.ENTER);
+		doSendKeys(originPortBy, "TTA");
 	}
 
 	private void selectExpectedArrivalDate() {
-		findElement(expectedArrivalDateDatePickerBy).click();
-		findElement(calenderCurrentDateBy).click();
+		doClick(expectedArrivalDateDatePickerBy);
+		doClick(calenderCurrentDateBy);
 	}
 
 	private void selectArrivaldate() {
-		findElement(arrivaldateDatePickerBy).click();
-		findElement(calenderCurrentDateBy).click();
+		doClick(arrivaldateDatePickerBy);
+		doClick(calenderCurrentDateBy);
 	}
 
 	private void setVesselName() {
-		findElement(vesselNameBy).sendKeys("TNT" + Keys.ENTER);
+		doSendKeys(vesselNameBy, "TNT");
 	}
 
 	private void setFlightNo() {
-//		findElement(flightNoBy).sendKeys(strFlightNo + Keys.ENTER);
 
-		WebElement txtFlightNo = findElement(flightNoBy);
-		Random rand = new Random();
-		int value = rand.nextInt(100000);
-		String number = Integer.toString(value);
-
-		txtFlightNo.sendKeys(number + Keys.ENTER);
+		doSendKeys(flightNoBy, uniqueNo());
 	}
 
 	private void setVoyage() {
-
-		WebElement txtVoyageNo = findElement(By.id("Voyage"));
-		Random rand = new Random();
-		int value = rand.nextInt(100000);
-		String number = Integer.toString(value);
-
-		txtVoyageNo.sendKeys(number + Keys.ENTER);
+		doSendKeys(By.id("Voyage"), uniqueNo());
 	}
 
 	private void setRemarks() {
-		findElement(remarksBy).sendKeys("Created By Selenium Automation For Testing");
+		doSendKeys(remarksBy, "Created By Selenium Automation For Testing");
 
 	}
 
 	private void setManualRemarks() {
 
-		findElement(manualRemakrs).sendKeys("Submitted");
+		doSendKeys(manualRemakrs, "Submitted");
 	}
 
 	private void clickCreatebtn() {
-		findElement(createbttnBy).click();
+		doClick(createbttnBy);
 	}
 
 	private void clickSubmitbtn() {
-		findElement(submitManiestBy).click();
+		doClick(submitManiestBy);
 
 	}
 
 	private void clickApprovebtn() {
 
-		findElement(approveBy).click();
+		doClick(approveBy);
 	}
 
-//	private void clickBackbtn() {
-//		((JavascriptExecutor) driver).executeScript("window.scrollBy(0, 4000)", "");
-//		findElement(backBy).clear();
-//	}
-//	private void getError() {
-//		WebElement e=findElement(errorBy);
-//		System.out.println(e.getText());
-//	}
 }

@@ -3,6 +3,7 @@ package land;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
+import com.base.BaseClass;
 import com.base.TestBase;
 import com.pages.CustomsBayanPage;
 import com.pages.DeclarationListPage;
@@ -15,7 +16,7 @@ import com.pages.ManifestListPage;
 import com.pages.PendingDeliveryOrderListPage;
 import com.pages.VesselInspectionPage;
 
-public class TestE2E extends TestBase {
+public class TestE2E extends BaseClass {
 	private ManifestInformationPage objMNFInfo;
 	private CustomsBayanPage objBayan;
 	private ManifestListPage objMNFList;
@@ -32,10 +33,8 @@ public class TestE2E extends TestBase {
 
 	@BeforeTest
 	public void setUp() {
-		openIE();
-		driver.get(url);
-		System.out.println(driver.getTitle());
-		switchToWindow();
+		launchBrowser("ie");
+		navigateUrl();
 	}
 
 //	@Test(enabled=false)
@@ -49,7 +48,7 @@ public class TestE2E extends TestBase {
 		HBItemsPage objHBItems = new HBItemsPage(driver);
 
 //		Create and Submit Manifest
-		login(strCarrierAgent, strPass);
+		login(strCarrierAgent);
 		objHome.selectPort("ABDELI");
 		
 		objMNFList.clickCargoMenu();
@@ -91,7 +90,7 @@ public class TestE2E extends TestBase {
 		DeclarationListPage objDecList = new DeclarationListPage(driver);
 		ImportPage objImp = new ImportPage(driver);
 
-		login(strBayan, strPass);
+		login(strBayan);
 //		Declare DO & Create Import Bayan
 		objPendingDOList.clickPendingDOSubMenu();
 		objPendingDOList.searchWithDO(objMNFInfo.doNumber);

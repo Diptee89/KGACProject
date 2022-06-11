@@ -1,48 +1,45 @@
 package com.pages;
 
-import org.openqa.selenium.By;
+
+
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.interactions.Actions;
 
-import com.base.TestBase;
+import com.base.BaseClass;
 
-public class HomePage extends TestBase {
+public class HomePage extends BaseClass {
 	public HomePage(WebDriver driver) {
 		this.driver = driver;
 	}
 
-	private By loginPortNameBy = By.cssSelector("#LoginPortNameLabel");
-	private By loggedInUserLabelBy = By.cssSelector(".LoggedInUserLabel");
-	private By loggedInUserIDBy = By.cssSelector(".LoggedInUserID");
+//	private By loginPortNameBy = getBy("cssSelector","#LoginPortNameLabel");
+//	private By loggedInUserLabelBy = getBy("cssSelector",".LoggedInUserLabel");
+//	private By loggedInUserIDBy = getBy("cssSelector",".LoggedInUserID");
 
 	// Get the User name from Home Page
 	public String getloggedInUserLabel() {
-
-		return driver.findElement(loggedInUserLabelBy).getText();
-
+		return doElementGetText(getBy("cssSelector",".LoggedInUserLabel"));
 	}
 
 	public String getLoggedInUserID() {
 
-		return driver.findElement(loggedInUserIDBy).getText();
+		return doElementGetText(getBy("cssSelector",".LoggedInUserID"));
 
 	}
 
 	public String getLoginPortName() {
 
-		return driver.findElement(loginPortNameBy).getText();
+		return doElementGetText(getBy("cssSelector","#LoginPortNameLabel"));
 
 	}
 
 	public void selectPort(String strPortName) {
-//		doSendKeys(By.id("LoginPortNameLabel"), "ABDELI");
-		doClick(By.id("LoginPortNameLabel")); // Tool tip
+//		doSendKeys(getBy("id","LoginPortNameLabel"), "ABDELI");
+		doClick(getBy("id","LoginPortNameLabel")); // Tool tip
 		if (strPortName.equalsIgnoreCase("SHUWAIKH")) {
-			Actions act = new Actions(driver);
-			act.moveToElement(findElement(By.id("portListScrollBarbottom"))).perform();
-			doClick(By.linkText(strPortName));
+			selectMenu(getBy("id","portListScrollBarbottom"));
+			doClick(getBy("linkText", strPortName));
 		} else {
-			doClick(By.linkText(strPortName));
+			doClick(getBy("linkText",strPortName));
 		}
 	}
 

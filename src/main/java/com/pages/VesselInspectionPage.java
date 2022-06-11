@@ -1,25 +1,19 @@
 package com.pages;
 
-import java.time.Duration;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import com.base.TestBase;
-
-public class VesselInspectionPage extends TestBase {
+import com.base.BaseClass;
+public class VesselInspectionPage extends BaseClass {
 
 	public VesselInspectionPage(WebDriver driver) {
 		this.driver = driver;
 	}
 
 	public void clickVesselInspection_SubMenu() {
-		Actions act = new Actions(driver);
-		findElement(By.cssSelector("#MenuLabel_Vertical")).click();
-		act.moveToElement(findElement(By.xpath("//div[@id='mainMenuItemVertical_Inspection']/a"))).build().perform();
+		doClick(By.cssSelector("#MenuLabel_Vertical"));
+		selectMenu(By.xpath("//div[@id='mainMenuItemVertical_Inspection']/a"));
 		doClick(By.linkText("Vessel Inspection"));
 	}
 	

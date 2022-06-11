@@ -4,13 +4,14 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
+import com.base.BaseClass;
 import com.base.TestBase;
 import com.pages.HBItemsPage;
 import com.pages.ImportHouseBillPage;
 import com.pages.ManifestInformationPage;
 import com.pages.ManifestListPage;
 
-public class TestImportCargo extends TestBase {
+public class TestImportCargo extends BaseClass {
 	private ManifestInformationPage objMNFInfo;
 	private ManifestListPage objMNFList;
 	private ImportHouseBillPage objHBL;
@@ -19,15 +20,13 @@ public class TestImportCargo extends TestBase {
 //	private String strPass = "fx5test";
 //	private String url = "http://10.138.108.44/MCKWFX5TEST/Main.aspx";
 
-	private String strPass="bam";
-	private String url="http://10.138.108.44/mckwfx5bam/Main.aspx";
+//	private String strPass="bam";
+//	private String url="http://10.138.108.44/mckwfx5bam/Main.aspx";
 
 	@BeforeTest
 	public void setUp() {
-		openIE();		
-		driver.get(url);
-		System.out.println(driver.getTitle());
-		switchToWindow();
+		launchBrowser("ie");
+		navigateUrl();
 	}
 
 //	@Test(enabled=false)
@@ -38,7 +37,7 @@ public class TestImportCargo extends TestBase {
 		objMNFInfo = new ManifestInformationPage(driver);
 
 //		Create and Submit Manifest
-		login("nas.csa", strPass);
+		login("nas.csa");
 		objMNFList.clickCargoMenu();
 		objMNFList.clickNew();
 		objMNFInfo.createManifest();
@@ -54,7 +53,7 @@ public class TestImportCargo extends TestBase {
 
 	}
 
-	@Test(priority = 2)
+//	@Test(priority = 2)
 	public void testCreatePassengerHBL() {
 		objHBL = new ImportHouseBillPage(driver);
 		objHBItems = new HBItemsPage(driver);
@@ -70,7 +69,7 @@ public class TestImportCargo extends TestBase {
 		objHBL.createBLForCourier();
 	}
 
-	@Test(priority = 4)
+//	@Test(priority = 4)
 	public void testCreateBWHHBL() {
 		objHBL = new ImportHouseBillPage(driver);
 		objHBItems = new HBItemsPage(driver);
@@ -90,7 +89,7 @@ public class TestImportCargo extends TestBase {
 	@Test(priority = 6)
 	public void testApproveManifest() {
 //		Approve Manifest
-		login("cmanifest.kwi", strPass);
+		login("cmanifest.kwi");
 		objMNFList.clickCargoMenu();
 		objMNFList.searchWithTempNo(objMNFInfo.tempManifestNo);
 		objMNFList.clickTempNo();
@@ -102,7 +101,7 @@ public class TestImportCargo extends TestBase {
 	@Test(priority = 7)
 	public void testIssueDO() {
 //		Issue DO
-		login("nas.csa", strPass);
+		login("nas.csa");
 		objMNFList.clickCargoMenu();
 		objMNFList.seachWithManifestNo(objMNFInfo.manifestNo);
 		objMNFList.clickManifestNo();

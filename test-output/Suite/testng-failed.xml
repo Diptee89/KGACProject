@@ -3,12 +3,43 @@
 <suite name="Failed suite [Suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Test(failed)">
     <classes>
-      <class name="test.TestClass">
+      <class name="sea.TestImportCargo">
         <methods>
-          <include name="testBayan"/>
+          <include name="close"/>
+          <include name="testCreateHBLBWH"/>
+          <include name="setUp"/>
+          <include name="testSubmitManifest"/>
+          <include name="arriveManifest"/>
+          <include name="testCreateHBLPassenger"/>
+          <include name="submitVesselInspection"/>
+          <include name="testCreateManifest"/>
+          <include name="testCreateHBLCargo"/>
+        </methods>
+      </class> <!-- sea.TestImportCargo -->
+      <class name="land.TestImportCargo">
+        <methods>
+          <include name="testCreateManifest"/>
+          <include name="testCreateHBLCargo"/>
+          <include name="close"/>
+          <include name="testCreateHBLBWH"/>
+          <include name="testCreateHBLPassenger"/>
+          <include name="testSubmitAndArriveManifest"/>
           <include name="setUp"/>
         </methods>
-      </class> <!-- test.TestClass -->
+      </class> <!-- land.TestImportCargo -->
+      <class name="air.TestImportCargo">
+        <methods>
+          <include name="setUp"/>
+          <include name="close"/>
+          <include name="testCreateBWHHBL"/>
+          <include name="testCreateCargoHBL"/>
+          <include name="testCreatePassengerHBL"/>
+          <include name="testApproveManifest"/>
+          <include name="testSubmitManifest"/>
+          <include name="testCreateManifest"/>
+          <include name="testIssueDO"/>
+        </methods>
+      </class> <!-- air.TestImportCargo -->
     </classes>
   </test> <!-- Test(failed) -->
 </suite> <!-- Failed suite [Suite] -->

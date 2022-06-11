@@ -1,14 +1,13 @@
 package com.pages;
 
-
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 
+import com.base.BaseClass;
 import com.base.TestBase;
 
-public class ImportPage extends TestBase {
+public class ImportPage extends BaseClass {
 	public ImportPage(WebDriver driver) {
 		this.driver = driver;
 	}
@@ -76,71 +75,67 @@ public class ImportPage extends TestBase {
 	private By closeDecVehicleListBy = By.id("close");
 
 	public void clickEdit() {
-		findElement(editBy).click();
+		doClick(editBy);
 	}
 
 	public void requiredDocuments() {
-		findElement(requiredDocumentBy).click();
+		doClick(requiredDocumentBy);
 		switchToWindow();
-		waitForElementToBeVisible(saveDocumentsBy);
+		waitForElementToBeVisible(saveDocumentsBy, 10);
 
-		findElement(requiredDocumentsLs_0By).sendKeys("1");
-		findElement(requiredDocumentsLs_1By).sendKeys("1");
-		findElement(requiredDocumentsLs_2By).sendKeys("1");
-		findElement(requiredDocumentsLs_3By).sendKeys("1");
-		findElement(requiredDocumentsLs_4By).sendKeys("1");
-		findElement(requiredDocumentsLs_5By).sendKeys("1");
-		findElement(requiredDocumentsLs_6By).sendKeys("1");
-		findElement(requiredDocumentsLs_7By).sendKeys("1");
-		findElement(requiredDocumentsLs_8By).sendKeys("1");
-		findElement(requiredDocumentsLs_9By).sendKeys("1");
-		findElement(requiredDocumentsLs_10By).sendKeys("1");
-		findElement(requiredDocumentsLs_11By).sendKeys("1");
-		findElement(requiredDocumentsLs_12By).sendKeys("1");
-		findElement(saveDocumentsBy).click();
-		waitForElementToBeVisible(digitalDocumentsBy);
-		findElement(closeDocumentsBy).click();
-		driver.switchTo().window(MainWindow);
+		doSendKeys(requiredDocumentsLs_0By, "1");
+		doSendKeys(requiredDocumentsLs_1By, "1");
+		doSendKeys(requiredDocumentsLs_2By, "1");
+		doSendKeys(requiredDocumentsLs_3By, "1");
+		doSendKeys(requiredDocumentsLs_4By, "1");
+		doSendKeys(requiredDocumentsLs_5By, "1");
+		doSendKeys(requiredDocumentsLs_6By, "1");
+		doSendKeys(requiredDocumentsLs_7By, "1");
+		doSendKeys(requiredDocumentsLs_8By, "1");
+		doSendKeys(requiredDocumentsLs_9By, "1");
+		doSendKeys(requiredDocumentsLs_10By, "1");
+		doSendKeys(requiredDocumentsLs_11By, "1");
+		doSendKeys(requiredDocumentsLs_12By, "1");
+		doClick(saveDocumentsBy);
+		waitForElementToBeVisible(digitalDocumentsBy, 10);
+		doClick(closeDocumentsBy);
+		switchBackToWindow();
 
 	}
 	/*
 	 * cannot convert it to a Select object type as that doesn't accept datalist
-	 * tags 
-	 * cannot click the datalist directly as it throws an ElementNotIteractable
-	 * cannot use actions to moveto and click - you get "Failed to execute 'elementsFromPoint' on 'Document'" 
-	 * cannot use action tokeys down + keys enter - just doesn't do it 
-	 * cannot use a JS executor to click- does nothing 
+	 * tags cannot click the datalist directly as it throws an ElementNotIteractable
+	 * cannot use actions to moveto and click - you get
+	 * "Failed to execute 'elementsFromPoint' on 'Document'" cannot use action
+	 * tokeys down + keys enter - just doesn't do it cannot use a JS executor to
+	 * click- does nothing
 	 * 
-	 * So - what's left, is to recreate what the spec says the
-	 * dropdown does.
+	 * So - what's left, is to recreate what the spec says the dropdown does.
 	 * 
 	 * Type your partial text in the input. Get your option object (confirming the
 	 * popup exists) get the value attribute clear and send keys to the input
 	 */
 
 	public void addDeclarationVehiclesList() {
-		findElement(declarationVehiclesListlnkBy).click();
+		doClick(declarationVehiclesListlnkBy);
 		switchToWindow();
-		findElement(NewBtnBy).click();
+		doClick(NewBtnBy);
 
 		doSendKeys(drpGatePassCategoryBy, "General loads");
 		doSendKeys(drpCargoTypeBy, "General Cargo");
 		doSendKeys(drpTruckNCarrierSizeBy, "Half Lorry");
 
-//		doActionsClick(drpGatePassCategoryBy);
-//		doActionsClick(drpGatePassCategoryOptionBy);
+		doSendKeys(PN_Num1By, "91");
+		doSendKeys(PN_LONGNBy, "202298765");
 
-		findElement(PN_Num1By).sendKeys("91");
-		findElement(PN_LONGNBy).sendKeys("202298765");
+		doSendKeys(txtCivilIDBy, "321030900015");
 
-		findElement(txtCivilIDBy).sendKeys("321030900015");
-
-		findElement(txtWeigtBy).sendKeys("100");
-		findElement(createNewVehicleBy).click();
-		waitForElementToBeVisible(saveContainersBy);
-		findElement(cancelDecVehicleDetailsBy).click();
-		findElement(closeDecVehicleListBy).click();
-		driver.switchTo().window(MainWindow);
+		doSendKeys(txtWeigtBy, "100");
+		doClick(createNewVehicleBy);
+		waitForElementToBeVisible(saveContainersBy, 10);
+		doClick(cancelDecVehicleDetailsBy);
+		doClick(closeDecVehicleListBy);
+		switchBackToWindow();
 
 	}
 
@@ -182,9 +177,9 @@ public class ImportPage extends TestBase {
 //		Browse and Select Package Type
 		doClick(By.id("btnPackageType"));
 		switchToWindow();
-		findElement(By.name("Name")).sendKeys("Piece" + Keys.ENTER);
+		doSendKeys(By.name("Name"), "Piece" + Keys.ENTER);
 		doClick(By.xpath("//td[@id='List_PackageTypeLsPg_0_Description']/a"));
-		driver.switchTo().window(MainWindow);
+		switchBackToWindow();
 
 		doSendKeys(By.id("quantity"), "100");
 		doSendKeys(By.id("weight"), "100");
@@ -215,6 +210,6 @@ public class ImportPage extends TestBase {
 		switchToWindow();
 		doClick(By.id("chkSubmitDeclaration"));
 		doClick(By.id("btnOk"));
-		driver.switchTo().window(MainWindow);
+		switchBackToWindow();
 	}
 }

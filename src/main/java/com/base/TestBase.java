@@ -24,17 +24,23 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import com.pages.LogOutPage;
 import com.pages.LoginPage;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
+
 //import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class TestBase {
-	public String MainWindow;
+	private String MainWindow;
 	public WebDriver driver;
+	String url="http://10.138.108.44/MCKWFX5TEST/Main.aspx";
+	
+//	String url="http://10.138.108.44/mckwfx5bam/Main.aspx";
+	
 	
 	public WebDriver openIE() {
-		System.setProperty("webdriver.ie.driver", "c:\\Drivers\\IEDriverServer.exe");
+//		System.setProperty("webdriver.ie.driver", "c:\\Drivers\\IEDriverServer.exe");
+		WebDriverManager.iedriver().arch32();
 //		WebDriverManager.iedriver().setup();
 		driver = new InternetExplorerDriver();
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 		driver.manage().deleteAllCookies();
 		return driver;
 	}
@@ -43,7 +49,7 @@ public class TestBase {
 	public void login(String id, String pass) {
 		this.switchToWindow();
 		LoginPage objLogin = new LoginPage(driver);
-		objLogin.loginValidUser(id, pass);
+		objLogin.loginUser(id, pass);
 
 	}
 
@@ -108,18 +114,20 @@ public class TestBase {
 
 		System.out.println("browser name is: " + browserName);
 		if (browserName.equalsIgnoreCase("chrome")) {
-//			WebDriverManager.chromedriver().setup();
-			System.setProperty("webdriver.chrome.driver", "c:\\Drivers\\chromedriver.exe");
+			WebDriverManager.chromedriver().setup();
+//			WebDriverManager.chromedriver().browserVersion("83.0.4103").setup();
+//			WebDriverManager.chromedriver().arch64();
+//			System.setProperty("webdriver.chrome.driver", "c:\\Drivers\\chromedriver.exe");
 //			WebDriverManager.chromedriver().setup();
 			driver = new ChromeDriver();
 		} else if (browserName.equalsIgnoreCase("firefox")) {
-//			WebDriverManager.firefoxdriver().setup();
-			System.setProperty("webdriver.gecko.driver", "c:\\Drivers\\geckodriver.exe");
-//			WebDriverManager.firefoxdriver().setup();
+			WebDriverManager.firefoxdriver().setup();
+//			System.setProperty("webdriver.gecko.driver", "c:\\Drivers\\geckodriver.exe");
 			driver = new FirefoxDriver();
 		} else if (browserName.equalsIgnoreCase("ie")) {
 //			WebDriverManager.iedriver().setup();
-			System.setProperty("webdriver.ie.driver", "c:\\Drivers\\IEDriverServer.exe");
+			WebDriverManager.iedriver().arch32();
+//			System.setProperty("webdriver.ie.driver", "c:\\Drivers\\IEDriverServer.exe");
 			driver = new InternetExplorerDriver();
 		} else {
 			System.out.println("please pass the correct browser: " + browserName);
@@ -128,7 +136,7 @@ public class TestBase {
 		return driver;
 	}
 
-	public void launchUrl(String url) {
+	public void launchUrl() {
 		if (url == null) {
 			System.out.println("please pass the right url");
 			return;
@@ -146,9 +154,9 @@ public class TestBase {
 
 	}
 
-	public void launchUrl(URL url) {
-		driver.navigate().to(url);
-	}
+//	public void launchUrl(URL url) {
+//		driver.navigate().to(url);
+//	}
 	
 //	JavaScript Utils
 	

@@ -4,6 +4,7 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
+import com.base.BaseClass;
 import com.base.TestBase;
 import com.pages.CustomsBayanPage;
 import com.pages.HBItemsPage;
@@ -13,14 +14,14 @@ import com.pages.ManifestInformationPage;
 import com.pages.ManifestListPage;
 import com.pages.VesselInspectionPage;
 
-public class TestImportCargo extends TestBase {
+public class TestImportCargo extends BaseClass {
 	private ManifestInformationPage objMNFInfo;
 	private ManifestListPage objMNFList;
 	private ImportHouseBillPage objHBL;
 	private HBItemsPage objHBItems;
 
-	private String url = "http://10.138.108.44/MCKWFX5TEST/Main.aspx";
-	private String strPass = "fx5test";
+//	private String url = "http://10.138.108.44/MCKWFX5TEST/Main.aspx";
+//	private String strPass = "fx5test";
 	private String strCarrierAgent = "csa.swk";
 	private String strCManifest = "cmanifest.swk";
 	private String strBayan = "broker.swk";
@@ -30,10 +31,8 @@ public class TestImportCargo extends TestBase {
 
 	@BeforeTest
 	public void setUp() {
-		openIE();		
-		driver.get(url);
-		System.out.println(driver.getTitle());
-		switchToWindow();
+		launchBrowser("ie");
+		navigateUrl();
 	}
 
 //	@Test(enabled=false)
@@ -44,8 +43,8 @@ public class TestImportCargo extends TestBase {
 		objMNFInfo = new ManifestInformationPage(driver);
 
 
-		login(strCarrierAgent, strPass);
-		objHome.selectPort("SHUWAIKH");
+		login(strCarrierAgent);
+//		objHome.selectPort("SHUWAIKH");
 //		Create Manifest
 		objMNFList.clickCargoMenu();
 		objMNFList.clickNew();
@@ -74,7 +73,7 @@ public class TestImportCargo extends TestBase {
 	}
 
 
-	@Test(priority = 4)
+//	@Test(priority = 4)
 	public void testCreateHBLBWH() {
 		objHBL = new ImportHouseBillPage(driver);
 		objHBItems = new HBItemsPage(driver);

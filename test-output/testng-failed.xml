@@ -3,15 +3,14 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="land.TestImportCargo">
+      <class name="sea.TestImportCargo">
         <methods>
-          <include name="testCreateHBLCargo"/>
-          <include name="testCreateHBLBWH"/>
-          <include name="testCreateHBLPassenger"/>
-          <include name="testSubmitAndArriveManifest"/>
+          <include name="close"/>
           <include name="setUp"/>
+          <include name="testSubmitManifest"/>
+          <include name="submitVesselInspection"/>
         </methods>
-      </class> <!-- land.TestImportCargo -->
+      </class> <!-- sea.TestImportCargo -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

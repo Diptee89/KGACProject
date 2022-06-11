@@ -1,95 +1,79 @@
 package com.pages;
 
-import java.util.Random;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import com.base.TestBase;
+import com.base.BaseClass;
 
 //@SuppressWarnings("unused")
-public class ImportHouseBillPage extends TestBase {
+public class ImportHouseBillPage extends BaseClass {
 	public ImportHouseBillPage(WebDriver driver) {
 		this.driver = driver;
 	}
 
-	private By newBy = By.cssSelector("input#new1[title='Create New Bill Of Lading'][class='mcbutton']");
-	private By houseBillNoBy = By.cssSelector("#billnumber[name='billnumber'][Attribute='HouseBillNumber']");
-	private By housebilldateDatePickerBy = By.cssSelector("#housebilldateDatePicker[class='mcCalendarButton']");
-	private By calenderCurrentDateBy = By.cssSelector(".Fx50CalenderCurrentDate");
-	private By unregisteredConsigneeBy = By.cssSelector("#UnregisteredConsignee[Attribute='UnregisteredConsignee']");
-	private By descriptionBy = By.id("description");
-	private By tgWeightBy = By.id("Tgweight");
-	private By tquantityManifestedBy = By.id("Tquantitymanifested");
-	private By originPortBy = By.id("OriginPort");
-	private By createBy = By.cssSelector("#submit10[title='Create'][class='mcbutton']");
-
 	private void clickNew() {
-		findElement(newBy).click();
+		doClick(getBy("cssSelector", "input#new1[title='Create New Bill Of Lading'][class='mcbutton']"));
 	}
 
 	private void setHouseBill() {
-		Random rand = new Random();
-		int value = rand.nextInt(10000);
-		String number = Integer.toString(value);
-		findElement(houseBillNoBy).sendKeys("AWBL/" + number + "/KWI22");
+
+		doSendKeys(getBy("cssSelector", "#billnumber[name='billnumber'][Attribute='HouseBillNumber']"), "AWBL/" + uniqueNo() + "/KWI22");
+	}
+	private void setSeaHouseBill() {
+		
+		doSendKeys(getBy("cssSelector", "#billnumber[name='billnumber'][Attribute='HouseBillNumber']"), "HBL/" + uniqueNo() + "/SWK22");
 	}
 
 //	Carrier Type: Air >> Bill For   Cargo / Passenger/Courier /  BWH 
 	public void createBLForCargo() {
 		clickNew();
 		setHouseBill();
-		findElement(housebilldateDatePickerBy).click();
-		findElement(calenderCurrentDateBy).click();
+		doClick(getBy("cssSelector", "#housebilldateDatePicker[class='mcCalendarButton']"));
+		doClick(getBy("cssSelector", ".Fx50CalenderCurrentDate"));
 //		Goods Details
-		findElement(unregisteredConsigneeBy).sendKeys("Alex MD Husain");
-		doSendKeys(By.id("txtNotifiedConsignee"), "Notified Consignee");
-		doSendKeys(By.id("txtExporter"), "Exporter Ali");
-		findElement(descriptionBy).sendKeys("Oil");
-		findElement(tgWeightBy).sendKeys("100" + Keys.TAB);
-		doSendKeys(By.id("txtTareWt"), "100");
-		doSendKeys(By.id("weight"), "100");
-		doSendKeys(By.id("volume"), "100");
-		doSendKeys(By.id("txtTareWtUOMDesc"), "Kilogram");
-		doSendKeys(By.id("txtVolUOMDesc"), "Litre");
+		doSendKeys(getBy("cssSelector", "#UnregisteredConsignee[Attribute='UnregisteredConsignee']"), "Alex MD Husain");
+		doSendKeys(getBy("id", "txtNotifiedConsignee"), "Notified Consignee");
+		doSendKeys(getBy("id", "txtExporter"), "Exporter Ali");
+		doSendKeys(getBy("id", "description"),"Oil");
+		doSendKeys(getBy("id", "Tgweight"),"100" + Keys.TAB);
+		doSendKeys(getBy("id", "txtTareWt"), "100");
+		doSendKeys(getBy("id", "weight"), "100");
+		doSendKeys(getBy("id", "volume"), "100");
+		doSendKeys(getBy("id", "txtTareWtUOMDesc"), "Kilogram");
+		doSendKeys(getBy("id", "txtVolUOMDesc"), "Litre");
+		doSendKeys(getBy("id", "Tquantitymanifested"),"100" + Keys.TAB);
+		doSendKeys(getBy("id", "OriginPort"),"%%" + Keys.TAB);
+		doSendKeys(getBy("id", "remarks"), "Created Bill For Cargo");
+		doSendKeys(getBy("id", "Marks"), "Marks");
+		doClick( getBy("cssSelector", "#submit10[title='Create'][class='mcbutton']"));
 
-		findElement(tquantityManifestedBy).sendKeys("100" + Keys.TAB);
-		findElement(originPortBy).sendKeys("%%" + Keys.TAB);
-		doSendKeys(By.id("remarks"), "Created Bill For Cargo");
-		doSendKeys(By.id("Marks"), "Marks");
-		findElement(createBy).click();
-
-//		doClick(By.cssSelector("#cancel[value='Back']"));
+//		doClick(getBy("cssSelector", "#cancel[value='Back']"));
 	}
 
 	public void createBLForPassenger() {
 		clickNew();
 		setHouseBill();
-		findElement(housebilldateDatePickerBy).click();
-		findElement(calenderCurrentDateBy).click();
-		doClick(By.id("IsNotCargo")); // Bill For: Cargo / Passenger /Courier /BWH
+		doClick(getBy("cssSelector", "#housebilldateDatePicker[class='mcCalendarButton']"));
+		doClick(getBy("cssSelector", ".Fx50CalenderCurrentDate"));
+		doClick(getBy("id", "IsNotCargo")); // Bill For: Cargo / Passenger /Courier /BWH
 //		Goods Details
-		findElement(unregisteredConsigneeBy).sendKeys("Alex MD Husain");
-		doSendKeys(By.id("txtNotifiedConsignee"), "Notified Consignee");
-		doSendKeys(By.id("txtExporter"), "Exporter Ali");
-		findElement(descriptionBy).sendKeys("Oil");
-		findElement(tgWeightBy).sendKeys("100" + Keys.TAB);
-		doSendKeys(By.id("txtTareWt"), "100");
-		doSendKeys(By.id("weight"), "100");
-		doSendKeys(By.id("volume"), "100");
-		doSendKeys(By.id("txtTareWtUOMDesc"), "Kilogram");
-		doSendKeys(By.id("txtVolUOMDesc"), "Litre");
+		doSendKeys(getBy("cssSelector", "#UnregisteredConsignee[Attribute='UnregisteredConsignee']"), "Alex MD Husain");
+		doSendKeys(getBy("id", "txtNotifiedConsignee"), "Notified Consignee");
+		doSendKeys(getBy("id", "txtExporter"), "Exporter Ali");
+		doSendKeys(getBy("id", "description"),"Oil");
+		doSendKeys(getBy("id", "Tgweight"),"100" + Keys.TAB);		
+		doSendKeys(getBy("id", "txtTareWt"), "100");
+		doSendKeys(getBy("id", "weight"), "100");
+		doSendKeys(getBy("id", "volume"), "100");
+		doSendKeys(getBy("id", "txtTareWtUOMDesc"), "Kilogram");
+		doSendKeys(getBy("id", "txtVolUOMDesc"), "Litre");
+		doSendKeys(getBy("id", "Tquantitymanifested"),"100" + Keys.TAB);
+		doSendKeys(getBy("id", "OriginPort"),"%%" + Keys.TAB);
+		doSendKeys(getBy("id", "remarks"), "Created Bill For Cargo");
+		doSendKeys(getBy("id", "Marks"), "Marks");
+		doClick( getBy("cssSelector", "#submit10[title='Create'][class='mcbutton']"));
 
-		findElement(tquantityManifestedBy).sendKeys("100" + Keys.TAB);
-		findElement(originPortBy).sendKeys("%%" + Keys.TAB);
-		doSendKeys(By.id("remarks"), "Created Bill For Cargo");
-		doSendKeys(By.id("Marks"), "Marks");
-		findElement(createBy).click();
 
 	}
 
@@ -99,54 +83,52 @@ public class ImportHouseBillPage extends TestBase {
 
 		clickNew();
 		setHouseBill();
-		findElement(housebilldateDatePickerBy).click();
-		findElement(calenderCurrentDateBy).click();
-		doClick(By.id("rdbCourier"));
-		doClick(By.id("IsConsole"));
+		doClick(getBy("cssSelector", "#housebilldateDatePicker[class='mcCalendarButton']"));
+		doClick(getBy("cssSelector", ".Fx50CalenderCurrentDate"));
+		doClick(getBy("id", "rdbCourier"));
+		doClick(getBy("id", "IsConsole"));
 //		Goods Details
-		findElement(unregisteredConsigneeBy).sendKeys("Alex MD Husain");
-		doSendKeys(By.id("txtNotifiedConsignee"), "Notified Consignee");
-		doSendKeys(By.id("txtExporter"), "Exporter Ali");
-		findElement(descriptionBy).sendKeys("Oil");
-		findElement(tgWeightBy).sendKeys("100" + Keys.TAB);
-		doSendKeys(By.id("txtTareWt"), "100");
-		doSendKeys(By.id("weight"), "100");
-		doSendKeys(By.id("volume"), "100");
-		doSendKeys(By.id("txtTareWtUOMDesc"), "Kilogram");
-		doSendKeys(By.id("txtVolUOMDesc"), "Litre");
+		doSendKeys(getBy("cssSelector", "#UnregisteredConsignee[Attribute='UnregisteredConsignee']"), "Alex MD Husain");
+		doSendKeys(getBy("id", "txtNotifiedConsignee"), "Notified Consignee");
+		doSendKeys(getBy("id", "txtExporter"), "Exporter Ali");
+		doSendKeys(getBy("id", "description"),"Oil");
+		doSendKeys(getBy("id", "Tgweight"),"100" + Keys.TAB);
+		doSendKeys(getBy("id", "txtTareWt"), "100");
+		doSendKeys(getBy("id", "weight"), "100");
+		doSendKeys(getBy("id", "volume"), "100");
+		doSendKeys(getBy("id", "txtTareWtUOMDesc"), "Kilogram");
+		doSendKeys(getBy("id", "txtVolUOMDesc"), "Litre");
+		doSendKeys(getBy("id", "Tquantitymanifested"),"100" + Keys.TAB);
+		doSendKeys(getBy("id", "OriginPort"),"%%" + Keys.TAB);
+		doSendKeys(getBy("id", "remarks"), "Created Bill For Cargo");
+		doSendKeys(getBy("id", "Marks"), "Marks");
+		doClick( getBy("cssSelector", "#submit10[title='Create'][class='mcbutton']"));
 
-		findElement(tquantityManifestedBy).sendKeys("100" + Keys.TAB);
-		findElement(originPortBy).sendKeys("%%" + Keys.TAB);
-		doSendKeys(By.id("remarks"), "Created Bill For Cargo");
-		doSendKeys(By.id("Marks"), "Marks");
-		findElement(createBy).click();
-
-		doClick(By.cssSelector("#cancel[value='Back']"));
+		doClick(getBy("cssSelector", "#cancel[value='Back']"));
 	}
 
 	public void createBLForBWH() {
 		clickNew();
 		setHouseBill();
-		findElement(housebilldateDatePickerBy).click();
-		findElement(calenderCurrentDateBy).click();
-		doClick(By.id("rdbbwh"));
+		doClick(getBy("cssSelector", "#housebilldateDatePicker[class='mcCalendarButton']"));
+		doClick(getBy("cssSelector", ".Fx50CalenderCurrentDate"));
+		doClick(getBy("id", "rdbbwh"));
 //		Goods Details
-		findElement(unregisteredConsigneeBy).sendKeys("Alex MD Husain");
-		doSendKeys(By.id("txtNotifiedConsignee"), "Notified Consignee");
-		doSendKeys(By.id("txtExporter"), "Exporter Ali");
-		findElement(descriptionBy).sendKeys("Oil");
-		findElement(tgWeightBy).sendKeys("100" + Keys.TAB);
-		doSendKeys(By.id("txtTareWt"), "100");
-		doSendKeys(By.id("weight"), "100");
-		doSendKeys(By.id("volume"), "100");
-		doSendKeys(By.id("txtTareWtUOMDesc"), "Kilogram");
-		doSendKeys(By.id("txtVolUOMDesc"), "Litre");
-
-		findElement(tquantityManifestedBy).sendKeys("100" + Keys.TAB);
-		findElement(originPortBy).sendKeys("%%" + Keys.TAB);
-		doSendKeys(By.id("remarks"), "Created Bill For Cargo");
-		doSendKeys(By.id("Marks"), "Marks");
-		findElement(createBy).click();
+		doSendKeys(getBy("cssSelector", "#UnregisteredConsignee[Attribute='UnregisteredConsignee']"), "Alex MD Husain");
+		doSendKeys(getBy("id", "txtNotifiedConsignee"), "Notified Consignee");
+		doSendKeys(getBy("id", "txtExporter"), "Exporter Ali");
+		doSendKeys(getBy("id", "description"),"Oil");
+		doSendKeys(getBy("id", "Tgweight"),"100" + Keys.TAB);
+		doSendKeys(getBy("id", "txtTareWt"), "100");
+		doSendKeys(getBy("id", "weight"), "100");
+		doSendKeys(getBy("id", "volume"), "100");
+		doSendKeys(getBy("id", "txtTareWtUOMDesc"), "Kilogram");
+		doSendKeys(getBy("id", "txtVolUOMDesc"), "Litre");
+		doSendKeys(getBy("id", "Tquantitymanifested"),"100" + Keys.TAB);
+		doSendKeys(getBy("id", "OriginPort"),"%%" + Keys.TAB);
+		doSendKeys(getBy("id", "remarks"), "Created Bill For Cargo");
+		doSendKeys(getBy("id", "Marks"), "Marks");
+		doClick( getBy("cssSelector", "#submit10[title='Create'][class='mcbutton']"));
 
 	}
 
@@ -154,98 +136,82 @@ public class ImportHouseBillPage extends TestBase {
 	public void createSeaBLForCargo() {
 		clickNew();
 
-		Random rand = new Random();
-		int value = rand.nextInt(10000);
-		String number = Integer.toString(value);
-		findElement(houseBillNoBy).sendKeys("HBL/" + number + "/SWK22");
-
-		findElement(housebilldateDatePickerBy).click();
-		findElement(calenderCurrentDateBy).click();
-		doSendKeys(By.id("UserDONo"), "DO/001/SWK22");
+		setSeaHouseBill();
+		doClick(getBy("cssSelector", "#housebilldateDatePicker[class='mcCalendarButton']"));
+		doClick(getBy("cssSelector", ".Fx50CalenderCurrentDate"));
+		doSendKeys(getBy("id", "UserDONo"), "DO/001/SWK22");
 //		Goods Details
-		findElement(unregisteredConsigneeBy).sendKeys("Alex MD Husain");
-		doSendKeys(By.id("txtNotifiedConsignee"), "Notified Consignee");
-		doSendKeys(By.id("txtExporter"), "Exporter Ali");
-		findElement(descriptionBy).sendKeys("Oil");
-		findElement(tgWeightBy).sendKeys("100" + Keys.TAB);
-		doSendKeys(By.id("txtTareWt"), "100");
-		doSendKeys(By.id("weight"), "100");
-		doSendKeys(By.id("volume"), "100");
-		doSendKeys(By.id("txtTareWtUOMDesc"), "Kilogram");
-		doSendKeys(By.id("txtVolUOMDesc"), "Litre");
+		doSendKeys(getBy("cssSelector", "#UnregisteredConsignee[Attribute='UnregisteredConsignee']"), "Alex MD Husain");
+		doSendKeys(getBy("id", "txtNotifiedConsignee"), "Notified Consignee");
+		doSendKeys(getBy("id", "txtExporter"), "Exporter Ali");
+		doSendKeys(getBy("id", "description"),"Oil");
+		doSendKeys(getBy("id", "Tgweight"),"100" + Keys.TAB);
+		doSendKeys(getBy("id", "txtTareWt"), "100");
+		doSendKeys(getBy("id", "weight"), "100");
+		doSendKeys(getBy("id", "volume"), "100");
+		doSendKeys(getBy("id", "txtTareWtUOMDesc"), "Kilogram");
+		doSendKeys(getBy("id", "txtVolUOMDesc"), "Litre");
+		doSendKeys(getBy("id", "Tquantitymanifested"),"100" + Keys.TAB);
+		doSendKeys(getBy("id", "OriginPort"),"%%" + Keys.TAB);
+		doSendKeys(getBy("id", "remarks"), "Created Bill For Cargo");
+		doSendKeys(getBy("id", "Marks"), "Marks");
+		doClick( getBy("cssSelector", "#submit10[title='Create'][class='mcbutton']"));
 
-		findElement(tquantityManifestedBy).sendKeys("100" + Keys.TAB);
-		findElement(originPortBy).sendKeys("%%" + Keys.TAB);
-		doSendKeys(By.id("remarks"), "Created Bill For Cargo");
-		doSendKeys(By.id("Marks"), "Marks");
-		findElement(createBy).click();
-
-//		doClick(By.cssSelector("#cancel[value='Back']"));
+//		doClick(getBy("cssSelector", "#cancel[value='Back']"));
 	}
 
 	public void createSeaBLForPassenger() {
 		clickNew();
+		setSeaHouseBill();
+		doClick(getBy("cssSelector", "#housebilldateDatePicker[class='mcCalendarButton']"));
+		doClick(getBy("cssSelector", ".Fx50CalenderCurrentDate"));
+		doSendKeys(getBy("id", "UserDONo"), "DO/001/SWK22");
 
-		Random rand = new Random();
-		int value = rand.nextInt(10000);
-		String number = Integer.toString(value);
-		findElement(houseBillNoBy).sendKeys("HBL/" + number + "/SWK22");
-
-		findElement(housebilldateDatePickerBy).click();
-		findElement(calenderCurrentDateBy).click();
-		doSendKeys(By.id("UserDONo"), "DO/001/SWK22");
-
-		doClick(By.id("IsNotCargo")); // Bill For: Cargo / Passenger /Courier /BWH
+		doClick(getBy("id", "IsNotCargo")); // Bill For: Cargo / Passenger /Courier /BWH
 //		Goods Details
-		findElement(unregisteredConsigneeBy).sendKeys("Alex MD Husain");
-		doSendKeys(By.id("txtNotifiedConsignee"), "Notified Consignee");
-		doSendKeys(By.id("txtExporter"), "Exporter Ali");
-		findElement(descriptionBy).sendKeys("Oil");
-		findElement(tgWeightBy).sendKeys("100" + Keys.TAB);
-		doSendKeys(By.id("txtTareWt"), "100");
-		doSendKeys(By.id("weight"), "100");
-		doSendKeys(By.id("volume"), "100");
-		doSendKeys(By.id("txtTareWtUOMDesc"), "Kilogram");
-		doSendKeys(By.id("txtVolUOMDesc"), "Litre");
+		doSendKeys(getBy("cssSelector", "#UnregisteredConsignee[Attribute='UnregisteredConsignee']"), "Alex MD Husain");
+		doSendKeys(getBy("id", "txtNotifiedConsignee"), "Notified Consignee");
+		doSendKeys(getBy("id", "txtExporter"), "Exporter Ali");
+		doSendKeys(getBy("id", "description"),"Oil");
+		doSendKeys(getBy("id", "Tgweight"),"100" + Keys.TAB);
+		doSendKeys(getBy("id", "txtTareWt"), "100");
+		doSendKeys(getBy("id", "weight"), "100");
+		doSendKeys(getBy("id", "volume"), "100");
+		doSendKeys(getBy("id", "txtTareWtUOMDesc"), "Kilogram");
+		doSendKeys(getBy("id", "txtVolUOMDesc"), "Litre");
 
-		findElement(tquantityManifestedBy).sendKeys("100" + Keys.TAB);
-		findElement(originPortBy).sendKeys("%%" + Keys.TAB);
-		doSendKeys(By.id("remarks"), "Created Bill For Cargo");
-		doSendKeys(By.id("Marks"), "Marks");
-		findElement(createBy).click();
+		doSendKeys(getBy("id", "Tquantitymanifested"),"100" + Keys.TAB);
+		doSendKeys(getBy("id", "OriginPort"),"%%" + Keys.TAB);
+		doSendKeys(getBy("id", "remarks"), "Created Bill For Cargo");
+		doSendKeys(getBy("id", "Marks"), "Marks");
+		doClick( getBy("cssSelector", "#submit10[title='Create'][class='mcbutton']"));
 
 	}
 
 	public void createSeaBLForBWH() {
 		clickNew();
+		setSeaHouseBill();
+		doClick(getBy("cssSelector", "#housebilldateDatePicker[class='mcCalendarButton']"));
+		doClick(getBy("cssSelector", ".Fx50CalenderCurrentDate"));
+		doSendKeys(getBy("id", "UserDONo"), "DO/001/SWK22");
 
-		Random rand = new Random();
-		int value = rand.nextInt(10000);
-		String number = Integer.toString(value);
-		findElement(houseBillNoBy).sendKeys("HBL/" + number + "/SWK22");
-
-		findElement(housebilldateDatePickerBy).click();
-		findElement(calenderCurrentDateBy).click();
-		doSendKeys(By.id("UserDONo"), "DO/001/SWK22");
-
-		doClick(By.id("rdbbwh"));
+		doClick(getBy("id", "rdbbwh"));
 //		Goods Details
-		findElement(unregisteredConsigneeBy).sendKeys("Alex MD Husain");
-		doSendKeys(By.id("txtNotifiedConsignee"), "Notified Consignee");
-		doSendKeys(By.id("txtExporter"), "Exporter Ali");
-		findElement(descriptionBy).sendKeys("Oil");
-		findElement(tgWeightBy).sendKeys("100" + Keys.TAB);
-		doSendKeys(By.id("txtTareWt"), "100");
-		doSendKeys(By.id("weight"), "100");
-		doSendKeys(By.id("volume"), "100");
-		doSendKeys(By.id("txtTareWtUOMDesc"), "Kilogram");
-		doSendKeys(By.id("txtVolUOMDesc"), "Litre");
-
-		findElement(tquantityManifestedBy).sendKeys("100" + Keys.TAB);
-		findElement(originPortBy).sendKeys("%%" + Keys.TAB);
-		doSendKeys(By.id("remarks"), "Created Bill For Cargo");
-		doSendKeys(By.id("Marks"), "Marks");
-		findElement(createBy).click();
+		doSendKeys(getBy("cssSelector", "#UnregisteredConsignee[Attribute='UnregisteredConsignee']"), "Alex MD Husain");
+		doSendKeys(getBy("id", "txtNotifiedConsignee"), "Notified Consignee");
+		doSendKeys(getBy("id", "txtExporter"), "Exporter Ali");
+		doSendKeys(getBy("id", "description"),"Oil");
+		doSendKeys(getBy("id", "Tgweight"),"100" + Keys.TAB);
+		doSendKeys(getBy("id", "txtTareWt"), "100");
+		doSendKeys(getBy("id", "weight"), "100");
+		doSendKeys(getBy("id", "volume"), "100");
+		doSendKeys(getBy("id", "txtTareWtUOMDesc"), "Kilogram");
+		doSendKeys(getBy("id", "txtVolUOMDesc"), "Litre");
+		doSendKeys(getBy("id", "Tquantitymanifested"),"100" + Keys.TAB);
+		doSendKeys(getBy("id", "OriginPort"),"%%" + Keys.TAB);
+		doSendKeys(getBy("id", "remarks"), "Created Bill For Cargo");
+		doSendKeys(getBy("id", "Marks"), "Marks");
+		doClick( getBy("cssSelector", "#submit10[title='Create'][class='mcbutton']"));
 
 	}
 
@@ -253,89 +219,93 @@ public class ImportHouseBillPage extends TestBase {
 	public void createLandBLForCargo() {
 		clickNew();
 
-		doClick(By.id("IsCargo"));
+		doClick(getBy("id", "IsCargo"));
 //		Goods Details
-		findElement(unregisteredConsigneeBy).sendKeys("Alex MD Husain");
-		doSendKeys(By.id("txtNotifiedConsignee"), "Notified Consignee");
-		doSendKeys(By.id("txtExporter"), "Exporter Ali");
-		findElement(descriptionBy).sendKeys("Wind Mills");
-		findElement(tgWeightBy).sendKeys("100" + Keys.TAB);
-		doSendKeys(By.id("txtTareWt"), "100");
-		doSendKeys(By.id("weight"), "100");
-		doSendKeys(By.id("volume"), "100");
-		doSendKeys(By.id("txtTareWtUOMDesc"), "Kilogram");
-		doSendKeys(By.id("txtVolUOMDesc"), "Litre");
-		findElement(tquantityManifestedBy).sendKeys("100" + Keys.TAB);
-		findElement(originPortBy).sendKeys("%%" + Keys.TAB);
+		doSendKeys(getBy("cssSelector", "#UnregisteredConsignee[Attribute='UnregisteredConsignee']"), "Alex MD Husain");
+		doSendKeys(getBy("id", "txtNotifiedConsignee"), "Notified Consignee");
+		doSendKeys(getBy("id", "txtExporter"), "Exporter Ali");
+		doSendKeys(getBy("id", "description"),"Oil");
+		doSendKeys(getBy("id", "Tgweight"),"100" + Keys.TAB);
+		doSendKeys(getBy("id", "txtTareWt"), "100");
+		doSendKeys(getBy("id", "weight"), "100");
+		doSendKeys(getBy("id", "volume"), "100");
+		doSendKeys(getBy("id", "txtTareWtUOMDesc"), "Kilogram");
+		doSendKeys(getBy("id", "txtVolUOMDesc"), "Litre");
+		doSendKeys(getBy("id", "Tquantitymanifested"),"100" + Keys.TAB);
+		doSendKeys(getBy("id", "OriginPort"),"%%" + Keys.TAB);
 //		setFinalDeatination();
-		doSendKeys(By.id("consignmentvalue"), "100");
-		doSendKeys(By.id("currency"), "kwd");
-		doSendKeys(By.id("remarks"), "Created Bill For Cargo");
-		doSendKeys(By.id("Marks"), "Marks");
+		doSendKeys(getBy("id", "consignmentvalue"), "100");
+		doSendKeys(getBy("id", "currency"), "kwd");
+		doSendKeys(getBy("id", "remarks"), "Created Bill For Cargo");
+		doSendKeys(getBy("id", "Marks"), "Marks");
 
-		doClick(createBy);
-//		doClick(By.cssSelector("#cancel[value='Back']"));
+		doClick( getBy("cssSelector", "#submit10[title='Create'][class='mcbutton']"));
+
+//		doClick(getBy("cssSelector", "#cancel[value='Back']"));
 	}
 	public void createLandBLForPassenger() {
 		clickNew();
 
-		doClick(By.id("IsNotCargo"));
+		doClick(getBy("id", "IsNotCargo"));
 //		Goods Details
-		findElement(unregisteredConsigneeBy).sendKeys("Alex MD Husain");
-		doSendKeys(By.id("txtNotifiedConsignee"), "Notified Consignee");
-		doSendKeys(By.id("txtExporter"), "Exporter Ali");
-		findElement(descriptionBy).sendKeys("Wind Mills");
-		findElement(tgWeightBy).sendKeys("100" + Keys.TAB);
-		doSendKeys(By.id("txtTareWt"), "100");
-		doSendKeys(By.id("weight"), "100");
-		doSendKeys(By.id("volume"), "100");
-		doSendKeys(By.id("txtTareWtUOMDesc"), "Kilogram");
-		doSendKeys(By.id("txtVolUOMDesc"), "Litre");
-		findElement(tquantityManifestedBy).sendKeys("100" + Keys.TAB);
-		findElement(originPortBy).sendKeys("%%" + Keys.TAB);
+		doSendKeys(getBy("cssSelector", "#UnregisteredConsignee[Attribute='UnregisteredConsignee']"), "Alex MD Husain");
+		doSendKeys(getBy("id", "txtNotifiedConsignee"), "Notified Consignee");
+		doSendKeys(getBy("id", "txtExporter"), "Exporter Ali");
+		doSendKeys(getBy("id", "description"),"Oil");
+		doSendKeys(getBy("id", "Tgweight"),"100" + Keys.TAB);
+		doSendKeys(getBy("id", "txtTareWt"), "100");
+		doSendKeys(getBy("id", "weight"), "100");
+		doSendKeys(getBy("id", "volume"), "100");
+		doSendKeys(getBy("id", "txtTareWtUOMDesc"), "Kilogram");
+		doSendKeys(getBy("id", "txtVolUOMDesc"), "Litre");
+		doSendKeys(getBy("id", "Tquantitymanifested"),"100" + Keys.TAB);
+		doSendKeys(getBy("id", "OriginPort"),"%%" + Keys.TAB);
 //		setFinalDeatination();
-		doSendKeys(By.id("consignmentvalue"), "100");
-		doSendKeys(By.id("currency"), "kwd");
-		doSendKeys(By.id("remarks"), "Created Bill For Cargo");
-		doSendKeys(By.id("Marks"), "Marks");
+		doSendKeys(getBy("id", "consignmentvalue"), "100");
+		doSendKeys(getBy("id", "currency"), "kwd");
+		doSendKeys(getBy("id", "remarks"), "Created Bill For Cargo");
+		doSendKeys(getBy("id", "Marks"), "Marks");
 
-		doClick(createBy);
-//		doClick(By.cssSelector("#cancel[value='Back']"));
+		doClick( getBy("cssSelector", "#submit10[title='Create'][class='mcbutton']"));
+
+//		doClick(getBy("cssSelector", "#cancel[value='Back']"));
 	}
 	public void createLandBLForBWH() {
 		clickNew();
 
-		doClick(By.id("rdbbwh"));
+		doClick(getBy("id", "rdbbwh"));
 //		Goods Details
-		findElement(unregisteredConsigneeBy).sendKeys("Alex MD Husain");
-		doSendKeys(By.id("txtNotifiedConsignee"), "Notified Consignee");
-		doSendKeys(By.id("txtExporter"), "Exporter Ali");
-		findElement(descriptionBy).sendKeys("Wind Mills");
-		findElement(tgWeightBy).sendKeys("100" + Keys.TAB);
-		doSendKeys(By.id("txtTareWt"), "100");
-		doSendKeys(By.id("weight"), "100");
-		doSendKeys(By.id("volume"), "100");
-		doSendKeys(By.id("txtTareWtUOMDesc"), "Kilogram");
-		doSendKeys(By.id("txtVolUOMDesc"), "Litre");
-		findElement(tquantityManifestedBy).sendKeys("100" + Keys.TAB);
-		findElement(originPortBy).sendKeys("%%" + Keys.TAB);
+		doSendKeys(getBy("cssSelector", "#UnregisteredConsignee[Attribute='UnregisteredConsignee']"), "Alex MD Husain");
+		doSendKeys(getBy("id", "txtNotifiedConsignee"), "Notified Consignee");
+		doSendKeys(getBy("id", "txtExporter"), "Exporter Ali");
+		doSendKeys(getBy("id", "description"),"Oil");
+		doSendKeys(getBy("id", "Tgweight"),"100" + Keys.TAB);
+		doSendKeys(getBy("id", "txtTareWt"), "100");
+		doSendKeys(getBy("id", "weight"), "100");
+		doSendKeys(getBy("id", "volume"), "100");
+		doSendKeys(getBy("id", "txtTareWtUOMDesc"), "Kilogram");
+		doSendKeys(getBy("id", "txtVolUOMDesc"), "Litre");
+		doSendKeys(getBy("id", "Tquantitymanifested"),"100" + Keys.TAB);
+		doSendKeys(getBy("id", "OriginPort"),"%%" + Keys.TAB);
+		
 //		setFinalDeatination();
-		doSendKeys(By.id("consignmentvalue"), "100");
-		doSendKeys(By.id("currency"), "kwd");
-		doSendKeys(By.id("remarks"), "Created Bill For Cargo");
-		doSendKeys(By.id("Marks"), "Marks");
+		doSendKeys(getBy("id", "consignmentvalue"), "100");
+		doSendKeys(getBy("id", "currency"), "kwd");
+		doSendKeys(getBy("id", "remarks"), "Created Bill For Cargo");
+		doSendKeys(getBy("id", "Marks"), "Marks");
 
-		doClick(createBy);
-//		doClick(By.cssSelector("#cancel[value='Back']"));
+		doClick( getBy("cssSelector", "#submit10[title='Create'][class='mcbutton']"));
+
+//		doClick(getBy("cssSelector", "#cancel[value='Back']"));
 	}
 
 	
 	private void setFinalDeatination() { //Mandatory only for Transit Transport
-		doClick(By.id("browsebutton1"));
+		doClick(getBy("id", "browsebutton1"));
 
 		switchToWindow();
-		doSendKeys(By.name("LocationCode"), "IQABL" + Keys.ENTER);
-		doClick(By.linkText("ARBIL"));
+		doSendKeys(getBy("name", "LocationCode"), "IQABL" + Keys.ENTER);
+		doClick(getBy("linkText", "ARBIL"));
 		switchBackToWindow();
 	}
 

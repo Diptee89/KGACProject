@@ -1,11 +1,10 @@
 package com.pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-import com.base.TestBase;
+import com.base.BaseClass;
 
-public class HBItemsPage extends TestBase {
+public class HBItemsPage extends BaseClass {
 	public HBItemsPage(WebDriver driver) {
 		this.driver = driver;
 	}
@@ -14,77 +13,76 @@ public class HBItemsPage extends TestBase {
 	 * var input = driver.findElement(By.id("input")); input.sendKeys("Auto");
 	 * 
 	 * String optionValue =
-	 * driver.findElement(By.xpath("//option[contains(@value,'TEST')]")).
+	 * driver.findElement(getBy("id", "//option[contains(@value,'TEST')]")).
 	 * getAttribute("value"); input.clear(); input.sendKeys(optionValue);
 	 */
 	public void createHBItems() {
-		doClick(By.id("btnNew"));
+		doClick(getBy("id", "btnNew"));
 
-		doSendKeys(By.id("txtContainerNo"), "POIU7654321");
-		doSendKeys(By.xpath("//select[@id='cmbKind']"), "CONTAINER");
+		doSendKeys(getBy("id", "txtContainerNo"), "POIU7654321");
+		doSendKeys(getBy("id", "cmbKind"), "CONTAINER");
 
-		doSendKeys(By.id("txtGoodsTypeId"), "12-A");
-		doSendKeys(By.id("txtDescription"), "Raw material");
-		doSendKeys(By.id("txtContainerTypeDesc"), "MCO");
-		doSendKeys(By.id("txtContainerSizeDesc"), "20 ft");
-		doSendKeys(By.id("cmbFCL"), "LCL");
-		doSendKeys(By.name("ContainerOwner"), "Alex Anaya");
+		doSendKeys(getBy("id", "txtGoodsTypeId"), "12-A");
+		doSendKeys(getBy("id", "txtDescription"), "Raw material");
+		doSendKeys(getBy("id", "txtContainerTypeDesc"), "MCO");
+		doSendKeys(getBy("id", "txtContainerSizeDesc"), "20 ft");
+		doSendKeys(getBy("id", "cmbFCL"), "LCL");
+		doSendKeys(getBy("name", "ContainerOwner"), "Alex Anaya");
 
-		doSendKeys(By.id("txtQty"), "100");	
-		doSendKeys(By.id("txtVol"), "100");
-		doSendKeys(By.id("txtNWt"), "100");
-		doSendKeys(By.id("txtGWt"), "100");		
-		doSendKeys(By.id("txtTWt"), "100");
+		doSendKeys(getBy("id","txtQty"), "100");
+		doSendKeys(getBy("id","txtVol"), "100");
+		doSendKeys(getBy("id","txtNWt"), "100");
+		doSendKeys(getBy("id","txtGWt"), "100");
+		doSendKeys(getBy("id","txtTWt"), "100");
 		
 		
-		doSendKeys(By.xpath("//td[@id='cell_QtyUnitOfMeasurement']//input[@name='txtQtyUOMDesc']"), "Unit"); 
-		doSendKeys(By.id("txtVolUOMDesc"), "Litre");
-		doSendKeys(By.id("txtNWeightUOMDesc"), "Kilograms");
-		doSendKeys(By.id("txtGrossUOMDesc"), "Kilograms");		
-		doSendKeys(By.id("txtTareWtUOMDesc"), "Kilograms");
+		doSendKeys(getBy("xpath", "//td[@id='cell_QtyUnitOfMeasurement']//input[@name='txtQtyUOMDesc']"), "Unit"); 
+		doSendKeys(getBy("id", "txtVolUOMDesc"), "Litre");
+		doSendKeys(getBy("id", "txtNWeightUOMDesc"), "Kilograms");
+		doSendKeys(getBy("id", "txtGrossUOMDesc"), "Kilograms");		
+		doSendKeys(getBy("id", "txtTareWtUOMDesc"), "Kilograms");
 
-		doSendKeys(By.name("txtMarkId"), "M001");
-		doSendKeys(By.name("txtMarkType"), "Standared");
-		doSendKeys(By.id("txtsealNo"), "S00101");
-		doSendKeys(By.name("txtRemarks"), "Created By Automation Selenium");	
+		doSendKeys(getBy("name", "txtMarkId"), "M001");
+		doSendKeys(getBy("name", "txtMarkType"), "Standared");
+		doSendKeys(getBy("id", "txtsealNo"), "S00101");
+		doSendKeys(getBy("name", "txtRemarks"), "Created By Automation Selenium");	
 		
-		doClick(By.id("btnCreate"));
+		doClick(getBy("id", "btnCreate"));
 
-		doClick(By.cssSelector("#cancel[value='Back']"));
+		doClick(getBy("cssSelector", "#cancel[value='Back']"));
 	}
 	public void createLandHBItems() {
-		doClick(By.id("btnNew"));
+		doClick(getBy("id", "btnNew"));
 
-		doSendKeys(By.id("txtContainerNo"), "POIU7654321");
-		doSendKeys(By.xpath("//select[@id='cmbKind']"), "CONTAINER");
+		doSendKeys(getBy("id", "txtContainerNo"), "POIU7654321");
+		doSendKeys(getBy("xpath", "//select[@id='cmbKind']"), "CONTAINER");
 
-		doSendKeys(By.id("txtGoodsTypeId"), "12-A");
-		doSendKeys(By.id("txtDescription"), "Raw material");
-		doSendKeys(By.id("txtContainerTypeDesc"), "MCO");
-		doSendKeys(By.id("txtContainerSizeDesc"), "20 ft");
-		doSendKeys(By.id("cmbFCL"), "LCL");
-		doSendKeys(By.name("ContainerOwner"), "Alex Anaya");
+		doSendKeys(getBy("id", "txtGoodsTypeId"), "12-A");
+		doSendKeys(getBy("id", "txtDescription"), "Raw material");
+		doSendKeys(getBy("id", "txtContainerTypeDesc"), "MCO");
+		doSendKeys(getBy("id", "txtContainerSizeDesc"), "20 ft");
+		doSendKeys(getBy("id", "cmbFCL"), "LCL");
+		doSendKeys(getBy("name", "ContainerOwner"), "Alex Anaya");
 
-		doSendKeys(By.id("txtQty"), "100");	
-		doSendKeys(By.id("txtVol"), "100");
-		doSendKeys(By.id("txtNWt"), "100");
-		doSendKeys(By.id("txtGWt"), "100");		
-		doSendKeys(By.id("txtTWt"), "100");
+		doSendKeys(getBy("id","txtQty"), "100");
+		doSendKeys(getBy("id","txtVol"), "100");
+		doSendKeys(getBy("id","txtNWt"), "100");
+		doSendKeys(getBy("id","txtGWt"), "100");
+		doSendKeys(getBy("id","txtTWt"), "100");
 		
 		
-//		doSendKeys(By.xpath("//td[@id='cell_QtyUnitOfMeasurement']//input[@name='txtQtyUOMDesc']"), "Unit"); 
-		doSendKeys(By.id("txtVolUOMDesc"), "Litre");
-		doSendKeys(By.id("txtNWeightUOMDesc"), "Kilograms");
-		doSendKeys(By.id("txtGrossUOMDesc"), "Kilograms");		
-		doSendKeys(By.id("txtTareWtUOMDesc"), "Kilograms");
+		doSendKeys(getBy("id", "txtVolUOMDesc"), "Litre");
+		doSendKeys(getBy("id", "txtNWeightUOMDesc"), "Kilograms");
+		doSendKeys(getBy("id", "txtGrossUOMDesc"), "Kilograms");		
+		doSendKeys(getBy("id", "txtTareWtUOMDesc"), "Kilograms");
 
-		doSendKeys(By.name("txtMarkId"), "M001");
-		doSendKeys(By.name("txtMarkType"), "Standared");
-		doSendKeys(By.id("txtsealNo"), "S00101");
-		doSendKeys(By.name("txtRemarks"), "Created By Automation Selenium");	
+		doSendKeys(getBy("name", "txtMarkId"), "M001");
+		doSendKeys(getBy("name", "txtMarkType"), "Standared");
+		doSendKeys(getBy("id", "txtsealNo"), "S00101");
+		doSendKeys(getBy("name", "txtRemarks"), "Created By Automation Selenium");	
 		
-		doClick(By.id("btnCreate"));
+		doClick(getBy("id", "btnCreate"));
 
-		doClick(By.cssSelector("#cancel[value='Back']"));
+		doClick(getBy("cssSelector", "#cancel[value='Back']"));
 	}
 }
