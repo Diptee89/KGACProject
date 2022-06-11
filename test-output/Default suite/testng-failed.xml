@@ -8,7 +8,6 @@
           <include name="close"/>
           <include name="setUp"/>
           <include name="testSubmitManifest"/>
-          <include name="submitVesselInspection"/>
         </methods>
       </class> <!-- sea.TestImportCargo -->
     </classes>

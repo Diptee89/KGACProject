@@ -20,14 +20,11 @@ public class TestImportCargo extends BaseClass {
 	private ImportHouseBillPage objHBL;
 	private HBItemsPage objHBItems;
 
-//	private String url = "http://10.138.108.44/MCKWFX5TEST/Main.aspx";
-//	private String strPass = "fx5test";
+
 	private String strCarrierAgent = "csa.swk";
 	private String strCManifest = "cmanifest.swk";
 	private String strBayan = "broker.swk";
 
-//	private String strPass="bam";
-//	private String url="http://10.138.108.44/mckwfx5bam/Main.aspx";
 
 	@BeforeTest
 	public void setUp() {
