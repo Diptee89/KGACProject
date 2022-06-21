@@ -139,7 +139,7 @@ public class ImportHouseBillPage extends BaseClass {
 		setSeaHouseBill();
 		doClick(getBy("cssSelector", "#housebilldateDatePicker[class='mcCalendarButton']"));
 		doClick(getBy("cssSelector", ".Fx50CalenderCurrentDate"));
-		doSendKeys(getBy("id", "UserDONo"), "DO/001/SWK22");
+		doSendKeys(getBy("id", "UserDONo"), "DO/122367/SWK22");
 //		Goods Details
 		doSendKeys(getBy("cssSelector", "#UnregisteredConsignee[Attribute='UnregisteredConsignee']"), "Alex MD Husain");
 		doSendKeys(getBy("id", "txtNotifiedConsignee"), "Notified Consignee");

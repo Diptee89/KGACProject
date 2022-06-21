@@ -10,6 +10,7 @@ import java.util.Set;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Capabilities;
+import org.openqa.selenium.Cookie;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.ElementNotInteractableException;
 import org.openqa.selenium.JavascriptExecutor;
@@ -75,11 +76,17 @@ public class BaseClass {
 
 	private String MainWindow;
 	public WebDriver driver;
+	
+	/************HYD QA Server*********************/
 //	private String url = "http://10.138.108.44/MCKWFX5TEST/Main.aspx";
 //	private String strPass = "fx5test";
 	
-	private String url="http://10.138.108.44/mckwfx5bam/Main.aspx";
-	private String strPass="bam";
+//	private String url="http://10.138.108.44/mckwfx5bam/Main.aspx";
+//	private String strPass="bam";
+
+	/***********KWd server***************/
+	private String url="http://10.10.126.151/MCKWFX5/Main.aspx";
+	private String strPass="ppjan22";
 
 	private LoginPage objLogin ;
 /************************************************************************************************************************/
@@ -124,6 +131,13 @@ public class BaseClass {
 			driver.get(url);
 			System.out.println(driver.getTitle());
 			switchToWindow();
+			Set<Cookie> cookies = driver.manage().getCookies();
+			Iterator<Cookie> it = cookies.iterator();
+			while(it.hasNext()) {
+				String name = it.next().getName();
+				System.out.println(name);
+			}
+			
 		} else {
 			driver.close();
 			try {

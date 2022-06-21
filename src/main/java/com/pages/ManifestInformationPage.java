@@ -81,6 +81,7 @@ public class ManifestInformationPage extends BaseClass {
 	}
 
 	public void issueDOs() {
+		waitForElementToBeVisible(chkAllBy, 10);
 		doClick(chkAllBy);
 //		doClick(chk1stRowBy);
 		doClick(issueDOsBy);

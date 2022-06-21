@@ -59,7 +59,7 @@ public class TestImportCargo extends BaseClass {
 		
 	}
 
-	@Test(priority = 2)
+//	@Test(priority = 2)
 	public void testCreateHBLPassenger() {
 		objHBL = new ImportHouseBillPage(driver);
 		objHBItems = new HBItemsPage(driver);
