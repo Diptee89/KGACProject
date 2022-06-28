@@ -108,7 +108,9 @@ public class BaseClass {
 			Capabilities caps = ((RemoteWebDriver) driver).getCapabilities();
 			System.out.println(caps.getBrowserName() +": "+caps.getBrowserVersion());
 		} else if (browserName.equalsIgnoreCase("ie")) {
-			WebDriverManager.iedriver().arch32();
+//			WebDriverManager.iedriver().arch32();
+
+			System.setProperty("webdriver.ie.driver", "c:\\Drivers\\IEDriverServer.exe");
 			driver = new InternetExplorerDriver();
 			Capabilities caps = ((RemoteWebDriver) driver).getCapabilities();
 			System.out.println(caps.getBrowserName() +": "+caps.getBrowserVersion());
@@ -120,7 +122,14 @@ public class BaseClass {
 
 		return driver;
 	}
-
+	public WebDriver openIE() {
+//		System.setProperty("webdriver.ie.driver", "c:\\Drivers\\IEDriverServer.exe");
+		WebDriverManager.iedriver().arch32();
+//		WebDriverManager.iedriver().setup();
+		driver = new InternetExplorerDriver();
+		driver.manage().deleteAllCookies();
+		return driver;
+	}
 	public void navigateUrl() {
 		if (url == null) {
 			System.out.println("please pass the right url");
@@ -129,14 +138,8 @@ public class BaseClass {
 		if (url.contains("https//:") || url.contains("http")) {
 			
 			driver.get(url);
-			System.out.println(driver.getTitle());
+//			System.out.println(driver.getTitle());
 			switchToWindow();
-			Set<Cookie> cookies = driver.manage().getCookies();
-			Iterator<Cookie> it = cookies.iterator();
-			while(it.hasNext()) {
-				String name = it.next().getName();
-				System.out.println(name);
-			}
 			
 		} else {
 			driver.close();

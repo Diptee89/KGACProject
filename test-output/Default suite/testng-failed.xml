@@ -3,13 +3,12 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="sea.TestImportCargo">
+      <class name="testBAM.MissingLuggageBAM">
         <methods>
-          <include name="close"/>
+          <include name="regMiggingLuggage"/>
           <include name="setUp"/>
-          <include name="testSubmitManifest"/>
         </methods>
-      </class> <!-- sea.TestImportCargo -->
+      </class> <!-- testBAM.MissingLuggageBAM -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
