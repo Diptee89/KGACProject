@@ -104,12 +104,12 @@ public class TestImportCargo extends BaseClass {
 		objMNFList.clickEdit();
 		
 		objMNFInfo.arriveSeaManiest();//Arrive Journey
-		logOut();
+//		logOut();
 	}
 
 	@AfterTest
 	public void close() {
-		driver.close();
+//		driver.close();
 	}
 
 }

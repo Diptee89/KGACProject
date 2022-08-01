@@ -46,8 +46,8 @@ public class ManifestInformationPage extends BaseClass {
 	private By manifestNoBy = By.id("vwr_JourneyNumber");
 
 //	Issue DO
-	private By chkAllBy = By.id("chkallEQ");
-	private By chk1stRowBy = By.id("chk_EO_0");
+	private By chkAllBy = By.id("chkallEP");//chkallEQ
+	private By chk1stRowBy = By.id("chk_EP_0");
 	private By issueDOsBy = By.id("btnIssueDO");
 	private By doNoBy = By.xpath("//td[@id='List_ViewBillsFromManifestLs_0_cell_DONO']/a");
 
