@@ -78,15 +78,15 @@ public class BaseClass {
 	public WebDriver driver;
 	
 	/************HYD QA Server*********************/
-//	private String url = "http://10.138.108.44/MCKWFX5TEST/Main.aspx";
-//	private String strPass = "fx5test";
+	private String url = "http://10.138.108.44/MCKWFX5TEST/Main.aspx";
+	private String strPass = "fx5test";
 	
 //	private String url="http://10.138.108.44/mckwfx5bam/Main.aspx";
 //	private String strPass="bam";
 
 	/***********KWd server***************/
-	private String url="http://10.10.126.151/MCKWFX5/Main.aspx";
-	private String strPass="ppjan22";
+//	private String url="http://10.10.126.151/MCKWFX5/Main.aspx";
+//	private String strPass="ppjan22";
 
 	private LoginPage objLogin ;
 /************************************************************************************************************************/
@@ -108,13 +108,13 @@ public class BaseClass {
 			Capabilities caps = ((RemoteWebDriver) driver).getCapabilities();
 			System.out.println(caps.getBrowserName() +": "+caps.getBrowserVersion());
 		} else if (browserName.equalsIgnoreCase("ie")) {
-//			WebDriverManager.iedriver().arch32();
+			WebDriverManager.iedriver().arch32();
 
-			System.setProperty("webdriver.ie.driver", "c:\\Drivers\\IEDriverServer.exe");
+//			System.setProperty("webdriver.ie.driver", "c:\\Drivers\\IEDriverServer.exe");
 			driver = new InternetExplorerDriver();
 			Capabilities caps = ((RemoteWebDriver) driver).getCapabilities();
 			System.out.println(caps.getBrowserName() +": "+caps.getBrowserVersion());
-			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+//			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
 		} else {
 			System.out.println("please pass the correct browser: " + browserName);
@@ -138,7 +138,8 @@ public class BaseClass {
 		if (url.contains("https//:") || url.contains("http")) {
 			
 			driver.get(url);
-//			System.out.println(driver.getTitle());
+			System.out.println(driver.getTitle());
+			switchToWindow();
 			switchToWindow();
 			
 		} else {
@@ -154,7 +155,7 @@ public class BaseClass {
 
 	public void switchToWindow() {
 		MainWindow = driver.getWindowHandle();
-//		System.out.println("Parent Winodow ID: " + MainWindow);
+		System.out.println("Parent Winodow ID: " + MainWindow);
 		Set<String> s1 = driver.getWindowHandles();
 		Iterator<String> i1 = s1.iterator();// to fetch the value iterator() will return from the collection object
 
@@ -162,7 +163,7 @@ public class BaseClass {
 			String ChildWindow = i1.next();
 
 			if (!MainWindow.equalsIgnoreCase(ChildWindow)) {
-//				System.out.println("Child Winodow ID: " + ChildWindow);
+				System.out.println("Child Winodow ID: " + ChildWindow);
 				// Switching to Child window
 				driver.switchTo().window(ChildWindow);
 
@@ -231,7 +232,7 @@ public class BaseClass {
 
 
 	public WebElement getElement(By locator) {
-//		waitForElementToBeVisible(locator, 5);
+		waitForElementToBeVisible(locator, 5);
 		WebElement elem = driver.findElement(locator);
 //		changeColor("yellow", elem);
 		drawBorder(elem);

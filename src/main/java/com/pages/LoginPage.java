@@ -1,6 +1,7 @@
 package com.pages;
 
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 import com.base.BaseClass;
@@ -21,7 +22,8 @@ public class LoginPage extends BaseClass {
 	 * @return HomePage object
 	 */
 	public void loginUser(String strUserName, String strPasword) {
-		doSendKeys(getBy("cssSelector", "input.FX50loginPanelTextBox"), strUserName);
+		doSendKeys(By.id("sUserId"), strUserName);
+////		doSendKeys(getBy("cssSelector", "input.FX50loginPanelTextBox"), strUserName);
 		doSendKeys(getBy("cssSelector", "#sUserPassword"), strPasword);
 		doClick(getBy("cssSelector", ".FX50loginPanelLoginButton"));
 	}

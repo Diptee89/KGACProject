@@ -98,7 +98,7 @@ public class TestImportCargo extends BaseClass {
 
 	}
 
-	@Test(priority = 7)
+//	@Test(priority = 7)
 	public void testIssueDO() {
 //		Issue DO
 		login("nas.csa");

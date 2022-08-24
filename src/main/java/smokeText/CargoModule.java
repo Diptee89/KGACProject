@@ -21,10 +21,13 @@ public class CargoModule {
 	static String tempManifestNo;
 	static String MainWindow;
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 
 		setUP();
-//		login("nas.csa", "fx5test");
+//		((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+//		driver.findElement(By.id("lnkReset")).click();
+		
+		login("nas.csa", "fx5test");
 
 //		clickCargoMenu();
 //		createManifest("00007");
@@ -40,12 +43,12 @@ public class CargoModule {
 		System.setProperty("webdriver.ie.driver", "c:\\Drivers\\IEDriverServer.exe");
 		driver = new InternetExplorerDriver();
 
-		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+//		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		act = new Actions(driver);
 
 		driver.get("http://10.138.108.44/MCKWFX5TEST/Main.aspx");
 		System.out.println(driver.getTitle());
-		switchToWindow();
+		switchToWindow();switchToWindow();
 	}
 
 	public static void switchToWindow() {
@@ -61,15 +64,16 @@ public class CargoModule {
 				System.out.println("Child Winodow ID: " + ChildWindow);
 				// Switching to Child window
 				driver.switchTo().window(ChildWindow);
-
+				System.out.println("Child Winodow ID: " + ChildWindow);
+				
 			}
 		}
 	}
 
-	public static void login(String id, String pwd) {
-
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input.FX50loginPanelTextBox")));
-		WebElement field1 = driver.findElement(By.cssSelector("input.FX50loginPanelTextBox"));
+	public static void login(String id, String pwd) throws InterruptedException {
+		Thread.sleep(3000);
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input.FX50loginPanelTextBox")));		
+		WebElement field1 = driver.findElement(By.cssSelector("input.FX50loginPanelTextBox"));		
 		clearAndType(field1, id);
 
 		driver.findElement(By.cssSelector("#sUserPassword")).click();
@@ -78,6 +82,7 @@ public class CargoModule {
 	}
 
 	private static void clearAndType(WebElement field, String text) {
+
 		field.clear();
 		field.sendKeys(text);
 	}

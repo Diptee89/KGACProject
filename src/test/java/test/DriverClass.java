@@ -6,9 +6,10 @@ import com.base.BaseClass;
 
 public class DriverClass extends BaseClass {
 @Test
-public void setup() {
+public void setup() throws InterruptedException {
 	launchBrowser("ie");
 	navigateUrl();
+	switchToWindow();
 	login("nas.csa");
 	logOut();
 }

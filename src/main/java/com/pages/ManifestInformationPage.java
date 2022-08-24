@@ -81,9 +81,9 @@ public class ManifestInformationPage extends BaseClass {
 	}
 
 	public void issueDOs() {
-		waitForElementToBeVisible(chkAllBy, 10);
+//		waitForElementToBeVisible(chkAllBy, 10);
 		doClick(chkAllBy);
-//		doClick(chk1stRowBy);
+//		doClick(chk1stRowBy);  //PP site
 		doClick(issueDOsBy);
 		doNumber = doElementGetText(doNoBy);
 		System.out.println("DO Number: " + doNumber);
