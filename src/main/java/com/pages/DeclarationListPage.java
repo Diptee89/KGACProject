@@ -1,5 +1,6 @@
 package com.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 
@@ -9,10 +10,12 @@ public class DeclarationListPage extends BaseClass {
 	public DeclarationListPage(WebDriver driver) {
 		this.driver = driver;
 	}
-
+	private By menuNavigateIconBy = By.cssSelector(".menuNavigateIcon");
+	private By mainMenuDeclarationBy = By.xpath("//div[@id='mainMenuItemVertical_Declaration']/a");
 	public void clickDeclarationSubMenu() {
-
-		selectMenu(getBy("xpath", "//div[@id='mainMenuItemVertical_Declaration']/a"));
+		doClick(menuNavigateIconBy);
+		selectMenu(mainMenuDeclarationBy);
+//		selectMenu(getBy("xpath", "//div[@id='mainMenuItemVertical_Declaration']/a"));
 		waitForElementToBeVisible(getBy("xpath",
 				"//div[@class='subMenuWrapperDynamic_vertical' and @id='subMenuWrapperDynamicVertical_Declaration']/div[2]/div[2]/a"),
 				10);

@@ -81,12 +81,14 @@ public class BaseClass {
 	private String url = "http://10.138.108.44/MCKWFX5TEST/Main.aspx";
 	private String strPass = "fx5test";
 	
-//	private String url="http://10.138.108.44/mckwfx5bam/Main.aspx";
-//	private String strPass="bam";
-
 	/***********KWd server***************/
 //	private String url="http://10.10.126.151/MCKWFX5/Main.aspx";
 //	private String strPass="ppjan22";
+	
+//	private String url="http://10.138.108.44/mckwfx5bam/Main.aspx";
+//	private String strPass="bam";
+
+
 
 	private LoginPage objLogin ;
 /************************************************************************************************************************/
@@ -155,7 +157,7 @@ public class BaseClass {
 
 	public void switchToWindow() {
 		MainWindow = driver.getWindowHandle();
-		System.out.println("Parent Winodow ID: " + MainWindow);
+//		System.out.println("Parent Winodow ID: " + MainWindow);
 		Set<String> s1 = driver.getWindowHandles();
 		Iterator<String> i1 = s1.iterator();// to fetch the value iterator() will return from the collection object
 
@@ -163,7 +165,7 @@ public class BaseClass {
 			String ChildWindow = i1.next();
 
 			if (!MainWindow.equalsIgnoreCase(ChildWindow)) {
-				System.out.println("Child Winodow ID: " + ChildWindow);
+//				System.out.println("Child Winodow ID: " + ChildWindow);
 				// Switching to Child window
 				driver.switchTo().window(ChildWindow);
 

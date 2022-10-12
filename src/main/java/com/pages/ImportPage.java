@@ -52,7 +52,7 @@ public class ImportPage extends BaseClass {
 			.xpath("//input[@name='ProvidedDocumentsCount' and @thisRowID='List_ListCCPRequiredDocumentsLs_11_']");
 	private By requiredDocumentsLs_12By = By
 			.xpath("//input[@name='ProvidedDocumentsCount' and @thisRowID='List_ListCCPRequiredDocumentsLs_12_']");
-	private By saveDocumentsBy = By.id("Associate");
+	private By saveDocumentsBy = By.id("Associate");  
 
 	private By digitalDocumentsBy = By.linkText("Digital Documents");
 
@@ -95,9 +95,9 @@ public class ImportPage extends BaseClass {
 		doSendKeys(requiredDocumentsLs_9By, "1");
 		doSendKeys(requiredDocumentsLs_10By, "1");
 		doSendKeys(requiredDocumentsLs_11By, "1");
-		doSendKeys(requiredDocumentsLs_12By, "1");
+//		doSendKeys(requiredDocumentsLs_12By, "1");
 		doClick(saveDocumentsBy);
-		waitForElementToBeVisible(digitalDocumentsBy, 10);
+		waitForElementToBeVisible(digitalDocumentsBy, 20);
 		doClick(closeDocumentsBy);
 		switchBackToWindow();
 

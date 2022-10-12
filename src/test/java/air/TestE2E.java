@@ -30,7 +30,7 @@ public class TestE2E extends BaseClass
 	}
 
 //	@Test(enabled=false)
-	@Test(priority = 0)
+//	@Test(priority = 0)
 	public void testManifest() {
 
 		ManifestListPage objMNFList = new ManifestListPage(driver);
@@ -73,16 +73,16 @@ public class TestE2E extends BaseClass
 		ImportPage objImp = new ImportPage(driver);
 
 		login(strBayan);
-//		Declare DO & Create Import Bayan
+		/******************Declare DO & Create Import Bayan*/
 		objPendingDOList.clickPendingDOSubMenu();
 		objPendingDOList.searchWithDO(objMNFInfo.doNumber);
 		objPendingDOList.clickDeclare();
 
 		objBayan.createBayan();
 
-//		Edit Created Bayan from Declaration list screen4';u		
+		/*****Edit Created Bayan from Declaration list screen4';u****/		
 //		objDecList.clickDeclarationSubMenu();
-//		objDecList.searchByTempDec("TIM/29661/KWI22");// tempDeclarationNo
+//		objDecList.searchByTempDec("TIM/29772/KWI22");// tempDeclarationNo
 //		objDecList.clickTempNo();
 //		objImp.clickEdit();
 //		objImp.selectExitPort();
