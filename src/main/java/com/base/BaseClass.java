@@ -116,7 +116,7 @@ public class BaseClass {
 			driver = new InternetExplorerDriver();
 			Capabilities caps = ((RemoteWebDriver) driver).getCapabilities();
 			System.out.println(caps.getBrowserName() +": "+caps.getBrowserVersion());
-//			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
 		} else {
 			System.out.println("please pass the correct browser: " + browserName);

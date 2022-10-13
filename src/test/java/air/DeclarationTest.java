@@ -43,7 +43,7 @@ public class DeclarationTest extends BaseClass{
 
 //		Edit Created Bayan from Declaration list screen4';u		
 		objDecList.clickDeclarationSubMenu();
-		objDecList.searchByTempDec("TIM/29772/KWI22");// tempDeclarationNo
+		objDecList.searchByTempDec("TIM/29774/KWI22");// tempDeclarationNo
 		objDecList.clickTempNo();
 		objImp.clickEdit();
 ////		objImp.selectExitPort();
@@ -51,13 +51,13 @@ public class DeclarationTest extends BaseClass{
 //		objImp.addInvoice();
 //		objImp.addItems();
 
-//		objImp.requiredDocuments();
-		objImp.addDeclarationVehiclesList();
+		objImp.requiredDocuments();
+//		objImp.addDeclarationVehiclesList();
 
-		objImp.calculateDuty();
-		objImp.addPaymentInformation();
-		objImp.submitDeclaration();
-		logOut();
+//		objImp.calculateDuty();
+//		objImp.addPaymentInformation();
+//		objImp.submitDeclaration();
+//		logOut();
 	}
 
 }

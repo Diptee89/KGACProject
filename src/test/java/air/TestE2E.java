@@ -30,7 +30,7 @@ public class TestE2E extends BaseClass
 	}
 
 //	@Test(enabled=false)
-//	@Test(priority = 0)
+	@Test(priority = 0)
 	public void testManifest() {
 
 		ManifestListPage objMNFList = new ManifestListPage(driver);
@@ -80,18 +80,11 @@ public class TestE2E extends BaseClass
 
 		objBayan.createBayan();
 
-		/*****Edit Created Bayan from Declaration list screen4';u****/		
-//		objDecList.clickDeclarationSubMenu();
-//		objDecList.searchByTempDec("TIM/29772/KWI22");// tempDeclarationNo
-//		objDecList.clickTempNo();
-//		objImp.clickEdit();
-//		objImp.selectExitPort();
-
 		objImp.addInvoice();
 		objImp.addItems();
 
+		objImp.addDeclarationVehiclesList();	
 		objImp.requiredDocuments();
-		objImp.addDeclarationVehiclesList();
 
 		objImp.calculateDuty();
 		objImp.addPaymentInformation();

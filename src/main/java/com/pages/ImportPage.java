@@ -97,7 +97,7 @@ public class ImportPage extends BaseClass {
 		doSendKeys(requiredDocumentsLs_11By, "1");
 //		doSendKeys(requiredDocumentsLs_12By, "1");
 		doClick(saveDocumentsBy);
-		waitForElementToBeVisible(digitalDocumentsBy, 20);
+		waitForElementToBeVisible(digitalDocumentsBy, 80);
 		doClick(closeDocumentsBy);
 		switchBackToWindow();
 
