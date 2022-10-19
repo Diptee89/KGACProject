@@ -175,6 +175,7 @@ public class BaseClass {
 
 	public void switchBackToWindow() {
 		driver.switchTo().window(MainWindow);
+		
 	}
 
 /************************Login Logout************************/

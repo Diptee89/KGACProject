@@ -308,5 +308,28 @@ public class ImportHouseBillPage extends BaseClass {
 		doClick(getBy("linkText", "ARBIL"));
 		switchBackToWindow();
 	}
+	public void createConsolidated_ShipmentBL() {
+		clickNew();
+		setHouseBill();
+		doClick(getBy("cssSelector", "#housebilldateDatePicker[class='mcCalendarButton']"));
+		doClick(getBy("cssSelector", ".Fx50CalenderCurrentDate"));
+		doClick(getBy("id", "IsConsole")); //Consolidated Shipment yes
+//		Goods Details
+		doSendKeys(getBy("cssSelector", "#UnregisteredConsignee[Attribute='UnregisteredConsignee']"), "Alex MD Husain");
+		doSendKeys(getBy("id", "txtNotifiedConsignee"), "Notified Consignee");
+		doSendKeys(getBy("id", "txtExporter"), "Exporter Ali");
+		doSendKeys(getBy("id", "Tgweight"),"100" + Keys.TAB);
+		doSendKeys(getBy("id", "txtTareWt"), "100");
+		doSendKeys(getBy("id", "weight"), "100");
+		doSendKeys(getBy("id", "volume"), "100");
+		doSendKeys(getBy("id", "txtTareWtUOMDesc"), "Kilogram");
+		doSendKeys(getBy("id", "txtVolUOMDesc"), "Litre");
+		doSendKeys(getBy("id", "Tquantitymanifested"),"100" + Keys.TAB);
+		doSendKeys(getBy("id", "OriginPort"),"%%" + Keys.TAB);
+		doSendKeys(getBy("id", "remarks"), "Created Bill For Cargo");
+		doSendKeys(getBy("id", "Marks"), "Marks");
+		doClick( getBy("cssSelector", "#submit10[title='Create'][class='mcbutton']"));
+		doClick(getBy("cssSelector", "#CreateNOC"));
+	}
 
 }

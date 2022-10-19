@@ -16,6 +16,7 @@ public class ManifestListPage extends BaseClass {
 	private By mainMenuCargoBy = By
 			.xpath("//div[@id='mainMenuItemVertical_Manifest' and @class='mainMenuItem_vertical']/a");
 	private By subMenuManifestBy = By.linkText("Manifest");
+	
 	private By newButtonBy = By.xpath("//input[@id='new1' and @title='Create New Manifest']");
 //	Search
 	private By searchBy = By.id("parent_frmSearchDiv_Search");
@@ -30,12 +31,9 @@ public class ManifestListPage extends BaseClass {
 	private By tempLinkBy = By.xpath("//tr[@id='List_journey_0_' and @class='DataGridItem_Row']/td[2]/a");
 
 	public void clickCargoMenu() {
-
 		waitForElementToBeVisible(menuNavigateIconBy, 10);
 		doClick(menuNavigateIconBy);
-
 		selectMenu(mainMenuCargoBy);
-
 		doClick(subMenuManifestBy);
 
 	}
