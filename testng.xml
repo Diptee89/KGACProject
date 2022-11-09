@@ -3,18 +3,8 @@
 <suite name="Suite">
 	<test thread-count="5" name="TestAirImportCargo">
 		<classes>
-			<class name="air.TestImportCargo" />
+			<class name="air.TestE2E" />
 		</classes>
 	</test> <!-- Test -->
-	<test thread-count="5" name="TestSeaImportCargo">
-		<classes>
-			<class name="sea.TestImportCargo" />
-		</classes>
-	</test> <!-- Test -->
-	<test thread-count="5" name="TestLandImportCargo">
-		<classes>
-			<class name="land.TestImportCargo" />
-		</classes>
-	</test> <!-- Test -->
-
+	
 </suite> <!-- Suite -->
