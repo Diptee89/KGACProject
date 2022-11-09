@@ -67,7 +67,7 @@ public class DeclarationTest extends BaseClass{
 		objDecList.clickTempNo();
 		
 		objImp.reviewDoc();
-		objImp.approveBayan();
+		objImp.approveBayan(); //Status :Audited and in Red
 	}
 
 }

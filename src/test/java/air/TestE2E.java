@@ -89,15 +89,15 @@ public class TestE2E extends BaseClass {
 		logOut();
         /***************Login as GCS user & Pay Bayan Issuance fee******************************/
 		objImp.payBayanIssuanceFee(objBayan.tempDeclarationNo);
+		
 		/***************Login as Auditor & review Document and Approve Bayan******************************/
-
 		login("customs.kwi");
 		objDecList.clickDeclarationSubMenu();
 		objDecList.searchByTempDec(objBayan.tempDeclarationNo);// tempDeclarationNo TIM/29801/KWI22
 		objDecList.clickTempNo();
 
 		objImp.reviewDoc();
-		objImp.approveBayan();
+		objImp.approveBayan(); //Status :Audited and in Red
 	}
 
 	@AfterTest
