@@ -15,7 +15,7 @@ public class CustomsBayanPage extends BaseClass {
 
 	public void createBayan() {
 		selectImporter();
-		doSendKeys(getBy("id", "txtReMarks"), "Created By Automation");
+//		doSendKeys(getBy("id", "txtReMarks"), "Created By Automation");
 		doClick(getBy("id", "savebttn"));
 		getTempDeclNumber();
 	}

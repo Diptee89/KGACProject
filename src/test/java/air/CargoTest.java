@@ -9,6 +9,9 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
+import com.base.BaseClass;
+import com.pages.CustomsBayanPage;
+import com.pages.HBItemsPage;
 import com.pages.ImportHouseBillPage;
 import com.pages.LogOutPage;
 import com.pages.LoginPage;
@@ -18,17 +21,31 @@ import com.pages.ManifestListPage;
 /**
  * Page Object encapsulates the Cargo Module
  */
-public class CargoTest {
-public WebDriver driver;
+public class CargoTest extends BaseClass {
+	public WebDriver driver;
+	private ManifestInformationPage objMNFInfo;
+	private CustomsBayanPage objBayan;
+
+	private String strCarrierAgent = "nas.csa";
+	private String strCManifest = "cmanifest.kwi";
+	private String strBayan = "broker.kwi";
+
+	@BeforeTest
+	public void setUp() {
+		launchBrowser("ie");
+		navigateUrl();
+	}
+
 	@Test(priority = 0)
 	public void testManifest() {
 
-		login("nas.csa", "fx5test");
 		ManifestListPage objMNFList = new ManifestListPage(driver);
-		ManifestInformationPage objMNFInfo = new ManifestInformationPage(driver);
+		objMNFInfo = new ManifestInformationPage(driver);
 		ImportHouseBillPage objHBL = new ImportHouseBillPage(driver);
+		HBItemsPage objHBItems = new HBItemsPage(driver);
 
 //		Create and Submit Manifest
+		login(strCarrierAgent);
 		objMNFList.clickCargoMenu();
 		objMNFList.clickNew();
 		objMNFInfo.createManifest();
@@ -37,64 +54,20 @@ public WebDriver driver;
 		logOut();
 
 //		Approve Manifest
-		login("cmanifest.kwi", "fx5test");
+		login(strCManifest);
 		objMNFList.clickCargoMenu();
-//		objMNFList.searchWithTempNo(tempManifestNo);		//"TMRN/8655/KWI22"
+		objMNFList.searchWithTempNo(objMNFInfo.tempManifestNo);
 		objMNFList.clickTempNo();
 		objMNFInfo.approveManifest();
 		logOut();
 
 //		Issue DO
-		login("nas.csa", "fx5test");
+		login(strCarrierAgent);
 		objMNFList.clickCargoMenu();
-//		objMNFList.seachWithManifestNo(manifestNo);
+		objMNFList.seachWithManifestNo(objMNFInfo.manifestNo);
 		objMNFList.clickTempNo();
 		objMNFInfo.issueDOs();
 		logOut();
 	}
 
-	@BeforeTest
-	public void setUp() {
-		System.setProperty("webdriver.ie.driver", "c:\\Drivers\\IEDriverServer.exe");
-		driver = new InternetExplorerDriver();
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-
-		driver.get("http://10.138.108.44/MCKWFX5TEST/Main.aspx");
-		System.out.println(driver.getTitle());
-		switchToWindow();
-		login("nas.csa", "fx5test");
-	}
-	
-//	@AfterTest
-	public void close() {
-		driver.close();
-	}
-	public void login(String id, String pass) {
-		this.switchToWindow();
-		LoginPage objLogin = new LoginPage(driver);
-		objLogin.loginUser(id, pass);
-
-	}
-
-	public void logOut() {
-		LogOutPage objLogOut = new LogOutPage(driver);
-		objLogOut.logOutUser();
-	}
-	public void switchToWindow() {
-		String MainWindow = driver.getWindowHandle();
-		System.out.println("Parent Winodow ID: " + MainWindow);
-		Set<String> s1 = driver.getWindowHandles();
-		Iterator<String> i1 = s1.iterator();// to fetch the value iterator() will return from the collection object
-
-		while (i1.hasNext()) { // loop if having some valu until loop will run
-			String ChildWindow = i1.next();
-
-			if (!MainWindow.equalsIgnoreCase(ChildWindow)) {
-				System.out.println("Child Winodow ID: " + ChildWindow);
-//				 Switching to Child window
-				driver.switchTo().window(ChildWindow);
-
-			}
-		}
-	}
 }

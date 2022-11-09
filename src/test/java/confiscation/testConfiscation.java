@@ -22,6 +22,9 @@ public class testConfiscation extends BaseClass {
 		objConfiscation = new ConfiscationBasicInformation(driver);
 		objConfiscation.navigateToConfiscation_List();
 		objConfiscation.createConfiscation();
+		objConfiscation.ConfiscationDetailedNotes();
+		objConfiscation.ConfiscatedItems();
+		
 
 	}
 }

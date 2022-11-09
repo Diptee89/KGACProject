@@ -33,22 +33,22 @@ public class ImportHouseBillPage extends BaseClass {
 		doClick(getBy("cssSelector", ".Fx50CalenderCurrentDate"));
 //		Goods Details
 		doSendKeys(getBy("cssSelector", "#UnregisteredConsignee[Attribute='UnregisteredConsignee']"), "Alex MD Husain");
-		doSendKeys(getBy("id", "txtNotifiedConsignee"), "Notified Consignee");
-		doSendKeys(getBy("id", "txtExporter"), "Exporter Ali");
+//		doSendKeys(getBy("id", "txtNotifiedConsignee"), "Notified Consignee"); //Optional
+//		doSendKeys(getBy("id", "txtExporter"), "Exporter Ali");//Optional
 		doSendKeys(getBy("id", "description"),"Oil");
 		doSendKeys(getBy("id", "Tgweight"),"100" + Keys.TAB);
-		doSendKeys(getBy("id", "txtTareWt"), "100");
-		doSendKeys(getBy("id", "weight"), "100");
-		doSendKeys(getBy("id", "volume"), "100");
-		doSendKeys(getBy("id", "txtTareWtUOMDesc"), "Kilogram");
-		doSendKeys(getBy("id", "txtVolUOMDesc"), "Litre");
+//		doSendKeys(getBy("id", "txtTareWt"), "100");//Optional
+//		doSendKeys(getBy("id", "weight"), "100");//Optional
+//		doSendKeys(getBy("id", "volume"), "100");//Optional
+//		doSendKeys(getBy("id", "txtTareWtUOMDesc"), "Kilogram");//Optional
+//		doSendKeys(getBy("id", "txtVolUOMDesc"), "Litre");//Optional
 		doSendKeys(getBy("id", "Tquantitymanifested"),"100" + Keys.TAB);
 		doSendKeys(getBy("id", "OriginPort"),"%%" + Keys.TAB);
-		doSendKeys(getBy("id", "remarks"), "Created Bill For Cargo");
-		doSendKeys(getBy("id", "Marks"), "Marks");
+//		doSendKeys(getBy("id", "remarks"), "Created Bill For Cargo");//Optional
+//		doSendKeys(getBy("id", "Marks"), "Marks");//Optional
 		doClick( getBy("cssSelector", "#submit10[title='Create'][class='mcbutton']"));
 
-//		doClick(getBy("cssSelector", "#cancel[value='Back']"));
+		doClick(getBy("cssSelector", "#cancel[value='Back']")); //Comment if adding Items
 	}
 
 	public void createBLForPassenger() {

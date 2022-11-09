@@ -14,8 +14,7 @@ import com.pages.ManifestInformationPage;
 import com.pages.ManifestListPage;
 import com.pages.PendingDeliveryOrderListPage;
 
-public class TestE2E extends BaseClass
-{
+public class TestE2E extends BaseClass {
 	private ManifestInformationPage objMNFInfo;
 	private CustomsBayanPage objBayan;
 
@@ -44,7 +43,6 @@ public class TestE2E extends BaseClass
 		objMNFList.clickNew();
 		objMNFInfo.createManifest();
 		objHBL.createBLForCargo();
-		objHBItems.createHBItems();
 		objMNFInfo.submitManifest();
 		logOut();
 
@@ -73,23 +71,33 @@ public class TestE2E extends BaseClass
 		ImportPage objImp = new ImportPage(driver);
 
 		login(strBayan);
-		/******************Declare DO & Create Import Bayan*/
+		/****************** Declare DO & Create Import Bayan */
 		objPendingDOList.clickPendingDOSubMenu();
 		objPendingDOList.searchWithDO(objMNFInfo.doNumber);
 		objPendingDOList.clickDeclare();
 
 		objBayan.createBayan();
-
+		objImp.requiredDocuments();
 		objImp.addInvoice();
 		objImp.addItems();
 
-		objImp.addDeclarationVehiclesList();	
-		objImp.requiredDocuments();
+		objImp.addDeclarationVehiclesList();
 
 		objImp.calculateDuty();
 		objImp.addPaymentInformation();
 		objImp.submitDeclaration();
 		logOut();
+        /***************Login as GCS user & Pay Bayan Issuance fee******************************/
+		objImp.payBayanIssuanceFee(objBayan.tempDeclarationNo);
+		/***************Login as Auditor & review Document and Approve Bayan******************************/
+
+		login("customs.kwi");
+		objDecList.clickDeclarationSubMenu();
+		objDecList.searchByTempDec(objBayan.tempDeclarationNo);// tempDeclarationNo TIM/29801/KWI22
+		objDecList.clickTempNo();
+
+		objImp.reviewDoc();
+		objImp.approveBayan();
 	}
 
 	@AfterTest

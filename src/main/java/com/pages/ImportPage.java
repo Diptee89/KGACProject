@@ -25,6 +25,7 @@ public class ImportPage extends BaseClass {
 //	Declaration Documents
 	private By requiredDocumentBy = By.id("viewCCPReqDocs");
 
+	/****************** Provided Documents Count *************************/
 	private By requiredDocumentsLs_0By = By
 			.xpath("//input[@name='ProvidedDocumentsCount' and @thisRowID='List_ListCCPRequiredDocumentsLs_0_']");
 //	private By requiredDocumentsLs_0By=By.xpath("//input[@thisRowID='List_ListCCPRequiredDocumentsLs_0_']"); //@SubType='+number' and @type='text' 
@@ -50,9 +51,26 @@ public class ImportPage extends BaseClass {
 			.xpath("//input[@name='ProvidedDocumentsCount' and @thisRowID='List_ListCCPRequiredDocumentsLs_10_']");
 	private By requiredDocumentsLs_11By = By
 			.xpath("//input[@name='ProvidedDocumentsCount' and @thisRowID='List_ListCCPRequiredDocumentsLs_11_']");
-	private By requiredDocumentsLs_12By = By
-			.xpath("//input[@name='ProvidedDocumentsCount' and @thisRowID='List_ListCCPRequiredDocumentsLs_12_']");
-	private By saveDocumentsBy = By.id("Associate");  
+//	private By requiredDocumentsLs_12By = By
+//			.xpath("//input[@name='ProvidedDocumentsCount' and @thisRowID='List_ListCCPRequiredDocumentsLs_12_']");
+
+	/****************** Uploaded Document Count *************************/
+	private By UploadedDocument_0By = By.xpath("//td[@id='List_ListCCPRequiredDocumentsLs_0_ScanDocumentReq']");
+//	private By UploadedDocument_1By = By.xpath("//td[@id='List_ListCCPRequiredDocumentsLs_1_ScanDocumentReq']");
+//	private By UploadedDocument_2By = By.xpath("//td[@id='List_ListCCPRequiredDocumentsLs_2_ScanDocumentReq']");
+//	private By UploadedDocument_3By = By.xpath("//td[@id='List_ListCCPRequiredDocumentsLs_3_ScanDocumentReq']");
+//	private By UploadedDocument_4By = By.xpath("//td[@id='List_ListCCPRequiredDocumentsLs_4_ScanDocumentReq']");
+//	private By UploadedDocument_5By = By.xpath("//td[@id='List_ListCCPRequiredDocumentsLs_5_ScanDocumentReq']");
+//	private By UploadedDocument_6By = By.xpath("//td[@id='List_ListCCPRequiredDocumentsLs_6_ScanDocumentReq']");
+//	private By UploadedDocument_7By = By.xpath("//td[@id='List_ListCCPRequiredDocumentsLs_7_ScanDocumentReq']");
+//	private By UploadedDocument_8By = By.xpath("//td[@id='List_ListCCPRequiredDocumentsLs_8_ScanDocumentReq']");
+//	private By UploadedDocument_9By = By.xpath("//td[@id='List_ListCCPRequiredDocumentsLs_9_ScanDocumentReq']");
+//	private By UploadedDocument_10By = By.xpath("//td[@id='List_ListCCPRequiredDocumentsLs_10_ScanDocumentReq']");
+//	private By UploadedDocument_11By = By.xpath("//td[@id='List_ListCCPRequiredDocumentsLs_11_ScanDocumentReq']");
+	
+	
+
+	private By saveDocumentsBy = By.id("Associate");
 
 	private By digitalDocumentsBy = By.linkText("Digital Documents");
 
@@ -78,7 +96,7 @@ public class ImportPage extends BaseClass {
 		doClick(editBy);
 	}
 
-	public void requiredDocuments() {
+	public void requiredDocuments() throws InterruptedException {
 		doClick(requiredDocumentBy);
 		switchToWindow();
 		waitForElementToBeVisible(saveDocumentsBy, 10);
@@ -95,13 +113,56 @@ public class ImportPage extends BaseClass {
 		doSendKeys(requiredDocumentsLs_9By, "1");
 		doSendKeys(requiredDocumentsLs_10By, "1");
 		doSendKeys(requiredDocumentsLs_11By, "1");
-//		doSendKeys(requiredDocumentsLs_12By, "1");
 		doClick(saveDocumentsBy);
-		waitForElementToBeVisible(digitalDocumentsBy, 80);
+		
+		upload_DigitalDocs();
+		
 		doClick(closeDocumentsBy);
 		switchBackToWindow();
 
 	}
+	private void upload_DigitalDocs() throws InterruptedException {
+		waitForElementToBeVisible(UploadedDocument_0By, 50);			
+		doClick(UploadedDocument_0By);
+		switchBackToWindow();
+		switchToWindow();
+		
+		uploadDoc();
+		doSendKeys(By.id("ddlDocumentTypes"), "Acknowledgment and Undertaking");
+		uploadDoc();
+		doSendKeys(By.id("ddlDocumentTypes"), "Packing List");
+		uploadDoc();
+		doSendKeys(By.id("ddlDocumentTypes"), "Invoice");
+		uploadDoc();
+		doSendKeys(By.id("ddlDocumentTypes"), "Etemad Tawkie");
+		uploadDoc();
+		doSendKeys(By.id("ddlDocumentTypes"), "Releasing");
+		uploadDoc();
+		doSendKeys(By.id("ddlDocumentTypes"), "Import license");
+		uploadDoc();
+		doSendKeys(By.id("ddlDocumentTypes"), "Declaration of address");
+		uploadDoc();
+		doSendKeys(By.id("ddlDocumentTypes"), "Commercial License");
+		uploadDoc();
+		doSendKeys(By.id("ddlDocumentTypes"), "Civil ID");
+		uploadDoc();
+		doSendKeys(By.id("ddlDocumentTypes"), "Delivery Orders");
+		uploadDoc();
+		doSendKeys(By.id("ddlDocumentTypes"), "Housebill");
+		uploadDoc();
+		
+		doClick(By.id("CloseBtn"));
+		
+		switchBackToWindow();
+		switchToWindow();
+	}
+	private void uploadDoc() throws InterruptedException {
+		Thread.sleep(2000);
+		doSendKeys(By.id("MultiFiles"), "C:\\Users\\dsingh\\eclipse22-workspace\\KGAC\\KGACProject\\src\\main\\java\\com\\testData\\TestData.pdf");
+		doClick(By.id("UploadBtn"));
+	}
+	
+	
 	/*
 	 * cannot convert it to a Select object type as that doesn't accept datalist
 	 * tags cannot click the datalist directly as it throws an ElementNotIteractable
@@ -119,6 +180,7 @@ public class ImportPage extends BaseClass {
 	public void addDeclarationVehiclesList() {
 		doClick(declarationVehiclesListlnkBy);
 		switchToWindow();
+		waitForElementPresent(NewBtnBy, 10);
 		doClick(NewBtnBy);
 
 		doSendKeys(drpGatePassCategoryBy, "General loads");
@@ -211,5 +273,70 @@ public class ImportPage extends BaseClass {
 		doClick(By.id("chkSubmitDeclaration"));
 		doClick(By.id("btnOk"));
 		switchBackToWindow();
+	}
+	public void payBayanIssuanceFee(String strReferenceNo) {
+		login("md.husain");
+		doClick(getBy("cssSelector", "#MenuLabel_Vertical"));
+		selectMenu(getBy("xpath", "//div[@id='mainMenuItemVertical_GCSAcs']/a"));
+		doClick(getBy("linkText", "Receipts"));
+
+		doClick(By.id("btnNew"));
+		doClick(By.id("IsOthers"));
+		doSendKeys(By.id("txtReceivedFrom"), "1233");
+		doClick(By.id("btnCreate"));
+		doClick(By.id("btnNew"));
+		doSendKeys(By.id("txtReferenceNo"), strReferenceNo); // TIM/29804/KWI22 "TIM/29801/KWI22"
+		doClick(By.id("btnCreate"));
+		doClick(By.id("btnSubmit"));
+		logOut();
+	}
+	
+	public void reviewDoc() {
+		doClick(requiredDocumentBy); //CLick on Required Document link
+		switchToWindow();
+		doClick(By.id("lnkvwuploadDoc")); //Click on View Document Gallery link from 'Declaration Documents' page
+		
+		switchBackToWindow();
+		switchToWindow();
+		doClick(By.id("img_Rev_0_0"));
+		doClick(By.id("DocTypeCounts_1")); //DocTypeCounts_11
+		doClick(By.id("img_Rev_1_0"));
+		doClick(By.id("DocTypeCounts_2")); //DocTypeCounts_11
+		doClick(By.id("img_Rev_2_0"));
+		doClick(By.id("DocTypeCounts_3")); //DocTypeCounts_11
+		doClick(By.id("img_Rev_3_0"));
+		doClick(By.id("DocTypeCounts_4")); //DocTypeCounts_11
+		doClick(By.id("img_Rev_4_0"));
+		doClick(By.id("DocTypeCounts_5")); //DocTypeCounts_11
+		doClick(By.id("img_Rev_5_0"));
+		doClick(By.id("DocTypeCounts_6")); //DocTypeCounts_11
+		doClick(By.id("img_Rev_6_0"));
+		doClick(By.id("DocTypeCounts_7")); //DocTypeCounts_11
+		doClick(By.id("img_Rev_7_0"));
+		doClick(By.id("DocTypeCounts_8")); //DocTypeCounts_11
+		doClick(By.id("img_Rev_8_0"));
+		doClick(By.id("DocTypeCounts_9")); //DocTypeCounts_11
+		doClick(By.id("img_Rev_9_0"));
+		doClick(By.id("DocTypeCounts_10")); //DocTypeCounts_11
+		doClick(By.id("img_Rev_10_0"));
+		doClick(By.id("DocTypeCounts_11")); //DocTypeCounts_11
+		doClick(By.id("img_Rev_11_0"));
+		
+//		doClick(By.xpath("//input[@vaue='Save reviews']"));
+		doClick(By.id("RvwBtn"));
+		
+		acceptAlert(10);
+		driver.close();
+		switchBackToWindow();
+		
+		switchToWindow();
+		driver.close();
+		switchBackToWindow();
+	}
+	
+	public void approveBayan() {
+		doClick(By.id("approvepayment")); //CLick on Approve Bayan
+		acceptAlert(10);
+		acceptAlert(10); //Status updated "Audited and in Red"
 	}
 }

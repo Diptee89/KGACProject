@@ -1,7 +1,9 @@
 package com.pages;
 
+import java.awt.RenderingHints.Key;
 import java.time.Duration;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -57,10 +59,10 @@ public class ManifestInformationPage extends BaseClass {
 		selectExpectedArrivalDate();
 		selectArrivaldate();
 		setVesselName();
-		doSendKeys(By.id("CaptainName"), "Captain Alex");
+//		doSendKeys(By.id("CaptainName"), "Captain Alex");//Optional
 		setFlightNo();
-		doSendKeys(By.id("ShipName"), "Black Pearl");
-		setRemarks();
+//		doSendKeys(By.id("ShipName"), "Black Pearl");//Optional
+//		setRemarks();
 		clickCreatebtn();
 		confirmation();
 	}
@@ -260,7 +262,7 @@ public class ManifestInformationPage extends BaseClass {
 	}
 
 	private void setVesselName() {
-		doSendKeys(vesselNameBy, "TNT");
+		doSendKeys(vesselNameBy, "TNT"+Keys.ENTER);
 	}
 
 	private void setFlightNo() {

@@ -1,5 +1,9 @@
 package com.base;
 
+import java.awt.Robot;
+import java.awt.Toolkit;
+import java.awt.datatransfer.StringSelection;
+import java.awt.event.KeyEvent;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -168,7 +172,7 @@ public class BaseClass {
 //				System.out.println("Child Winodow ID: " + ChildWindow);
 				// Switching to Child window
 				driver.switchTo().window(ChildWindow);
-
+				
 			}
 		}
 	}
@@ -235,7 +239,7 @@ public class BaseClass {
 
 
 	public WebElement getElement(By locator) {
-		waitForElementToBeVisible(locator, 5);
+		waitForElementToBeVisible(locator, 10);
 		WebElement elem = driver.findElement(locator);
 //		changeColor("yellow", elem);
 		drawBorder(elem);
@@ -802,4 +806,27 @@ public class BaseClass {
 		String number = Integer.toString(value);
 		return number;
 	}
+	
+	/************************Upload****************************************/
+//	public static void upload() throws InterruptedException {
+//		try {
+//			Thread.sleep(5000);
+////			Runtime.getRuntime().exec("D:\\Workspace\\E2E uCustom Automate\\Ucustoms\\src\\main\\java\\config\\UploadFile.exe"); // AutoIT
+//			StringSelection ss = new StringSelection("C:\\Users\\dsingh\\eclipse22-workspace\\KGAC\\KGACProject\\src\\main\\java\\com\\testData\\TestData.pdf");
+//			Toolkit.getDefaultToolkit().getSystemClipboard().setContents(ss, null);
+//			Thread.sleep(1000);
+//			Robot robot = new Robot();
+//			robot.keyPress(KeyEvent.VK_ENTER);
+//			robot.keyRelease(KeyEvent.VK_ENTER);
+//			robot.keyPress(KeyEvent.VK_CONTROL);
+//			robot.keyPress(KeyEvent.VK_V);
+//			robot.keyRelease(KeyEvent.VK_V);
+//			robot.keyRelease(KeyEvent.VK_CONTROL);
+//			robot.keyPress(KeyEvent.VK_ENTER);
+//			robot.keyRelease(KeyEvent.VK_ENTER);
+//			Thread.sleep(1000);
+//		} catch (Exception e) {
+//			e.getMessage();
+//		}
+//	}
 }

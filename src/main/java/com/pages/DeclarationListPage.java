@@ -36,7 +36,8 @@ public class DeclarationListPage extends BaseClass {
 		doSendKeys(getBy("name", "SADNo"), strDecNo + Keys.ENTER);
 	}
 
-	public void clickTempNo() {
-		doClick(getBy("xpath", "//td[@id='List_ListDeclaration_0_TempDeclNumber' and @class='mcontent-text']/a"));
+	public void clickTempNo() {                        
+		waitForElementPresent(getBy("xpath", "//td[@id='List_ListDeclaration_0_TempDeclNumber']/a"), 20);
+		doClick(getBy("xpath", "//td[@id='List_ListDeclaration_0_TempDeclNumber']/a"));
 	}
 }

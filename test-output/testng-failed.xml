@@ -3,12 +3,12 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="air.NOCTest">
+      <class name="air.DeclarationTest">
         <methods>
           <include name="setUp"/>
-          <include name="testManifest"/>
+          <include name="testBayan"/>
         </methods>
-      </class> <!-- air.NOCTest -->
+      </class> <!-- air.DeclarationTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
