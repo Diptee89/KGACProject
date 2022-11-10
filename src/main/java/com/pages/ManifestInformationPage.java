@@ -48,8 +48,8 @@ public class ManifestInformationPage extends BaseClass {
 	private By manifestNoBy = By.id("vwr_JourneyNumber");
 
 //	Issue DO
-	private By chkAllBy = By.id("chkallEQ");// for QA site [for PP site id("chkallEP")]
-	private By chk1stRowBy = By.id("chk_EP_0"); // for PP site
+//	private By chkAllBy = By.id("chkallEQ");// for QA site [for PP site id("chkallEP")]
+//	private By chk1stRowBy = By.id("chk_EP_0"); // for PP site
 	private By issueDOsBy = By.id("btnIssueDO");
 	private By doNoBy = By.xpath("//td[@id='List_ViewBillsFromManifestLs_0_cell_DONO']/a");
 
@@ -84,15 +84,15 @@ public class ManifestInformationPage extends BaseClass {
 
 	public void issueDOs() {
 //		waitForElementToBeVisible(chkAllBy, 10);
-//		scrollPageDown();
-		doClick(chkAllBy); // for QA site 44 server
-//		doClick(chk1stRowBy);  //for PP site 151 server
+		scrollPageDown();
+		doClick( By.id("chkallEQ")); // for QA site 44 server / for PP  site id value is "chkallEP"
+//		doClick(By.id("chk_EP_0"));  //for PP site 151 server
 		doClick(issueDOsBy);
 		doNumber = doElementGetText(doNoBy);
 		System.out.println("DO Number: " + doNumber);
 //		doClick(doNoBy);
 	}
-
+	
 //	 Carrier Type:Sea
 	public void createSeaManifest() {
 //		Manifest Information

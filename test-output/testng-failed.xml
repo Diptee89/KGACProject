@@ -3,12 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="air.DeclarationTest">
+      <class name="air.TestE2E">
         <methods>
+          <include name="testCompleteInspection"/>
+          <include name="close"/>
           <include name="setUp"/>
-          <include name="testBayan"/>
         </methods>
-      </class> <!-- air.DeclarationTest -->
+      </class> <!-- air.TestE2E -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

@@ -99,7 +99,7 @@ public class ImportPage extends BaseClass {
 	public void requiredDocuments() throws InterruptedException {
 		doClick(requiredDocumentBy);
 		switchToWindow();
-		waitForElementToBeVisible(saveDocumentsBy, 10);
+		waitForElementPresent(saveDocumentsBy, 20);
 
 		doSendKeys(requiredDocumentsLs_0By, "1");
 		doSendKeys(requiredDocumentsLs_1By, "1");
@@ -122,7 +122,7 @@ public class ImportPage extends BaseClass {
 
 	}
 	private void upload_DigitalDocs() throws InterruptedException {
-		waitForElementToBeVisible(UploadedDocument_0By, 50);			
+		waitForElementToBeClickable(UploadedDocument_0By, 50);			
 		doClick(UploadedDocument_0By);
 		switchBackToWindow();
 		switchToWindow();
@@ -156,10 +156,16 @@ public class ImportPage extends BaseClass {
 		switchBackToWindow();
 		switchToWindow();
 	}
-	private void uploadDoc() throws InterruptedException {
-		Thread.sleep(2000);
-		doSendKeys(By.id("MultiFiles"), "C:\\Users\\dsingh\\eclipse22-workspace\\KGAC\\KGACProject\\src\\main\\java\\com\\testData\\TestData.pdf");
-		doClick(By.id("UploadBtn"));
+	private void uploadDoc(){
+		try {
+//			Thread.sleep(2000);
+			waitForElementPresent(By.id("MultiFiles"), 20);
+			doSendKeys(By.id("MultiFiles"), "C:\\Users\\dsingh\\eclipse22-workspace\\KGAC\\KGACProject\\src\\main\\java\\com\\testData\\TestData.pdf");
+			waitForElementToBeClickable(By.id("UploadBtn"), 20);
+			doClick(By.id("UploadBtn"));
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 	}
 	
 	
@@ -194,7 +200,7 @@ public class ImportPage extends BaseClass {
 
 		doSendKeys(txtWeigtBy, "100");
 		doClick(createNewVehicleBy);
-		waitForElementToBeVisible(saveContainersBy, 10);
+		waitForElementPresent(saveContainersBy, 10);
 		doClick(cancelDecVehicleDetailsBy);
 		doClick(closeDecVehicleListBy);
 		switchBackToWindow();
@@ -267,6 +273,7 @@ public class ImportPage extends BaseClass {
 	}
 
 	public void submitDeclaration() {
+		waitForElementToBeClickable(By.name("submitdeclaration"), 20);
 		doClick(By.name("submitdeclaration"));
 //		Disclaimer Confirmation
 		switchToWindow();
@@ -275,7 +282,7 @@ public class ImportPage extends BaseClass {
 		switchBackToWindow();
 	}
 	public void payBayanIssuanceFee(String strReferenceNo) {
-		login("md.husain");
+		
 		doClick(getBy("cssSelector", "#MenuLabel_Vertical"));
 		selectMenu(getBy("xpath", "//div[@id='mainMenuItemVertical_GCSAcs']/a"));
 		doClick(getBy("linkText", "Receipts"));
@@ -288,7 +295,7 @@ public class ImportPage extends BaseClass {
 		doSendKeys(By.id("txtReferenceNo"), strReferenceNo); // TIM/29804/KWI22 "TIM/29801/KWI22"
 		doClick(By.id("btnCreate"));
 		doClick(By.id("btnSubmit"));
-		logOut();
+		
 	}
 	
 	public void reviewDoc() {
@@ -298,6 +305,7 @@ public class ImportPage extends BaseClass {
 		
 		switchBackToWindow();
 		switchToWindow();
+		waitForElementToBeClickable(By.id("img_Rev_0_0"), 20);
 		doClick(By.id("img_Rev_0_0"));
 		doClick(By.id("DocTypeCounts_1")); //DocTypeCounts_11
 		doClick(By.id("img_Rev_1_0"));

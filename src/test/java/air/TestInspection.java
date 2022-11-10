@@ -21,6 +21,9 @@ public class TestInspection extends BaseClass{
 		objInspection.clickIspectionRequestSubMenu();
 		objInspection.search("TIM/29805/KWI22");
 		objInspection.clickComplete();
-		objInspection.clickRejectInspection();
+		objInspection.clickRelease();
+		objInspection.ExitGate(); //Declaration status updated "Exit Released"
+//		objInspection.clickRejectInspection();
+		logOut();
 	}
 }

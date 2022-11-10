@@ -32,11 +32,12 @@ public class PendingDeliveryOrderListPage extends BaseClass {
 
 	public void searchWithSecurity(String strSecurityNumber) {
 
-		doSendKeys(securityNoBy, strSecurityNumber);
-		doClick(searchBy);
+		doSendKeys(securityNoBy, strSecurityNumber + Keys.ENTER);
+//		doClick(searchBy);
 	}
 
 	public void clickDeclare() {
+		waitForElementToBeClickable(declarBy, 20);
 		doClick(declarBy);
 	}
 }

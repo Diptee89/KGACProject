@@ -9,11 +9,67 @@
 <table>
 <tr><th>Test</th><th># Passed</th><th># Skipped</th><th># Retried</th><th># Failed</th><th>Time (ms)</th><th>Included Groups</th><th>Excluded Groups</th></tr>
 <tr><th colspan="8">Default suite</th></tr>
-<tr><td><a href="#t0">Default test</a></td><td class="num">2</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">1,081,740</td><td></td><td></td></tr>
+<tr><td><a href="#t0">Default test</a></td><td class="num">15</td><td class="num">0</td><td class="num">0</td><td class="num attn">1</td><td class="num">1,144,605</td><td></td><td></td></tr>
 </table>
-<table id='summary'><thead><tr><th>Class</th><th>Method</th><th>Start</th><th>Time (ms)</th></tr></thead><tbody><tr><th colspan="4">Default suite</th></tr></tbody><tbody id="t0"><tr><th colspan="4">Default test &#8212; passed</th></tr><tr class="passedeven"><td rowspan="2">air.TestE2E</td><td><a href="#m0">testBayan</a></td><td rowspan="1">1667977062085</td><td rowspan="1">815275</td></tr><tr class="passedeven"><td><a href="#m1">testManifest</a></td><td rowspan="1">1667976811706</td><td rowspan="1">250357</td></tr></tbody>
+<table id='summary'><thead><tr><th>Class</th><th>Method</th><th>Start</th><th>Time (ms)</th></tr></thead><tbody><tr><th colspan="4">Default suite</th></tr></tbody><tbody id="t0"><tr><th colspan="4">Default test &#8212; failed</th></tr><tr class="failedeven"><td rowspan="1">air.TestE2E</td><td><a href="#m0">testCompleteInspection</a></td><td rowspan="1">1668069920513</td><td rowspan="1">20526</td></tr><tr><th colspan="4">Default test &#8212; passed</th></tr><tr class="passedeven"><td rowspan="15">air.TestE2E</td><td><a href="#m1">testAddInvoiceItems</a></td><td rowspan="1">1668069396034</td><td rowspan="1">105963</td></tr><tr class="passedeven"><td><a href="#m2">testApproveBayan</a></td><td rowspan="1">1668069694614</td><td rowspan="1">225897</td></tr><tr class="passedeven"><td><a href="#m3">testApproveManifest</a></td><td rowspan="1">1668068932728</td><td rowspan="1">47547</td></tr><tr class="passedeven"><td><a href="#m4">testBayanIssuanceFee</a></td><td rowspan="1">1668069624069</td><td rowspan="1">70543</td></tr><tr class="passedeven"><td><a href="#m5">testCalculateDuty_Payment</a></td><td rowspan="1">1668069557368</td><td rowspan="1">35368</td></tr><tr class="passedeven"><td><a href="#m6">testCreateBayan</a></td><td rowspan="1">1668069047568</td><td rowspan="1">30714</td></tr><tr class="passedeven"><td><a href="#m7">testCreateHBItems</a></td><td rowspan="2">1668068850727</td><td rowspan="2">27856</td></tr><tr class="passedeven"><td><a href="#m8">testCreateHBItems</a></td></tr><tr class="passedeven"><td><a href="#m9">testCreateManifest</a></td><td rowspan="1">1668068809101</td><td rowspan="1">41617</td></tr><tr class="passedeven"><td><a href="#m10">testDeclareDO</a></td><td rowspan="1">1668069016770</td><td rowspan="1">30795</td></tr><tr class="passedeven"><td><a href="#m11">testIssueDO</a></td><td rowspan="1">1668068980277</td><td rowspan="1">36490</td></tr><tr class="passedeven"><td><a href="#m12">testRequiredDocument</a></td><td rowspan="1">1668069078288</td><td rowspan="1">317742</td></tr><tr class="passedeven"><td><a href="#m13">testSubmitDeclaration</a></td><td rowspan="1">1668069592738</td><td rowspan="1">31328</td></tr><tr class="passedeven"><td><a href="#m14">testSubmitManifest</a></td><td rowspan="1">1668068906614</td><td rowspan="1">26112</td></tr><tr class="passedeven"><td><a href="#m15">testVehicles</a></td><td rowspan="1">1668069502000</td><td rowspan="1">55366</td></tr></tbody>
 </table>
-<h2>Default test</h2><h3 id="m0">air.TestE2E#testBayan</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
-<h3 id="m1">air.TestE2E#testManifest</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h2>Default test</h2><h3 id="m0">air.TestE2E#testCompleteInspection</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.id: sUserId (tried for 10 second(s) with 500 milliseconds interval)
+Build info: version: &apos;4.5.3&apos;, revision: &apos;4b786a1e430&apos;
+System info: os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;11.0.15&apos;
+Driver info: org.openqa.selenium.ie.InternetExplorerDriver
+Capabilities {acceptInsecureCerts: false, browserName: internet explorer, browserVersion: 11, pageLoadStrategy: normal, platformName: WINDOWS, proxy: Proxy(), se:ieOptions: {browserAttachTimeout: 0, elementScrollBehavior: 0, enablePersistentHover: true, ie.browserCommandLineSwitches: , ie.edgechromium: false, ie.edgepath: , ie.ensureCleanSession: false, ie.fileUploadDialogTimeout: 3000, ie.forceCreateProcessApi: false, ignoreProtectedModeSettings: false, ignoreZoomSetting: false, initialBrowserUrl: http://localhost:13002/, nativeEvents: true, requireWindowFocus: false}, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
+Session ID: 3cfe217e-924f-43bd-9702-551b54285b17
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:87)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:231)
+	at com.base.BaseClass.waitForElementToBeVisible(BaseClass.java:550)
+	at com.base.BaseClass.getElement(BaseClass.java:242)
+	at com.base.BaseClass.doSendKeys(BaseClass.java:254)
+	at com.pages.LoginPage.loginUser(LoginPage.java:25)
+	at com.base.BaseClass.login(BaseClass.java:189)
+	at air.TestE2E.testCompleteInspection(TestE2E.java:144)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:133)
+	at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:598)
+	at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:173)
+	at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
+	at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:824)
+	at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:146)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1541)
+	at org.testng.TestRunner.privateRun(TestRunner.java:794)
+	at org.testng.TestRunner.run(TestRunner.java:596)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:377)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:371)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:332)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:276)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1212)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1134)
+	at org.testng.TestNG.runSuites(TestNG.java:1063)
+	at org.testng.TestNG.run(TestNG.java:1031)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m1">air.TestE2E#testAddInvoiceItems</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m2">air.TestE2E#testApproveBayan</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m3">air.TestE2E#testApproveManifest</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m4">air.TestE2E#testBayanIssuanceFee</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m5">air.TestE2E#testCalculateDuty_Payment</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m6">air.TestE2E#testCreateBayan</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m7">air.TestE2E#testCreateHBItems</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m8">air.TestE2E#testCreateHBItems</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m9">air.TestE2E#testCreateManifest</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m10">air.TestE2E#testDeclareDO</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m11">air.TestE2E#testIssueDO</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m12">air.TestE2E#testRequiredDocument</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m13">air.TestE2E#testSubmitDeclaration</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m14">air.TestE2E#testSubmitManifest</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m15">air.TestE2E#testVehicles</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
 </body>
 </html>

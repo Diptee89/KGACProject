@@ -57,6 +57,7 @@ public class ManifestListPage extends BaseClass {
 	}
 
 	public void clickTempNo() {
+		waitForElementToBeClickable(tempLinkBy, 20);
 		doClick(tempLinkBy);
 	}
 

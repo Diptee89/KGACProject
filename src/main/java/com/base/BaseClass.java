@@ -120,7 +120,7 @@ public class BaseClass {
 			driver = new InternetExplorerDriver();
 			Capabilities caps = ((RemoteWebDriver) driver).getCapabilities();
 			System.out.println(caps.getBrowserName() +": "+caps.getBrowserVersion());
-			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(90));
+			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
 
 		} else {
 			System.out.println("please pass the correct browser: " + browserName);
@@ -239,7 +239,7 @@ public class BaseClass {
 
 
 	public WebElement getElement(By locator) {
-		waitForElementToBeVisible(locator, 10);
+		waitForElementPresent(locator, 10);
 		WebElement elem = driver.findElement(locator);
 //		changeColor("yellow", elem);
 		drawBorder(elem);
@@ -524,9 +524,15 @@ public class BaseClass {
 	 * @param timeOut
 	 * @return
 	 */
+	public WebElement waitForElementToBeClickable(By locator, int timeOut) {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeOut));// sel 4.x
+		return wait.until(ExpectedConditions.elementToBeClickable(locator));		
+	}
+
 	public WebElement waitForElementPresent(By locator, int timeOut) {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeOut));// sel 4.x
 		return wait.until(ExpectedConditions.presenceOfElementLocated(locator));
+		
 	}
 
 	/**

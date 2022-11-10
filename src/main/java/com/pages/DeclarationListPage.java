@@ -37,7 +37,7 @@ public class DeclarationListPage extends BaseClass {
 	}
 
 	public void clickTempNo() {                        
-		waitForElementPresent(getBy("xpath", "//td[@id='List_ListDeclaration_0_TempDeclNumber']/a"), 20);
+		waitForElementToBeClickable(getBy("xpath", "//td[@id='List_ListDeclaration_0_TempDeclNumber']/a"), 20);
 		doClick(getBy("xpath", "//td[@id='List_ListDeclaration_0_TempDeclNumber']/a"));
 	}
 }

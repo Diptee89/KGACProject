@@ -27,11 +27,19 @@ public class InspectionRequestPage extends BaseClass {
 		doClick(By.xpath("//td[@id='List_insprequest_0_Cell1_CompleteIcon']/a"));
 
 	}
+	public void clickRelease() {
+		doClick(By.id("ReleaseFromInspectionReport"));
+	}
 	public void clickRejectInspection() {
 		doClick(By.id("btnRejInspection"));
 		switchToWindow();
 		doSendKeys(By.id("txtRejectionReason"), "test");
 		doClick(By.id("cmdReject"));
 		switchBackToWindow();
+	}
+	public void ExitGate() {
+		waitForElementToBeClickable(By.id("List_ListExitPassDetailsLs_0_cell_RelAndPrint"), 20);
+		doClick(By.id("List_ListExitPassDetailsLs_0_cell_RelAndPrint"));
+		
 	}
 }

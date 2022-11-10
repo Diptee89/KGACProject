@@ -55,11 +55,11 @@ function toggleAllBoxes() {
 <body>
 <h2 align='center'>Default test</h2><table border='1' align="center">
 <tr>
-<td>Tests passed/Failed/Skipped:</td><td>2/0/0</td>
+<td>Tests passed/Failed/Skipped:</td><td>15/1/0</td>
 </tr><tr>
-<td>Started on:</td><td>Wed Nov 09 12:23:15 IST 2022</td>
+<td>Started on:</td><td>Thu Nov 10 13:56:37 IST 2022</td>
 </tr>
-<tr><td>Total time:</td><td>1081 seconds (1081740 ms)</td>
+<tr><td>Total time:</td><td>1144 seconds (1144605 ms)</td>
 </tr><tr>
 <td>Included groups:</td><td></td>
 </tr><tr>
@@ -67,6 +67,104 @@ function toggleAllBoxes() {
 </tr>
 </table><p/>
 <small><i>(Hover the method name to see the test class name)</i></small><p/>
+<table width='100%' border='1' class='invocation-failed'>
+<tr><td colspan='4' align='center'><b>FAILED TESTS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
+<tr>
+<td title='air.TestE2E.testCompleteInspection()'><b>testCompleteInspection</b><br>Test class: air.TestE2E</td>
+<td><div><pre>org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.id: sUserId (tried for 10 second(s) with 500 milliseconds interval)
+Build info: version: &apos;4.5.3&apos;, revision: &apos;4b786a1e430&apos;
+System info: os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;11.0.15&apos;
+Driver info: org.openqa.selenium.ie.InternetExplorerDriver
+Capabilities {acceptInsecureCerts: false, browserName: internet explorer, browserVersion: 11, pageLoadStrategy: normal, platformName: WINDOWS, proxy: Proxy(), se:ieOptions: {browserAttachTimeout: 0, elementScrollBehavior: 0, enablePersistentHover: true, ie.browserCommandLineSwitches: , ie.edgechromium: false, ie.edgepath: , ie.ensureCleanSession: false, ie.fileUploadDialogTimeout: 3000, ie.forceCreateProcessApi: false, ignoreProtectedModeSettings: false, ignoreZoomSetting: false, initialBrowserUrl: http://localhost:13002/, nativeEvents: true, requireWindowFocus: false}, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
+Session ID: 3cfe217e-924f-43bd-9702-551b54285b17
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:87)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:231)
+	at com.base.BaseClass.waitForElementToBeVisible(BaseClass.java:550)
+	at com.base.BaseClass.getElement(BaseClass.java:242)
+	at com.base.BaseClass.doSendKeys(BaseClass.java:254)
+	at com.pages.LoginPage.loginUser(LoginPage.java:25)
+	at com.base.BaseClass.login(BaseClass.java:189)
+	at air.TestE2E.testCompleteInspection(TestE2E.java:144)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:133)
+	at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:598)
+	at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:173)
+	at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
+	at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:824)
+	at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:146)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1541)
+	at org.testng.TestRunner.privateRun(TestRunner.java:794)
+	at org.testng.TestRunner.run(TestRunner.java:596)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:377)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:371)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:332)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:276)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1212)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1134)
+	at org.testng.TestNG.runSuites(TestNG.java:1063)
+	at org.testng.TestNG.run(TestNG.java:1031)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+</pre></div><a href='#' onClick='toggleBox("stack-trace196646633", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace196646633'><pre>org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.id: sUserId (tried for 10 second(s) with 500 milliseconds interval)
+Build info: version: &apos;4.5.3&apos;, revision: &apos;4b786a1e430&apos;
+System info: os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;11.0.15&apos;
+Driver info: org.openqa.selenium.ie.InternetExplorerDriver
+Capabilities {acceptInsecureCerts: false, browserName: internet explorer, browserVersion: 11, pageLoadStrategy: normal, platformName: WINDOWS, proxy: Proxy(), se:ieOptions: {browserAttachTimeout: 0, elementScrollBehavior: 0, enablePersistentHover: true, ie.browserCommandLineSwitches: , ie.edgechromium: false, ie.edgepath: , ie.ensureCleanSession: false, ie.fileUploadDialogTimeout: 3000, ie.forceCreateProcessApi: false, ignoreProtectedModeSettings: false, ignoreZoomSetting: false, initialBrowserUrl: http://localhost:13002/, nativeEvents: true, requireWindowFocus: false}, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
+Session ID: 3cfe217e-924f-43bd-9702-551b54285b17
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:87)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:231)
+	at com.base.BaseClass.waitForElementToBeVisible(BaseClass.java:550)
+	at com.base.BaseClass.getElement(BaseClass.java:242)
+	at com.base.BaseClass.doSendKeys(BaseClass.java:254)
+	at com.pages.LoginPage.loginUser(LoginPage.java:25)
+	at com.base.BaseClass.login(BaseClass.java:189)
+	at air.TestE2E.testCompleteInspection(TestE2E.java:144)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:133)
+	at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:598)
+	at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:173)
+	at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
+	at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:824)
+	at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:146)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1541)
+	at org.testng.TestRunner.privateRun(TestRunner.java:794)
+	at org.testng.TestRunner.run(TestRunner.java:596)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:377)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:371)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:332)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:276)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1212)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1134)
+	at org.testng.TestNG.runSuites(TestNG.java:1063)
+	at org.testng.TestNG.run(TestNG.java:1031)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+</pre></div></td>
+<td>20</td>
+<td>air.TestE2E@6221a451</td></tr>
+</table><p>
 <table width='100%' border='1' class='invocation-passed'>
 <tr><td colspan='4' align='center'><b>PASSED TESTS</b></td></tr>
 <tr><td><b>Test method</b></td>
@@ -75,15 +173,80 @@ function toggleAllBoxes() {
 <td><b>Instance</b></td>
 </tr>
 <tr>
-<td title='air.TestE2E.testBayan()'><b>testBayan</b><br>Test class: air.TestE2E</td>
+<td title='air.TestE2E.testDeclareDO()'><b>testDeclareDO</b><br>Test class: air.TestE2E</td>
 <td></td>
-<td>815</td>
-<td>air.TestE2E@942a29c</td></tr>
+<td>30</td>
+<td>air.TestE2E@6221a451</td></tr>
 <tr>
-<td title='air.TestE2E.testManifest()'><b>testManifest</b><br>Test class: air.TestE2E</td>
+<td title='air.TestE2E.testSubmitManifest()'><b>testSubmitManifest</b><br>Test class: air.TestE2E</td>
 <td></td>
-<td>250</td>
-<td>air.TestE2E@942a29c</td></tr>
+<td>26</td>
+<td>air.TestE2E@6221a451</td></tr>
+<tr>
+<td title='air.TestE2E.testCreateBayan()'><b>testCreateBayan</b><br>Test class: air.TestE2E</td>
+<td></td>
+<td>30</td>
+<td>air.TestE2E@6221a451</td></tr>
+<tr>
+<td title='air.TestE2E.testIssueDO()'><b>testIssueDO</b><br>Test class: air.TestE2E</td>
+<td></td>
+<td>36</td>
+<td>air.TestE2E@6221a451</td></tr>
+<tr>
+<td title='air.TestE2E.testVehicles()'><b>testVehicles</b><br>Test class: air.TestE2E</td>
+<td></td>
+<td>55</td>
+<td>air.TestE2E@6221a451</td></tr>
+<tr>
+<td title='air.TestE2E.testCreateHBItems()'><b>testCreateHBItems</b><br>Test class: air.TestE2E</td>
+<td></td>
+<td>27</td>
+<td>air.TestE2E@6221a451</td></tr>
+<tr>
+<td title='air.TestE2E.testApproveManifest()'><b>testApproveManifest</b><br>Test class: air.TestE2E</td>
+<td></td>
+<td>47</td>
+<td>air.TestE2E@6221a451</td></tr>
+<tr>
+<td title='air.TestE2E.testBayanIssuanceFee()'><b>testBayanIssuanceFee</b><br>Test class: air.TestE2E</td>
+<td></td>
+<td>70</td>
+<td>air.TestE2E@6221a451</td></tr>
+<tr>
+<td title='air.TestE2E.testRequiredDocument()'><b>testRequiredDocument</b><br>Test class: air.TestE2E</td>
+<td></td>
+<td>317</td>
+<td>air.TestE2E@6221a451</td></tr>
+<tr>
+<td title='air.TestE2E.testSubmitDeclaration()'><b>testSubmitDeclaration</b><br>Test class: air.TestE2E</td>
+<td></td>
+<td>31</td>
+<td>air.TestE2E@6221a451</td></tr>
+<tr>
+<td title='air.TestE2E.testCreateManifest()'><b>testCreateManifest</b><br>Test class: air.TestE2E</td>
+<td></td>
+<td>41</td>
+<td>air.TestE2E@6221a451</td></tr>
+<tr>
+<td title='air.TestE2E.testCreateHBItems()'><b>testCreateHBItems</b><br>Test class: air.TestE2E</td>
+<td></td>
+<td>28</td>
+<td>air.TestE2E@6221a451</td></tr>
+<tr>
+<td title='air.TestE2E.testAddInvoiceItems()'><b>testAddInvoiceItems</b><br>Test class: air.TestE2E</td>
+<td></td>
+<td>105</td>
+<td>air.TestE2E@6221a451</td></tr>
+<tr>
+<td title='air.TestE2E.testCalculateDuty_Payment()'><b>testCalculateDuty_Payment</b><br>Test class: air.TestE2E</td>
+<td></td>
+<td>35</td>
+<td>air.TestE2E@6221a451</td></tr>
+<tr>
+<td title='air.TestE2E.testApproveBayan()'><b>testApproveBayan</b><br>Test class: air.TestE2E</td>
+<td></td>
+<td>225</td>
+<td>air.TestE2E@6221a451</td></tr>
 </table><p>
 </body>
 </html>
