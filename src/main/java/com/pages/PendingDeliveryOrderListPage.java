@@ -17,7 +17,8 @@ public class PendingDeliveryOrderListPage extends BaseClass {
 	private By DONoBy = By.name("DONo");
 	private By securityNoBy = By.name("IDNO");
 	private By searchBy = By.className("mcSearchbutton");
-	private By declarBy = By.xpath("//td[@id='List_listdeliveryorder_0_ECABAAA']/a");
+	private By declarBy = By.xpath("//td[@id='List_listdeliveryorder_0_EBABAAA']/a"); //160 Server
+//	private By declarBy = By.xpath("//td[@id='List_listdeliveryorder_0_ECABAAA']/a"); // QA
 
 	public void clickPendingDOSubMenu() {
 		doClick(menuNavigateIconBy);
@@ -27,17 +28,18 @@ public class PendingDeliveryOrderListPage extends BaseClass {
 
 	public void searchWithDO(String strDONumber) {
 		doClick(frmSearchDiv_SearchBy);
-		doSendKeys(DONoBy, strDONumber + Keys.ENTER);
+		doSendKeys(DONoBy, strDONumber);
+//		doClick(searchBy);
 	}
-
+	
 	public void searchWithSecurity(String strSecurityNumber) {
 
-		doSendKeys(securityNoBy, strSecurityNumber + Keys.ENTER);
-//		doClick(searchBy);
+		doSendKeys(securityNoBy, strSecurityNumber);
+		doClick(searchBy);
 	}
 
 	public void clickDeclare() {
-		waitForElementToBeClickable(declarBy, 20);
+//		waitForElementToBeClickable(declarBy, 20);
 		doClick(declarBy);
 	}
 }

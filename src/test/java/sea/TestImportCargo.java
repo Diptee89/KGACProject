@@ -19,25 +19,16 @@ public class TestImportCargo extends BaseClass {
 	private ManifestListPage objMNFList;
 	private ImportHouseBillPage objHBL;
 	private HBItemsPage objHBItems;
-
+	HomePage objHome;
 
 	private String strCarrierAgent = "csa.swk";
 	private String strCManifest = "cmanifest.swk";
 	private String strBayan = "broker.swk";
 
 
-	@BeforeTest
-	public void setUp() {
-		launchBrowser("ie");
-		navigateUrl();
-	}
-
 //	@Test(enabled=false)
 	@Test(priority = 0)
 	public void testCreateManifest() {
-		HomePage objHome = new HomePage(driver);		
-		objMNFList = new ManifestListPage(driver);
-		objMNFInfo = new ManifestInformationPage(driver);
 
 
 		login(strCarrierAgent);
@@ -51,34 +42,14 @@ public class TestImportCargo extends BaseClass {
 
 	@Test(priority = 1)
 	public void testCreateHBLCargo() {
-		objHBL = new ImportHouseBillPage(driver);
-		objHBItems = new HBItemsPage(driver);
 	
 		objHBL.createSeaBLForCargo();
+		objHBL.addRoute_Points();
 		objHBItems.createHBItems();
 		
 	}
 
-//	@Test(priority = 2)
-	public void testCreateHBLPassenger() {
-		objHBL = new ImportHouseBillPage(driver);
-		objHBItems = new HBItemsPage(driver);
 
-		objHBL.createSeaBLForPassenger();
-		objHBItems.createHBItems();
-
-	}
-
-
-//	@Test(priority = 4)
-	public void testCreateHBLBWH() {
-		objHBL = new ImportHouseBillPage(driver);
-		objHBItems = new HBItemsPage(driver);
-
-		objHBL.createSeaBLForBWH();
-		objHBItems.createHBItems();
-
-	}
 
 	@Test(priority = 5)
 	public void testSubmitManifest() {
@@ -105,6 +76,21 @@ public class TestImportCargo extends BaseClass {
 		
 		objMNFInfo.arriveSeaManiest();//Arrive Journey
 //		logOut();
+	}
+
+
+	@BeforeTest
+	public void setUp() {
+		launchBrowser("ie");
+		navigateUrl();
+		
+
+		objHome = new HomePage(driver);		
+		objMNFList = new ManifestListPage(driver);
+		objMNFInfo = new ManifestInformationPage(driver);
+		objHBL = new ImportHouseBillPage(driver);
+		objHBItems = new HBItemsPage(driver);
+
 	}
 
 	@AfterTest

@@ -26,9 +26,11 @@ public class TestAuditApprove extends BaseClass {
 	private ImportPage objImp;
 	private InspectionRequestPage objInspection;
 
-	private String strCarrierAgent = "nas.csa";
-	private String strCManifest = "cmanifest.kwi";
-	private String strBayan = "broker.kwi";
+//	private String strCarrierAgent = "nas.csa";
+//	private String strCManifest = "cmanifest.kwi";
+//	private String strBayan = "broker.kwi";
+	
+	String tempDec="TIM/150831/KWI22";
 
 	@BeforeTest
 	public void setUp() {
@@ -36,18 +38,45 @@ public class TestAuditApprove extends BaseClass {
 		navigateUrl();
 
 		objDecList = new DeclarationListPage(driver);
+		objImp = new ImportPage(driver);
+		
 	}
-
-	@Test
+//	@Test(priority = 1)
+	public void testBayanIssuanceFee() {
+		login("md.husain");
+		objImp.payBayanIssuanceFee();
+		objImp.createReceipt("TIM/150831/KWI22");
+		objImp.createReceipt("TIM/150832/KWI22");
+		objImp.createReceipt("TIM/150833/KWI22");
+		objImp.createReceipt("TIM/150834/KWI22");
+		objImp.createReceipt("TIM/150835/KWI22");
+		objImp.submitReceipt();
+		logOut();
+	}
+	@Test(priority = 2)
 	public void approveAudit() {
 		objImp = new ImportPage(driver);
 		
 		login("customs.kwi");
-		objDecList.clickDeclarationSubMenu();
-		objDecList.searchByTempDec("TIM/29806/KWI22");// tempDeclarationNo TIM/29801/KWI22 objBayan.tempDeclarationNo
+				
+			
+		objDecList.clickDeclarationSubMenu_Audit();
+		objDecList.searchByTempDec("TIM/150833/KWI22");// tempDeclarationNo TIM/29801/KWI22 objBayan.tempDeclarationNo
 		objDecList.clickTempNo();
-
-		objImp.reviewDoc();
+//		objImp.reviewDoc();
+		objImp.approveBayan(); // Status :Audited and in Red
+		
+		objDecList.clickDeclarationSubMenu_Audit();
+		objDecList.searchByTempDec("TIM/150834/KWI22");// tempDeclarationNo TIM/29801/KWI22 objBayan.tempDeclarationNo
+		objDecList.clickTempNo();
+//		objImp.reviewDoc();
+		objImp.approveBayan(); // Status :Audited and in Red
+		
+		objDecList.clickDeclarationSubMenu_Audit();
+		objDecList.searchByTempDec("TIM/150835/KWI22");// tempDeclarationNo TIM/29801/KWI22 objBayan.tempDeclarationNo
+		objDecList.clickTempNo();
+//		objImp.reviewDoc();
 		objImp.approveBayan(); // Status :Audited and in Red
 	}
+	
 }

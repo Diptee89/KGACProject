@@ -83,14 +83,15 @@ public class ManifestInformationPage extends BaseClass {
 	}
 
 	public void issueDOs() {
-//		waitForElementToBeVisible(chkAllBy, 10);
 		scrollPageDown();
-		doClick( By.id("chkallEQ")); // for QA site 44 server / for PP  site id value is "chkallEP"
-//		doClick(By.id("chk_EP_0"));  //for PP site 151 server
+//		doClick( By.id("chkallEQ")); // for QA site 44 server 
+		doClick( By.id("chkallEP"));// for PP  site id value is "chkallEP"
+		
+//		doClick( By.id("chkallEO")); //http://10.138.108.44/MCKWFX5PPNov22/main.aspx
 		doClick(issueDOsBy);
 		doNumber = doElementGetText(doNoBy);
 		System.out.println("DO Number: " + doNumber);
-//		doClick(doNoBy);
+		doClick(doNoBy);
 	}
 	
 //	 Carrier Type:Sea

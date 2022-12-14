@@ -82,12 +82,19 @@ public class BaseClass {
 	public WebDriver driver;
 	
 	/************HYD QA Server*********************/
-	private String url = "http://10.138.108.44/MCKWFX5TEST/Main.aspx";
-	private String strPass = "fx5test";
+//	private String url = "http://10.138.108.44/MCKWFX5TEST/Main.aspx";
+//	private String strPass = "fx5test";
+	
+//	private String url = "http://10.138.108.44/MCKWFX5PPNov22/main.aspx";
+//		private String strPass = "ppnov22";
+
 	
 	/***********KWd server***************/
 //	private String url="http://10.10.126.151/MCKWFX5/Main.aspx";
-//	private String strPass="ppjan22";
+	
+//	private String url="http://10.10.126.160/MCKWFX5/main.aspx";
+	private String url="http://10.10.126.160/MCKWFX5/main.aspx";
+	private String strPass="ppjan22";
 	
 //	private String url="http://10.138.108.44/mckwfx5bam/Main.aspx";
 //	private String strPass="bam";
@@ -239,7 +246,7 @@ public class BaseClass {
 
 
 	public WebElement getElement(By locator) {
-		waitForElementPresent(locator, 10);
+		waitForElementPresent(locator, 60);
 		WebElement elem = driver.findElement(locator);
 //		changeColor("yellow", elem);
 		drawBorder(elem);
@@ -251,6 +258,7 @@ public class BaseClass {
 	}
 
 	public void doSendKeys(By locator, String value) {
+//		getElement(locator).clear();
 		getElement(locator).sendKeys(value);
 	}
 

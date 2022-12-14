@@ -29,8 +29,8 @@ public class TestE2E extends BaseClass {
 //	private String url = "http://10.138.108.44/MCKWFX5TEST/Main.aspx";
 //	private String strPass = "fx5test";
 	
-	private String strPass="bam";
-	private String url="http://10.138.108.44/mckwfx5bam/Main.aspx";
+//	private String strPass="bam";
+//	private String url="http://10.138.108.44/mckwfx5bam/Main.aspx";
 
 	@BeforeTest
 	public void setUp() {
@@ -50,12 +50,14 @@ public class TestE2E extends BaseClass {
 
 //		Create and Submit Manifest
 		login(strCarrierAgent);
-		objHome.selectPort("SHUWAIKH");
+//		objHome.selectPort("SHUWAIKH");
 		
 		objMNFList.clickCargoMenu();
 		objMNFList.clickNew();
 		objMNFInfo.createSeaManifest();
 		objMNFInfo.setAdditionalInfo();
+		objHBL.createSeaBLForCargo();
+		objHBItems.createHBItems();
 		objHBL.createSeaBLForCargo();
 		objHBItems.createHBItems();
 		objMNFInfo.submitSeaManifest();

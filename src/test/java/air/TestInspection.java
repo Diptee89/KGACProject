@@ -7,6 +7,7 @@ import com.base.BaseClass;
 import com.pages.InspectionRequestPage;
 
 public class TestInspection extends BaseClass{
+	String tempDec="TIM/150780/KWI22";
 	@BeforeTest
 	public void setUp() {
 		launchBrowser("ie");
@@ -17,13 +18,33 @@ public class TestInspection extends BaseClass{
 	@Test(priority = 1)
 	public void completeInspection() {
 		InspectionRequestPage objInspection=new InspectionRequestPage(driver);
-		login("ins.kwi");
+//		login("abd.sadoon"); //Inspector
+		login("im.alyaqoub");
 		objInspection.clickIspectionRequestSubMenu();
-		objInspection.search("TIM/29805/KWI22");
+		objInspection.search("TIM/150831/KWI22");
 		objInspection.clickComplete();
-		objInspection.clickRelease();
-		objInspection.ExitGate(); //Declaration status updated "Exit Released"
-//		objInspection.clickRejectInspection();
-		logOut();
+		objInspection.clickSeize();
+		
+		objInspection.clickIspectionRequestSubMenu();
+		objInspection.search("TIM/150832/KWI22");
+		objInspection.clickComplete();
+		objInspection.clickSeize();
+		
+		objInspection.clickIspectionRequestSubMenu();
+		objInspection.search("TIM/150833/KWI22");
+		objInspection.clickComplete();
+		objInspection.clickSeize();
+		
+		objInspection.clickIspectionRequestSubMenu();
+		objInspection.search("TIM/150834/KWI22");
+		objInspection.clickComplete();
+		objInspection.clickSeize();
+		
+		objInspection.clickIspectionRequestSubMenu();
+		objInspection.search("TIM/150835/KWI22");
+		objInspection.clickComplete();
+		objInspection.clickSeize();
+		
+		
 	}
 }

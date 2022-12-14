@@ -13,15 +13,26 @@ public class DeclarationListPage extends BaseClass {
 	private By menuNavigateIconBy = By.cssSelector(".menuNavigateIcon");
 	private By mainMenuDeclarationBy = By.xpath("//div[@id='mainMenuItemVertical_Declaration']/a");
 	public void clickDeclarationSubMenu() {
-		doClick(menuNavigateIconBy);
-		selectMenu(mainMenuDeclarationBy);
+		doClick(By.cssSelector(".menuNavigateIcon"));
+		selectMenu(By.xpath("//div[@id='mainMenuItemVertical_Declaration']/a"));
 //		selectMenu(getBy("xpath", "//div[@id='mainMenuItemVertical_Declaration']/a"));
-		waitForElementToBeVisible(getBy("xpath",
-				"//div[@class='subMenuWrapperDynamic_vertical' and @id='subMenuWrapperDynamicVertical_Declaration']/div[2]/div[2]/a"),
-				10);
+	
 		doClick(getBy("xpath",
-				"//div[@class='subMenuWrapperDynamic_vertical' and @id='subMenuWrapperDynamicVertical_Declaration']/div[2]/div[2]/a"));
+				"//div[@class='subMenuWrapperDynamic_vertical' and @id='subMenuWrapperDynamicVertical_Declaration']/div[2]/div[2]/a"));// 
 
+//		doClick(By.linkText("Declaration"));
+		
+	}
+	public void clickDeclarationSubMenu_Audit() {
+		doClick(By.cssSelector(".menuNavigateIcon"));
+		selectMenu(By.xpath("//div[@id='mainMenuItemVertical_Declaration']/a"));
+//		selectMenu(getBy("xpath", "//div[@id='mainMenuItemVertical_Declaration']/a"));
+	
+		doClick(getBy("xpath",
+				"//div[@class='subMenuWrapperDynamic_vertical' and @id='subMenuWrapperDynamicVertical_Declaration']/div[2]/div[1]/a"));// 
+
+//		doClick(By.linkText("Declaration"));
+		
 	}
 
 	public void searchByTempDec(String strTempDecNo) {

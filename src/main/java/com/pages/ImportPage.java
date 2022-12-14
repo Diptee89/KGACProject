@@ -47,10 +47,10 @@ public class ImportPage extends BaseClass {
 			.xpath("//input[@name='ProvidedDocumentsCount' and @thisRowID='List_ListCCPRequiredDocumentsLs_8_']");
 	private By requiredDocumentsLs_9By = By
 			.xpath("//input[@name='ProvidedDocumentsCount' and @thisRowID='List_ListCCPRequiredDocumentsLs_9_']");
-	private By requiredDocumentsLs_10By = By
-			.xpath("//input[@name='ProvidedDocumentsCount' and @thisRowID='List_ListCCPRequiredDocumentsLs_10_']");
-	private By requiredDocumentsLs_11By = By
-			.xpath("//input[@name='ProvidedDocumentsCount' and @thisRowID='List_ListCCPRequiredDocumentsLs_11_']");
+//	private By requiredDocumentsLs_10By = By
+//			.xpath("//input[@name='ProvidedDocumentsCount' and @thisRowID='List_ListCCPRequiredDocumentsLs_10_']");
+//	private By requiredDocumentsLs_11By = By
+//			.xpath("//input[@name='ProvidedDocumentsCount' and @thisRowID='List_ListCCPRequiredDocumentsLs_11_']");
 //	private By requiredDocumentsLs_12By = By
 //			.xpath("//input[@name='ProvidedDocumentsCount' and @thisRowID='List_ListCCPRequiredDocumentsLs_12_']");
 
@@ -67,8 +67,6 @@ public class ImportPage extends BaseClass {
 //	private By UploadedDocument_9By = By.xpath("//td[@id='List_ListCCPRequiredDocumentsLs_9_ScanDocumentReq']");
 //	private By UploadedDocument_10By = By.xpath("//td[@id='List_ListCCPRequiredDocumentsLs_10_ScanDocumentReq']");
 //	private By UploadedDocument_11By = By.xpath("//td[@id='List_ListCCPRequiredDocumentsLs_11_ScanDocumentReq']");
-	
-	
 
 	private By saveDocumentsBy = By.id("Associate");
 
@@ -99,7 +97,7 @@ public class ImportPage extends BaseClass {
 	public void requiredDocuments() throws InterruptedException {
 		doClick(requiredDocumentBy);
 		switchToWindow();
-		waitForElementPresent(saveDocumentsBy, 20);
+//		waitForElementPresent(saveDocumentsBy, 20);
 
 		doSendKeys(requiredDocumentsLs_0By, "1");
 		doSendKeys(requiredDocumentsLs_1By, "1");
@@ -111,22 +109,24 @@ public class ImportPage extends BaseClass {
 		doSendKeys(requiredDocumentsLs_7By, "1");
 		doSendKeys(requiredDocumentsLs_8By, "1");
 		doSendKeys(requiredDocumentsLs_9By, "1");
-		doSendKeys(requiredDocumentsLs_10By, "1");
-		doSendKeys(requiredDocumentsLs_11By, "1");
+//		doSendKeys(requiredDocumentsLs_10By, "1");
+//		doSendKeys(requiredDocumentsLs_11By, "1"+ Keys.TAB);
 		doClick(saveDocumentsBy);
-		
-		upload_DigitalDocs();
-		
-		doClick(closeDocumentsBy);
+
+//		doClick(closeDocumentsBy);
 		switchBackToWindow();
 
 	}
-	private void upload_DigitalDocs() throws InterruptedException {
-		waitForElementToBeClickable(UploadedDocument_0By, 50);			
+
+	public void upload_DigitalDocs() throws InterruptedException {
+		Thread.sleep(3000);
+		doClick(requiredDocumentBy);
+		switchToWindow();
+
 		doClick(UploadedDocument_0By);
 		switchBackToWindow();
 		switchToWindow();
-		
+
 		uploadDoc();
 		doSendKeys(By.id("ddlDocumentTypes"), "Acknowledgment and Undertaking");
 		uploadDoc();
@@ -150,25 +150,29 @@ public class ImportPage extends BaseClass {
 		uploadDoc();
 		doSendKeys(By.id("ddlDocumentTypes"), "Housebill");
 		uploadDoc();
-		
+
 		doClick(By.id("CloseBtn"));
-		
+//		driver.close();
 		switchBackToWindow();
+
 		switchToWindow();
+
+		doClick(closeDocumentsBy);
+		switchBackToWindow();
 	}
-	private void uploadDoc(){
+
+	private void uploadDoc() {
 		try {
 //			Thread.sleep(2000);
-			waitForElementPresent(By.id("MultiFiles"), 20);
-			doSendKeys(By.id("MultiFiles"), "C:\\Users\\dsingh\\eclipse22-workspace\\KGAC\\KGACProject\\src\\main\\java\\com\\testData\\TestData.pdf");
+			doSendKeys(By.id("MultiFiles"),
+					"C:\\Users\\dsingh\\eclipse22-workspace\\KGAC\\KGACProject\\src\\main\\java\\com\\testData\\TestData.pdf");
 			waitForElementToBeClickable(By.id("UploadBtn"), 20);
 			doClick(By.id("UploadBtn"));
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
 	}
-	
-	
+
 	/*
 	 * cannot convert it to a Select object type as that doesn't accept datalist
 	 * tags cannot click the datalist directly as it throws an ElementNotIteractable
@@ -193,13 +197,16 @@ public class ImportPage extends BaseClass {
 		doSendKeys(drpCargoTypeBy, "General Cargo");
 		doSendKeys(drpTruckNCarrierSizeBy, "Half Lorry");
 
-		doSendKeys(PN_Num1By, "91");
-		doSendKeys(PN_LONGNBy, "202298765");
+//		doSendKeys(PN_Num1By, "91");//QA server
+//		doSendKeys(PN_LONGNBy, "202298765"); //QA server
+		doSendKeys(By.id("PlateNumber5"), "91");// 160 server
+		doSendKeys(By.id("PlateNumber"), "202298765");// 160 server
 
 		doSendKeys(txtCivilIDBy, "321030900015");
 
 		doSendKeys(txtWeigtBy, "100");
 		doClick(createNewVehicleBy);
+
 		waitForElementPresent(saveContainersBy, 10);
 		doClick(cancelDecVehicleDetailsBy);
 		doClick(closeDecVehicleListBy);
@@ -233,25 +240,97 @@ public class ImportPage extends BaseClass {
 
 	}
 
-//	Add Items -->Invoice Items
 	public void addItems() {
 		doClick(By.xpath("//td[@id='List_DeclarationInvoice_0_NewItem']/a"));
-		doSendKeys(By.id("hscode"), "9702.00.00");
+		doSendKeys(By.id("hscode"), "9801.00.00");
 		doSendKeys(By.id("country"), "SA");
-		doSendKeys(By.id("description"), "Original engravings, prints and lithographs.");
+		doSendKeys(By.id("description"), "Smuggled goods which are not subject to customs taxes duties");
 		doSendKeys(By.id("Manufacturer"), "Alex MD");
-		doSendKeys(By.id("totalprice"), "100");
+		doSendKeys(By.id("totalprice"), "25");
 		doSendKeys(By.id("noofpackages"), "100");
-//		Browse and Select Package Type
-		doClick(By.id("btnPackageType"));
-		switchToWindow();
-		doSendKeys(By.name("Name"), "Piece" + Keys.ENTER);
-		doClick(By.xpath("//td[@id='List_PackageTypeLsPg_0_Description']/a"));
-		switchBackToWindow();
+
+		doSendKeys(By.id("txtpackagetype"), "UNIT");
 
 		doSendKeys(By.id("quantity"), "100");
 		doSendKeys(By.id("weight"), "100");
 		doSendKeys(By.id("Gross1"), "100");
+		doClick(By.id("chkInfoIsCrct"));
+		doClick(By.id("createnew"));
+
+	}
+
+//	Add Items -->Invoice Items
+	public void addItems1() {
+		doClick(By.xpath("//td[@id='List_DeclarationInvoice_0_NewItem']/a"));
+		doSendKeys(By.id("hscode"), "9801.00.00");
+		doSendKeys(By.id("country"), "SA");
+		doSendKeys(By.id("description"), "Smuggled goods which are not subject to customs taxes duties");
+		doSendKeys(By.id("Manufacturer"), "Alex MD");
+		doSendKeys(By.id("totalprice"), "25");
+		doSendKeys(By.id("noofpackages"), "100");
+
+		doSendKeys(By.id("txtpackagetype"), "UNIT");
+
+		doSendKeys(By.id("quantity"), "50");
+		doSendKeys(By.id("weight"), "50");
+		doSendKeys(By.id("Gross1"), "50");
+		doClick(By.id("chkInfoIsCrct"));
+		doClick(By.id("createnew"));
+
+	}
+
+	public void addItems2() {
+		doClick(By.xpath("//td[@id='List_DeclarationInvoice_0_NewItem']/a"));
+		doSendKeys(By.id("hscode"), "4702.00.00");
+		doSendKeys(By.id("country"), "SA");
+		doSendKeys(By.id("description"), "All types of tobacco and its derivative");
+		doSendKeys(By.id("Manufacturer"), "Mohammad Sharif");
+		doSendKeys(By.id("totalprice"), "100");
+		doSendKeys(By.id("noofpackages"), "100");
+
+		doSendKeys(By.id("txtpackagetype"), "UNIT");
+
+		doSendKeys(By.id("quantity"), "50");
+		doSendKeys(By.id("weight"), "50");
+		doSendKeys(By.id("Gross1"), "50");
+		doClick(By.id("chkInfoIsCrct"));
+		doClick(By.id("createnew"));
+
+	}
+
+	public void addItems3() {
+		doClick(By.xpath("//td[@id='List_DeclarationInvoice_0_NewItem']/a"));
+		doSendKeys(By.id("hscode"), "9702.00.00");
+		doSendKeys(By.id("country"), "SA");
+		doSendKeys(By.id("description"), "All types of goods that are subject to customs tax");
+		doSendKeys(By.id("Manufacturer"), "Tarek");
+		doSendKeys(By.id("totalprice"), "100");
+		doSendKeys(By.id("noofpackages"), "100");
+
+		doSendKeys(By.id("txtpackagetype"), "UNIT");
+
+		doSendKeys(By.id("quantity"), "25");
+		doSendKeys(By.id("weight"), "25");
+		doSendKeys(By.id("Gross1"), "25");
+		doClick(By.id("chkInfoIsCrct"));
+		doClick(By.id("createnew"));
+
+	}
+
+	public void addItems4() {
+		doClick(By.xpath("//td[@id='List_DeclarationInvoice_0_NewItem']/a"));
+		doSendKeys(By.id("hscode"), "5702.31.10");
+		doSendKeys(By.id("country"), "SA");
+		doSendKeys(By.id("description"), "Smuggled goods from the prohibited goods");
+		doSendKeys(By.id("Manufacturer"), "Ainee Max");
+		doSendKeys(By.id("totalprice"), "100");
+		doSendKeys(By.id("noofpackages"), "100");
+
+		doSendKeys(By.id("txtpackagetype"), "UNIT");
+
+		doSendKeys(By.id("quantity"), "25");
+		doSendKeys(By.id("weight"), "25");
+		doSendKeys(By.id("Gross1"), "25");
 		doClick(By.id("chkInfoIsCrct"));
 		doClick(By.id("createnew"));
 
@@ -281,9 +360,10 @@ public class ImportPage extends BaseClass {
 		doClick(By.id("btnOk"));
 		switchBackToWindow();
 	}
-	public void payBayanIssuanceFee(String strReferenceNo) {
-		
-		doClick(getBy("cssSelector", "#MenuLabel_Vertical"));
+
+	public void payBayanIssuanceFee() {
+
+		doClick(getBy("id", "MenuLabel_Vertical")); // MenuLabel_Vertical
 		selectMenu(getBy("xpath", "//div[@id='mainMenuItemVertical_GCSAcs']/a"));
 		doClick(getBy("linkText", "Receipts"));
 
@@ -291,60 +371,66 @@ public class ImportPage extends BaseClass {
 		doClick(By.id("IsOthers"));
 		doSendKeys(By.id("txtReceivedFrom"), "1233");
 		doClick(By.id("btnCreate"));
-		doClick(By.id("btnNew"));
-		doSendKeys(By.id("txtReferenceNo"), strReferenceNo); // TIM/29804/KWI22 "TIM/29801/KWI22"
-		doClick(By.id("btnCreate"));
-		doClick(By.id("btnSubmit"));
-		
 	}
-	
+
+	public void createReceipt(String strReferenceNo) {
+		doClick(By.id("btnNew"));
+		doSendKeys(By.id("txtReferenceNo"), strReferenceNo);
+		doClick(By.id("btnCreate"));
+	}
+
+	public void submitReceipt() {
+		doClick(By.id("btnSubmit"));
+
+	}
+
 	public void reviewDoc() {
-		doClick(requiredDocumentBy); //CLick on Required Document link
+		doClick(requiredDocumentBy); // CLick on Required Document link
 		switchToWindow();
-		doClick(By.id("lnkvwuploadDoc")); //Click on View Document Gallery link from 'Declaration Documents' page
-		
+		doClick(By.id("lnkvwuploadDoc")); // Click on View Document Gallery link from 'Declaration Documents' page
+
 		switchBackToWindow();
 		switchToWindow();
 		waitForElementToBeClickable(By.id("img_Rev_0_0"), 20);
 		doClick(By.id("img_Rev_0_0"));
-		doClick(By.id("DocTypeCounts_1")); //DocTypeCounts_11
+		doClick(By.id("DocTypeCounts_1")); // DocTypeCounts_11
 		doClick(By.id("img_Rev_1_0"));
-		doClick(By.id("DocTypeCounts_2")); //DocTypeCounts_11
+		doClick(By.id("DocTypeCounts_2")); // DocTypeCounts_11
 		doClick(By.id("img_Rev_2_0"));
-		doClick(By.id("DocTypeCounts_3")); //DocTypeCounts_11
+		doClick(By.id("DocTypeCounts_3")); // DocTypeCounts_11
 		doClick(By.id("img_Rev_3_0"));
-		doClick(By.id("DocTypeCounts_4")); //DocTypeCounts_11
+		doClick(By.id("DocTypeCounts_4")); // DocTypeCounts_11
 		doClick(By.id("img_Rev_4_0"));
-		doClick(By.id("DocTypeCounts_5")); //DocTypeCounts_11
+		doClick(By.id("DocTypeCounts_5")); // DocTypeCounts_11
 		doClick(By.id("img_Rev_5_0"));
-		doClick(By.id("DocTypeCounts_6")); //DocTypeCounts_11
+		doClick(By.id("DocTypeCounts_6")); // DocTypeCounts_11
 		doClick(By.id("img_Rev_6_0"));
-		doClick(By.id("DocTypeCounts_7")); //DocTypeCounts_11
+		doClick(By.id("DocTypeCounts_7")); // DocTypeCounts_11
 		doClick(By.id("img_Rev_7_0"));
-		doClick(By.id("DocTypeCounts_8")); //DocTypeCounts_11
+		doClick(By.id("DocTypeCounts_8")); // DocTypeCounts_11
 		doClick(By.id("img_Rev_8_0"));
-		doClick(By.id("DocTypeCounts_9")); //DocTypeCounts_11
+		doClick(By.id("DocTypeCounts_9")); // DocTypeCounts_11
 		doClick(By.id("img_Rev_9_0"));
-		doClick(By.id("DocTypeCounts_10")); //DocTypeCounts_11
+		doClick(By.id("DocTypeCounts_10")); // DocTypeCounts_11
 		doClick(By.id("img_Rev_10_0"));
-		doClick(By.id("DocTypeCounts_11")); //DocTypeCounts_11
+		doClick(By.id("DocTypeCounts_11")); // DocTypeCounts_11
 		doClick(By.id("img_Rev_11_0"));
-		
+
 //		doClick(By.xpath("//input[@vaue='Save reviews']"));
 		doClick(By.id("RvwBtn"));
-		
+
 		acceptAlert(10);
 		driver.close();
 		switchBackToWindow();
-		
+
 		switchToWindow();
 		driver.close();
 		switchBackToWindow();
 	}
-	
+
 	public void approveBayan() {
-		doClick(By.id("approvepayment")); //CLick on Approve Bayan
+		doClick(By.id("approvepayment")); // CLick on Approve Bayan
 		acceptAlert(10);
-		acceptAlert(10); //Status updated "Audited and in Red"
+//		acceptAlert(10); // Status updated "Audited and in Red"
 	}
 }

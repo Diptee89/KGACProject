@@ -37,6 +37,11 @@ public class InspectionRequestPage extends BaseClass {
 		doClick(By.id("cmdReject"));
 		switchBackToWindow();
 	}
+	public void clickSeize() {
+		doSendKeys(By.id("WareHouseCode"), "WAFIR");
+		doClick(By.id("cmdFullSeize"));
+		doClick(By.id("cmdApprove"));
+	}
 	public void ExitGate() {
 		waitForElementToBeClickable(By.id("List_ListExitPassDetailsLs_0_cell_RelAndPrint"), 20);
 		doClick(By.id("List_ListExitPassDetailsLs_0_cell_RelAndPrint"));

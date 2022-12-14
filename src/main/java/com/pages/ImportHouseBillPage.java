@@ -1,6 +1,7 @@
 package com.pages;
 
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 
@@ -159,7 +160,20 @@ public class ImportHouseBillPage extends BaseClass {
 
 //		doClick(getBy("cssSelector", "#cancel[value='Back']"));
 	}
-
+public void addRoute_Points() {
+	//Route Points
+	doClick(By.id("LookUpHouseBillPath"));
+	switchToWindow();
+	doClick(By.name("new1"));
+	doSendKeys(By.id("OriginPort"), "AEAUH");	// Entry Port ABU DHABI
+	doSendKeys(By.id("portname"), "KWSWK");	// Exit Port SHUWAIKH
+	doClick(By.id("SaveNewHouseBillPath")); //CLick on Create button
+	
+//	doClick(By.name("close")); //CLick on Close button to CLose Route Points List Window
+	
+	switchBackToWindow();
+	
+}
 	public void createSeaBLForPassenger() {
 		clickNew();
 		setSeaHouseBill();
